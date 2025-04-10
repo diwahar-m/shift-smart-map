@@ -1,5 +1,4 @@
 import { Map, Text } from 'lucide-react'
-import React from 'react'
 import AppHStack from '../mui/AppStack/AppHStack'
 import AppButton from '../mui/AppButton'
 import { useNavigate } from 'react-router-dom'

@@ -1,4 +1,3 @@
-import React from 'react'
 import AppHStack from '../mui/AppStack/AppHStack'
 import { Circle } from 'lucide-react'
 import AppText from '../mui/AppText'
