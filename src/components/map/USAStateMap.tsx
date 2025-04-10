@@ -16,8 +16,10 @@ const USAStateMap: React.FC = () => {
   };
 
   return (
-    <AppBox sx={{ height: '600px', maxWidth: '1400px' }}>
-        <AppText text={"Map"}/>
+    <AppBox sx={{height: '36rem' }}>
+        <AppBox sx={{height:'38px', paddingLeft:'30px'}}>
+          <AppText variant='subtitle2' text={"1,294 stores within map area"} sx={{margin:'auto'}} />
+        </AppBox>
       <MapContainer center={[37.8, -96]} zoom={4} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
         {/* Tile layer (OpenStreetMap by default) */}
         <TileLayer

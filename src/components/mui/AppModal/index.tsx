@@ -24,6 +24,8 @@ const AppModal = ({
 
   return (
     <Modal
+    hideBackdrop
+    disableEnforceFocus 
     open={open}
     onClose={handleClose}
     aria-labelledby="modal-modal-title"
