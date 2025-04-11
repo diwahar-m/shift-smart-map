@@ -39,7 +39,7 @@ interface AppTabProps {
 
 export default function AppTabs({ tabs }: AppTabProps) {
   const [value, setValue] = React.useState(0);
-
+  // @ts-expect-error "event omitted"
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };

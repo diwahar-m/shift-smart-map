@@ -9,18 +9,32 @@ import AppModal from "../mui/AppModal";
 import StateInfo from "../card/StateInfo";
 import DetailCard from "../card/DetailCard";
 
+interface statePropertiesProps {
+  name: string;
+  density: number;
+}
+
+interface USAStateProps {
+  type: string;
+  id: string;
+  properties: statePropertiesProps;
+  geometry: {
+    type: string;
+    coordinates: Array<Array<Array<number>>>;
+  };
+}
+
 const StateDetailsMap: React.FC = () => {
   const navigate = useNavigate();
   const { stateId } = useParams<{ stateId: string }>();
-  const [selectedState, setSelectedState] = useState<object | undefined>(
-    undefined
-  );
+  const [selectedState, setSelectedState] = useState<USAStateProps>();
   const { open, handleClose, handleOpen } = useModal();
 
   useEffect(() => {
     const stateData = usaMapData.features.find(
       (state) => state.properties.name === stateId
     );
+    // @ts-expect-error "USA state error"
     setSelectedState(stateData);
     handleOpen();
   }, [stateId]);

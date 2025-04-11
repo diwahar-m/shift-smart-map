@@ -5,10 +5,11 @@ import AppHStack from "../mui/AppStack/AppHStack";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import TagCard from "./TagCard";
+import { stockPrice } from "../mui/AppTable";
 
 interface ProductCardProps {
   sx?: SxProps;
-  detail?: object;
+  detail?: stockPrice;
 }
 
 export default function ProductCard({ sx, detail }: ProductCardProps) {
