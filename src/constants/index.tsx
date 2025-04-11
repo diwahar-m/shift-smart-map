@@ -72,3 +72,23 @@ export const storesTableRow = [
 ];
 
 //
+export function stateStyling(stateName, feature, layer) {
+  // state styling
+  layer.bindTooltip(stateName, {
+    permanent: true,
+    direction: "center",
+    className: "state-label",
+  });
+  // Path styling
+  (layer as L.Path).setStyle({
+    fillColor: "#CBD5E1",
+    fillOpacity: 0.3,
+    weight: 2,
+    opacity: 1,
+    color: "#9b9898",
+    dashArray: "3",
+  });
+
+  // Optional: Add a popup for each state
+  layer.bindPopup(`<strong>${stateName}</strong>`).openPopup();
+}

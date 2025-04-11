@@ -6,6 +6,17 @@ import AppText from "../mui/AppText";
 import AppCenterStack from "../mui/AppStack/AppCenterStack";
 import ProductCard from "../card/ProductCard";
 
+export type productDetail = {
+  title: string;
+  link: string;
+};
+
+const product = [
+  { title: "Fruit Punch", link: "/store/1" },
+  { title: "Strawberry Kiwi", link: "/store/2" },
+  { title: "Pacific Cooler", link: "/store/3" },
+];
+
 export default function StoreProductList() {
   return (
     <AppVStack
@@ -53,7 +64,7 @@ export default function StoreProductList() {
         </AppCenterStack>
       </AppHStack>
       <AppVStack sx={{ gap: "2px" }}>
-        {new Array(3)?.fill("_")?.map((_) => <ProductCard key={_} />)}
+        {product?.map((_) => <ProductCard key={_?.title} productDetail={_} />)}
       </AppVStack>
     </AppVStack>
   );

@@ -21,7 +21,7 @@ function CustomTabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 1.2 }}>{children}</Box>}
     </div>
   );
 }
@@ -51,6 +51,19 @@ export default function AppTabs({ tabs }: AppTabProps) {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          sx={{
+            "& .MuiTab-root": {
+              outline: "none",
+              "&:focus": {
+                outline: "none",
+                boxShadow: "none",
+              },
+              "&.Mui-focusVisible": {
+                outline: "none",
+                boxShadow: "none",
+              },
+            },
+          }}
         >
           {tabs?.map((_, index) => (
             <Tab label={_?.tab} {...a11yProps(index)} />

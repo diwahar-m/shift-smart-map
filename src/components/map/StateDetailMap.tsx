@@ -8,6 +8,7 @@ import useModal from "../../constants/hooks/useHooks";
 import AppModal from "../mui/AppModal";
 import StateInfo from "../card/StateInfo";
 import DetailCard from "../card/DetailCard";
+import { stateStyling } from "../../constants";
 
 interface statePropertiesProps {
   name: string;
@@ -45,23 +46,16 @@ const StateDetailsMap: React.FC = () => {
 
   const onEachState = (feature: any, layer: L.Layer) => {
     const stateName = feature.properties.name;
-    layer.bindPopup(`<strong>${stateName}</strong>`);
+    stateStyling(stateName, feature, layer);
 
     layer.on("click", () => handleStateClick(stateName));
 
     if (selectedState && stateName === selectedState?.properties?.name) {
       (layer as L.Path).setStyle({
-        fillColor: "#3388ff",
+        fillColor: "#8cebf9",
         weight: 2,
         color: "#666",
         fillOpacity: 0.7,
-      });
-    } else {
-      (layer as L.Path).setStyle({
-        fillColor: "",
-        weight: 1,
-        color: "#666",
-        fillOpacity: 0.3,
       });
     }
   };
@@ -91,8 +85,8 @@ const StateDetailsMap: React.FC = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {/* Filter the state data to render only the clicked state's geometry */}
         <GeoJSON
+          key={selectedState?.properties?.name}
           //@ts-expect-error "USA State type"
           data={usaMapData}
           onEachFeature={onEachState}
