@@ -1,0 +1,67 @@
+import * as React from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import { tabProps } from "../../stores/StoreProductDetail";
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+interface AppTabProps {
+  tabs: Array<tabProps>;
+}
+
+export default function AppTabs({ tabs }: AppTabProps) {
+  const [value, setValue] = React.useState(0);
+  // @ts-expect-error "event omitted"
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          {tabs?.map((_, index) => (
+            <Tab label={_?.tab} {...a11yProps(index)} />
+          ))}
+        </Tabs>
+      </Box>
+      {tabs?.map((_, index) => (
+        <CustomTabPanel key={index} value={value} index={index}>
+          {_?.component}
+        </CustomTabPanel>
+      ))}
+    </Box>
+  );
+}

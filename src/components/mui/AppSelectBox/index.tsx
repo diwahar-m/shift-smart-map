@@ -6,14 +6,15 @@ import InputLabel from '@mui/material/InputLabel';
 import { SxProps } from '@mui/material';
 
 interface AppSelectBoxProps {
-    options: Array<string>;
-    sx: SxProps;
-    onChange: (event: SelectChangeEvent<string>) => void
+    options?: Array<string>;
+    sx?: SxProps;
+    onChange: (event: SelectChangeEvent<string>) => void,
+    label?: string
 }
 
 const AppSelectBox = (props: AppSelectBoxProps) => {
 
-    const { options,sx, onChange } = props;
+    const { options,sx, onChange, label } = props;
 
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -23,14 +24,14 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
   };
 
   return (
-    <FormControl variant="outlined" sx={sx}>
-      <InputLabel>Select State</InputLabel>
+    <FormControl variant="outlined" sx={sx} size="small">
+      <InputLabel>{label}</InputLabel>
       <Select
         value={selectedOption}
         onChange={handleChange}
-        label="Select State"
+        label={label || "Select"}
       >
-        {options.map((option) => (
+        {options?.map((option) => (
           <MenuItem key={option} value={option} sx={{color: '#02378a'}}>
             {option}
           </MenuItem>

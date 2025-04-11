@@ -30,6 +30,7 @@ const AppButton = ({
         <Button
           onClick={handleClick}
           sx={{
+            boxSizing:'border-box',
             padding: padding,
             textTransform: 'none',
             ...sx,
