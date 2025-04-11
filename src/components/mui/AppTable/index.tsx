@@ -48,6 +48,126 @@ const rows = [
     "Mar 18, 2025",
     "Feb 20, 2025"
   ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
+  createData(
+    "Circle K | Store 2709744",
+    { stock: "In inventory", price: "$0.00" },
+    { stock: "Out of stack", price: "$2.50" },
+    { stock: "On shelf", price: "$2.44" },
+    "Mar 18, 2025",
+    "Feb 20, 2025"
+  ),
 ];
 
 interface AppTableProps {

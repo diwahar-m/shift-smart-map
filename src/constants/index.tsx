@@ -71,4 +71,24 @@ export const storesTableRow = [
   "Feb 20, 2025",
 ];
 
-//
+//@ts-expect-error "j"
+export function stateStyling(stateName, layer) {
+  // state styling
+  layer.bindTooltip(stateName, {
+    permanent: true,
+    direction: "center",
+    className: "state-label",
+  });
+  // Path styling
+  (layer as L.Path).setStyle({
+    fillColor: "#CBD5E1",
+    fillOpacity: 0.3,
+    weight: 2,
+    opacity: 1,
+    color: "#9b9898",
+    dashArray: "3",
+  });
+
+  // Optional: Add a popup for each state
+  layer.bindPopup(`<strong>${stateName}</strong>`).openPopup();
+}

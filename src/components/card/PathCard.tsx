@@ -1,11 +1,11 @@
 import { Map, Text } from "lucide-react";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppButton from "../mui/AppButton";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function PathCard() {
   const navigate = useNavigate();
-  // const {stateId} = useParams();
+  const { stateId } = useParams();
 
   return (
     <AppHStack>
@@ -14,7 +14,7 @@ export default function PathCard() {
         sx={{
           maxWidth: "10px",
           padding: "9px",
-          backgroundColor: "#E9EFF7",
+          backgroundColor: stateId ? "#fff" : "#E9EFF7",
           borderRightWidth: "1px",
           borderTopLeftRadius: "8px",
           borderBottomLeftRadius: "8px",
@@ -30,7 +30,7 @@ export default function PathCard() {
         sx={{
           width: "50%",
           padding: "9px",
-          backgroundColor: "#fff",
+          backgroundColor: stateId ? "#E9EFF7" : "#fff",
           borderRightWidth: "1px",
           borderTopRightRadius: "8px",
           borderBottomRightRadius: "8px",

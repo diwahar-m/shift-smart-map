@@ -1,28 +1,28 @@
-import { LinearProgress, linearProgressClasses } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { LinearProgress, linearProgressClasses } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-export default function AppLinearProgress() {
-
-    const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-        height: 10,
-        borderRadius: 5,
-        [`&.${linearProgressClasses.colorPrimary}`]: {
-            backgroundColor: theme.palette.grey[200],
-            ...theme.applyStyles('dark', {
-            backgroundColor: theme.palette.grey[800],
-            }),
-        },
-        [`& .${linearProgressClasses.bar}`]: {
-            borderRadius: 5,
-            backgroundColor: '#1a90ff',
-            ...theme.applyStyles('dark', {
-            backgroundColor: '#308fe8',
-            }),
-        },
-        }));
-
-
-  return (
-    <BorderLinearProgress variant="determinate" value={50} /> 
-  )
+export default function AppLinearProgress({
+  value,
+}: {
+  value: number | string | undefined;
+}) {
+  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+    height: 10,
+    borderRadius: 5,
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+      backgroundColor: theme.palette.grey[200],
+      ...theme.applyStyles("dark", {
+        backgroundColor: theme.palette.grey[800],
+      }),
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+      borderRadius: 5,
+      backgroundColor: "#1a90ff",
+      ...theme.applyStyles("dark", {
+        backgroundColor: "#308fe8",
+      }),
+    },
+  }));
+  // @ts-expect-error "h"
+  return <BorderLinearProgress variant="determinate" value={value} />;
 }

@@ -6,8 +6,14 @@ import AppVStack from "../mui/AppStack/AppVStack";
 import { usaStates } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import PathCard from "../card/PathCard";
+import AppDateRangePicker from "../mui/AppDateRangePicker";
+import { InventoryDetailProps } from "../../pages/dashboard";
 
-export default function HeaderBar() {
+export default function HeaderBar({
+  headerCardDetails,
+}: {
+  headerCardDetails: Array<InventoryDetailProps>;
+}) {
   const navigate = useNavigate();
 
   return (
@@ -30,16 +36,14 @@ export default function HeaderBar() {
             sx={{ width: "220px", borderRadius: "8px" }}
             options={usaStates}
           />
-          <AppSelectBox
-            onChange={() => {}}
-            label={"Select Date Range"}
-            sx={{ width: "220px", borderRadius: "8px" }}
-          />
+          <AppDateRangePicker />
         </AppHStack>
         <PathCard />
       </AppHStack>
       <AppHStack sx={{ gap: "5px" }}>
-        {new Array(3).fill("_")?.map((_, index) => <CardSection key={index} />)}
+        {headerCardDetails?.map((_, index) => (
+          <CardSection detail={_} key={index} />
+        ))}
       </AppHStack>
     </AppVStack>
   );

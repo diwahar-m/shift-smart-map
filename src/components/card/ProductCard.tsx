@@ -6,59 +6,107 @@ import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import TagCard from "./TagCard";
 import { stockPrice } from "../mui/AppTable";
+import { productDetail } from "../stores/StoreProductList";
+import { useNavigate, useParams } from "react-router-dom";
+import AppButton from "../mui/AppButton";
 
 interface ProductCardProps {
   sx?: SxProps;
   detail?: stockPrice;
+  productDetail?: productDetail;
 }
 
-export default function ProductCard({ sx, detail }: ProductCardProps) {
+export default function ProductCard({
+  sx,
+  detail,
+  productDetail,
+}: ProductCardProps) {
+  const navigate = useNavigate();
+  const { storeId } = useParams();
   return (
-    <AppHStack
-      sx={{
-        border: "1px solid #E9EFF7",
-        borderRadius: "12px",
-        padding: "8px",
-        gap: "16px",
-        maxWidth: "260px",
-        backgroundColor: "#E9EFF7",
-        ...sx,
+    <AppButton
+      sx={{ padding: 0, width: "100%" }}
+      handleClick={() => {
+        if (productDetail?.link) {
+          navigate(productDetail?.link);
+        }
       }}
     >
-      <AppImage src={ProductImage} />
-      {detail?.stock ? (
-        <AppVStack sx={{ gap: "10px" }}>
-          <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
-            <AppVStack sx={{ gap: "2px" }}>
+      <AppHStack
+        sx={{
+          border: "1px solid #E9EFF7",
+          borderRadius: "12px",
+          padding: "8px",
+          gap: "16px",
+          minWidth: "260px",
+          backgroundColor: productDetail?.link
+            ? // @ts-expect-error "storeID"
+              productDetail?.link?.includes(storeId)
+              ? "#E9EFF7"
+              : "#fff"
+            : "#fff",
+          ...sx,
+        }}
+      >
+        <AppImage src={ProductImage} />
+        {detail?.stock ? (
+          <AppVStack sx={{ gap: "10px", width: "100%" }}>
+            <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
+              <AppVStack sx={{ gap: "2px" }}>
+                <AppText
+                  sx={{
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    fontWeight: 600,
+                    color: "#000",
+                  }}
+                  text={"Capri Sun"}
+                />
+                <AppText
+                  sx={{
+                    fontSize: "14px",
+                    lineHeight: "20px",
+                    fontWeight: 400,
+                    color: "#000",
+                  }}
+                  text={"Fruit Punch"}
+                />
+              </AppVStack>
               <AppText
-                sx={{ fontSize: "16px", lineHeight: "20px", fontWeight: 600 }}
-                text={"Capri Sun"}
+                variant="subtitle2"
+                sx={{ fontSize: "14px", lineHeight: "20px" }}
+                text={detail?.price}
               />
-              <AppText
-                sx={{ fontSize: "14px", lineHeight: "20px", fontWeight: 400 }}
-                text={"Fruit Punch"}
-              />
-            </AppVStack>
+            </AppHStack>
+            <TagCard title={detail?.stock} theme={"green"} />
+          </AppVStack>
+        ) : productDetail?.title ? (
+          <AppVStack>
             <AppText
-              variant="subtitle2"
-              sx={{ fontSize: "14px", lineHeight: "20px" }}
-              text={detail?.price}
+              sx={{
+                fontSize: "16px",
+                lineHeight: "20px",
+                fontWeight: 600,
+                color: "#000",
+                textAlign: "left",
+              }}
+              text={"Capri Sun"}
             />
-          </AppHStack>
-          <TagCard title={detail?.stock} theme={"green"} />
-        </AppVStack>
-      ) : (
-        <AppVStack>
-          <AppText
-            sx={{ fontSize: "16px", lineHeight: "20px", fontWeight: 600 }}
-            text={"Capri Sun"}
-          />
-          <AppText
-            sx={{ fontSize: "14px", lineHeight: "20px", fontWeight: 400 }}
-            text={"Fruit Punch"}
-          />
-        </AppVStack>
-      )}
-    </AppHStack>
+            <AppText
+              sx={{
+                fontSize: "14px",
+                lineHeight: "20px",
+                fontWeight: 400,
+                color: "#000",
+                textAlign: "left",
+              }}
+              text={productDetail?.title}
+            />
+          </AppVStack>
+        ) : (
+          <></>
+        )}
+      </AppHStack>
+    </AppButton>
   );
 }
