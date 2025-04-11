@@ -8,6 +8,7 @@ import SidebarLogoIcon from "./AllRegions/sidebar-logo.svg";
 import InfoIcon from "./AllRegions/info-icon.svg";
 import ShiftIcon from "./AllRegions/shift-icon.svg";
 import ProductImage from "./AllRegions/productImage.svg";
+import SampleProductImage from "./AllRegions/sampleProductImage.svg";
 
 export {
   AuditsIcon,
@@ -18,4 +19,5 @@ export {
   InfoIcon,
   ShiftIcon,
   ProductImage,
+  SampleProductImage,
 };

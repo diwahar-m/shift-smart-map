@@ -10,7 +10,7 @@ export default function StoreProductList() {
   return (
     <AppVStack
       sx={{
-        flex: 0.22,
+        flex: 0.02,
         padding: "20px",
         gap: "24px",
         border: "1px solid #CBD5E1",
@@ -18,6 +18,7 @@ export default function StoreProductList() {
         borderLeftWidth: 0,
         borderBottomWidth: 0,
         minHeight: "100vh",
+        height: "100%",
       }}
     >
       <AppVStack sx={{ gap: "6px" }}>

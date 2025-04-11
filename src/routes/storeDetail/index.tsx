@@ -3,13 +3,13 @@ import { lazy } from "react";
 
 const StoreDetail_Page = "/store/:storeId";
 
-const StatePage = AppLoadSuspense(
-  lazy(() => import("../../pages/storesDetail/index.js"))
+const StorePage = AppLoadSuspense(
+  lazy(() => import("../../pages/storesDetail/index.tsx"))
 );
 
 const StoreDetailPageRoutes = {
   path: StoreDetail_Page,
-  element: <StatePage />,
+  element: <StorePage />,
 };
 
 export default StoreDetailPageRoutes;

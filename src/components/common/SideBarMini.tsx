@@ -8,7 +8,7 @@ export default function SideBarMini() {
   return (
     <AppVStack
       sx={{
-        height: "100vh",
+        minHeight: "100vh",
         maxWidth: "100px",
         padding: "16px",
         display: "flex",
