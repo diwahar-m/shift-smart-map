@@ -1,7 +1,11 @@
 import { LinearProgress, linearProgressClasses } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-export default function AppLinearProgress({ value }: { value: number }) {
+export default function AppLinearProgress({
+  value,
+}: {
+  value: number | string | undefined;
+}) {
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 10,
     borderRadius: 5,
@@ -19,6 +23,6 @@ export default function AppLinearProgress({ value }: { value: number }) {
       }),
     },
   }));
-
+  // @ts-expect-error "h"
   return <BorderLinearProgress variant="determinate" value={value} />;
 }

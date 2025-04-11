@@ -71,8 +71,8 @@ export const storesTableRow = [
   "Feb 20, 2025",
 ];
 
-//
-export function stateStyling(stateName, feature, layer) {
+//@ts-expect-error "j"
+export function stateStyling(stateName, layer) {
   // state styling
   layer.bindTooltip(stateName, {
     permanent: true,

@@ -46,7 +46,7 @@ const StateDetailsMap: React.FC = () => {
 
   const onEachState = (feature: any, layer: L.Layer) => {
     const stateName = feature.properties.name;
-    stateStyling(stateName, feature, layer);
+    stateStyling(stateName, layer);
 
     layer.on("click", () => handleStateClick(stateName));
 

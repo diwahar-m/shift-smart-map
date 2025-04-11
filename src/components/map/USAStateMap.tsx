@@ -44,7 +44,7 @@ const USAStateMap: React.FC = () => {
             const stateName = feature.properties.name;
             layer.on("click", () => handleStateClick(stateName)); // Add click event to navigate to details page
             // common styling for state
-            stateStyling(stateName, feature, layer);
+            stateStyling(stateName, layer);
             // hover effect
             const vectorLayer = layer as L.Path;
             layer.on("mouseover", () => {

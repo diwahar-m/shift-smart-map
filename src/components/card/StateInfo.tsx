@@ -27,11 +27,11 @@ export default function StateInfo() {
           variant="h1"
           text={"85%"}
         />
-        <AppLinearProgress />
+        <AppLinearProgress value={50} />
       </AppVStack>
       <AppVStack>
         <AppText variant={"subtitle1"} text={"Inventory"} />
-        <AppLinearProgress />
+        <AppLinearProgress value={35} />
       </AppVStack>
       <AppVStack sx={{ marginTop: "6px", gap: "18px" }}>
         {tags?.map((_) => (
