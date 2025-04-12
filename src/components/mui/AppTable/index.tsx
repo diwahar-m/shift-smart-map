@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -173,9 +175,14 @@ const rows = [
 interface AppTableProps {
   tableHead: Array<string>;
   handleRowClick: () => void;
+  tableRow: any;
 }
 
-export default function AppTable({ tableHead, handleRowClick }: AppTableProps) {
+export default function AppTable({
+  tableHead,
+  handleRowClick,
+  tableRow,
+}: AppTableProps) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -193,23 +200,23 @@ export default function AppTable({ tableHead, handleRowClick }: AppTableProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {tableRow?.map((row: any, index: number) => (
             <TableRow
               onClick={handleRowClick}
-              key={row.name}
+              key={index}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
                 cursor: "pointer",
               }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell align="center" component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{tagPrice(row.punch)}</TableCell>
-              <TableCell align="right">{tagPrice(row.kiwi)}</TableCell>
-              <TableCell align="right">{tagPrice(row.cooler)}</TableCell>
-              <TableCell align="right">{row.audited}</TableCell>
-              <TableCell align="right">{row.delivery}</TableCell>
+              <TableCell align="center">{tagPrice(row.punch)}</TableCell>
+              <TableCell align="center">{tagPrice(row.kiwi)}</TableCell>
+              <TableCell align="center">{tagPrice(row.cooler)}</TableCell>
+              <TableCell align="center">{row.audited}</TableCell>
+              <TableCell align="center">{row.delivery}</TableCell>
             </TableRow>
           ))}
         </TableBody>

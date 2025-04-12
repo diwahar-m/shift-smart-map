@@ -9,8 +9,16 @@ import {
 } from "../../constants/data";
 
 export type InventoryDetailProps =
-  | { title: string; percentage: string; price?: undefined }
-  | { title: string; price: string; percentage?: undefined };
+  | {
+      title: string;
+      percentage: string;
+      price?: undefined;
+    }
+  | {
+      title: string;
+      price: string;
+      percentage?: undefined;
+    };
 
 // export interface InventoryDetailProps {
 //   title: string;

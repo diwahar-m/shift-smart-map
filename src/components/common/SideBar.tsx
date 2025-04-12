@@ -9,7 +9,7 @@ export default function SideBar() {
     <AppBox
       sx={{
         height: "100vh",
-        maxWidth: "270px",
+        maxWidth: "260px",
         padding: "16px",
         display: "flex",
         flexDirection: "column",
@@ -53,7 +53,7 @@ export default function SideBar() {
         >
           <AppBox sx={{ display: "flex", gap: "5px", marginLeft: "-95px" }}>
             <AppImage src={TrendsIcon} alt={"logo"} />
-            <AppText sx={{ color: "##475569" }} text={"Trends"} />
+            <AppText sx={{ color: "#475569" }} text={"Trends"} />
           </AppBox>
         </AppButton>
       </AppBox>

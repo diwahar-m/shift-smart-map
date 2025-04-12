@@ -35,7 +35,7 @@ export default function StoreProductDetail() {
   return (
     <AppVStack
       sx={{
-        padding: "20px",
+        padding: "50px 20px",
         gap: "14px",
         minHeight: "100vh",
         maxWidth: "100%",

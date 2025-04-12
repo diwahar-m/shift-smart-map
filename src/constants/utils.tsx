@@ -7,7 +7,7 @@ import AppText from "../components/mui/AppText";
 export function tagPrice(stock: stockPrice) {
   let theme = "green";
   switch (stock?.stock) {
-    case "Out of stack":
+    case "Out of stock":
       theme = "red";
       break;
     case "In inventory":
