@@ -24,27 +24,23 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
   };
 
   return (
-    // <FormControl variant="outlined" sx={sx} size="small">
-    //   <InputLabel>{label}</InputLabel>
-    //   <Select
-    //     value={selectedOption}
-    //     onChange={handleChange}
-    //     label={label || "Select"}
-    //   >
-    //     {options?.map((option) => (
-    //       <MenuItem key={option} value={option} sx={{ color: "#02378a" }}>
-    //         {option}
-    //       </MenuItem>
-    //     ))}
-    //   </Select>
-    // </FormControl>
-    <Stack spacing={2} sx={{ width: 300 }}>
+    <Stack spacing={2} sx={{ width: 300, ...sx }}>
       <Autocomplete
         id="free-solo-demo"
         onChange={handleChange}
         freeSolo
         options={options?.map((option) => option)}
-        renderInput={(params) => <TextField {...params} label="freeSolo" />}
+        renderInput={(params) => (
+          <TextField
+            sx={{
+              "& label": {
+                top: -7, // move label down to center it better
+              },
+            }}
+            {...params}
+            label="Select State"
+          />
+        )}
       />
     </Stack>
   );

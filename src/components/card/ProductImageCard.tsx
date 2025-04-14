@@ -1,15 +1,18 @@
-import { SampleProductImage } from "../../assets";
 import AppImage from "../mui/AppImage";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
+interface ProductImageCardProps {
+  src: string;
+  date: string;
+}
 
-export default function ProductImageCard() {
+export default function ProductImageCard({ src, date }: ProductImageCardProps) {
   return (
     <AppVStack
       sx={{
         padding: "14px",
         gap: "10px",
-        minWidth: "14rem",
+        maxWidth: "460px",
         borderRadius: "24px",
         bgcolor: "#F8FAFC",
       }}
@@ -21,11 +24,11 @@ export default function ProductImageCard() {
           lineHeight: "20px",
           fontWeight: 400,
         }}
-        text="Mar 18, 2025 9:08  AM"
+        text={date}
       />
       <AppImage
-        src={SampleProductImage}
-        sx={{ minWidth: "85%", minHeight: "95", borderRadius: "12px" }}
+        src={src ? src : ""}
+        sx={{ maxWidth: "412px", maxHeight: "316px", borderRadius: "12px" }}
       />
     </AppVStack>
   );

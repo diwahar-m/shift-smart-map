@@ -57,9 +57,9 @@ export type StoreAudit = {
   cooler: ProductDetail;
   audited: string;
   delivery: string;
+  completion_date: string;
 };
 export function getStoresList(stateName: string | null = null) {
-  console.log(stateName);
   const storesList: StoreAudit[] = [];
 
   auditData
@@ -95,6 +95,7 @@ export function getStoresList(stateName: string | null = null) {
         },
         audited: getDateFormat(_?.["Completion Date"]),
         delivery: "-",
+        completion_date: _?.["Completion Date"],
       };
       storesList?.push(auditDetail);
     });
@@ -102,6 +103,14 @@ export function getStoresList(stateName: string | null = null) {
 }
 
 // ---------------------
+
+// ----- store data ----
+
+export function getStoreDetails(stateName: string | undefined) {
+  return auditData?.filter((_) => _?.["Store Number"] === stateName);
+}
+
+// -------------
 
 // export function getStateBasedStoresList(state) {
 //   let stateBasedStoresList = [];

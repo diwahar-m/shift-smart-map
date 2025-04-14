@@ -18,7 +18,7 @@ export function tagPrice(stock: stockPrice) {
   }
   //{ stock: "Out of stack", price: "$2.50" },
   return (
-    <AppHStack sx={{ height: "100%", gap: "6px" }}>
+    <AppHStack sx={{ height: "100%", justifyContent: "space-between" }}>
       <TagCard title={stock?.stock} theme={theme} />
       <AppText
         variant="subtitle2"

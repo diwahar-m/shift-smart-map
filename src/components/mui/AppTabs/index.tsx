@@ -62,11 +62,16 @@ export default function AppTabs({ tabs }: AppTabProps) {
                 outline: "none",
                 boxShadow: "none",
               },
+              paddingLeft: "20px",
             },
           }}
         >
           {tabs?.map((_, index) => (
-            <Tab label={_?.tab} {...a11yProps(index)} />
+            <Tab
+              sx={{ textTransform: "none", fontFamily: "Figtree" }}
+              label={_?.tab}
+              {...a11yProps(index)}
+            />
           ))}
         </Tabs>
       </Box>

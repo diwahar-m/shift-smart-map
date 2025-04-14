@@ -5,7 +5,11 @@ import SideBar from "../common/SideBar";
 export default function AppMainLayout() {
   return (
     <AppHStack
-      sx={{ alignItems: "flex-start", minHeight: "100vh", maxWidth: "100vw" }}
+      sx={{
+        alignItems: "flex-start",
+        minHeight: "100vh",
+        maxWidth: "100vw",
+      }}
     >
       <SideBar />
       <Outlet />

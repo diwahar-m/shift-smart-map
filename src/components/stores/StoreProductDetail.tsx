@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import AppBreadcrumb from "../mui/AppBreadcrumb";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppTabs from "../mui/AppTabs";
@@ -7,6 +7,8 @@ import Product from "../product/Product";
 import ProductSampleTwo from "../product/ProductSampleTwo";
 import ProductSampleOne from "../product/ProductSampleOne";
 import { useParams } from "react-router-dom";
+import { getDateFormat } from "../../constants";
+import { StoreDetail } from "../../constants/typeDeclarations";
 
 export interface tabProps {
   tab: string;
@@ -19,8 +21,36 @@ const tabs = [
   { tab: "Jan 6", component: <ProductSampleTwo /> },
 ];
 
-export default function StoreProductDetail() {
+interface StoreProductDetailProps {
+  storeDetails: Array<StoreDetail>;
+  productTab: string;
+}
+
+export default function StoreProductDetail({
+  storeDetails,
+  productTab,
+}: StoreProductDetailProps) {
   const { storeId } = useParams();
+
+  const [auditDetail, setAuditDetail] = useState([]);
+
+  useEffect(() => {
+    const tabs: Array<tabProps> = [];
+    storeDetails?.map((_) => {
+      const tabDetail = {};
+      tabDetail.tab = getDateFormat(_?.["Completion Date"]);
+      let selectedTabDetails = {
+        image: _?.[productTab + ", Stock"],
+        price: _?.[productTab + ", Price"],
+        date: getDateFormat(_?.["Completion Date"]),
+      };
+      console.log(selectedTabDetails);
+      tabDetail.component = <Product storeDetail={selectedTabDetails} />;
+      console.log(tabDetail);
+      tabs?.push(tabDetail);
+    });
+    setAuditDetail(tabs);
+  }, [storeDetails, productTab]);
 
   let text = "Capri Sun Fruit Punch";
 
@@ -35,24 +65,33 @@ export default function StoreProductDetail() {
   return (
     <AppVStack
       sx={{
-        padding: "50px 20px",
-        gap: "14px",
+        gap: "20px",
         minHeight: "100vh",
         maxWidth: "100%",
+        flex: 1,
         justifyContent: "flex-start",
-        maxHeight: "100px", // or any height you need
+        maxHeight: "100px",
         overflowY: "auto",
-        scrollbarWidth: "none", // Firefox
+        scrollbarWidth: "none",
         "&::-webkit-scrollbar": { display: "none" },
       }}
     >
-      <AppBreadcrumb />
-      <AppText
-        variant="h4"
-        sx={{ fontSize: "24px", lineHeight: "28px", fontWeight: 600 }}
-        text={text}
-      />
-      <AppTabs tabs={tabs} />
+      <AppVStack
+        sx={{
+          padding: "50px 20px",
+          paddingBottom: "5px",
+          gap: "20px",
+          maxWidth: "100%",
+        }}
+      >
+        <AppBreadcrumb />
+        <AppText
+          variant="h4"
+          sx={{ fontSize: "24px", lineHeight: "28px", fontWeight: 600 }}
+          text={productTab}
+        />
+      </AppVStack>
+      <AppTabs tabs={auditDetail} />
     </AppVStack>
   );
 }

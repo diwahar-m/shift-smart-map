@@ -14,12 +14,29 @@ export default function AppBreadcrumb() {
   }
   return (
     <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
+      <Breadcrumbs
+        aria-label="breadcrumb"
+        sx={{
+          color: "#475569",
+          fontSize: "16px",
+          lineHeight: "14px",
+          fontWeight: 500,
+        }}
+      >
+        <Link underline="hover" color="#475569" href="/">
           Audits
         </Link>
 
-        <Typography sx={{ color: "text.primary" }}>Store-1</Typography>
+        <Typography
+          sx={{
+            color: "#475569",
+            fontSize: "16px",
+            lineHeight: "14px",
+            fontWeight: 500,
+          }}
+        >
+          Store-1
+        </Typography>
       </Breadcrumbs>
     </div>
   );

@@ -6,7 +6,7 @@ import {
   getInstockAndOnshelfPercentage,
   getOutOfStockPercentage,
   getSKUAveragePrice,
-} from "../../constants/data";
+} from "../../constants/storeData";
 
 export type InventoryDetailProps =
   | {

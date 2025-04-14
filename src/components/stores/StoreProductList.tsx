@@ -5,19 +5,33 @@ import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import AppCenterStack from "../mui/AppStack/AppCenterStack";
 import ProductCard from "../card/ProductCard";
+import { StoreDetail } from "../../constants/typeDeclarations";
+import { useLocation } from "react-router-dom";
 
 export type productDetail = {
   title: string;
   link: string;
 };
 
-const product = [
-  { title: "Fruit Punch", link: "/store/1" },
-  { title: "Strawberry Kiwi", link: "/store/2" },
-  { title: "Pacific Cooler", link: "/store/3" },
-];
+interface StoreProductListProps {
+  storeDetails: Array<StoreDetail>;
+  productTab: string;
+  setProductTab: () => void;
+}
 
-export default function StoreProductList() {
+export default function StoreProductList({
+  storeDetails,
+  productTab,
+  setProductTab,
+}: StoreProductListProps) {
+  const { pathname } = useLocation();
+
+  const product = [
+    { title: "Fruit Punch", link: "/fruit-punch" },
+    { title: "Strawberry Kiwi", link: "/strawberry-kiwi" },
+    { title: "Pacific Cooler", link: "/pacific-cooler" },
+  ];
+
   return (
     <AppVStack
       sx={{
@@ -47,7 +61,7 @@ export default function StoreProductList() {
         <AppText
           variant="h4"
           sx={{ fontSize: "36px", fontWeight: 600, lineHeight: "40px" }}
-          text="Store 4707013"
+          text={`Store ${storeDetails?.[0]?.["Store Number"]}`}
         />
       </AppVStack>
       <AppHStack gap={"5px"}>
@@ -65,7 +79,14 @@ export default function StoreProductList() {
         </AppCenterStack>
       </AppHStack>
       <AppVStack sx={{ gap: "2px" }}>
-        {product?.map((_) => <ProductCard key={_?.title} productDetail={_} />)}
+        {product?.map((_) => (
+          <ProductCard
+            productTab={productTab}
+            setProductTab={setProductTab}
+            key={_?.title}
+            productDetail={_}
+          />
+        ))}
       </AppVStack>
     </AppVStack>
   );

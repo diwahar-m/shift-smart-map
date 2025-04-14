@@ -96,12 +96,21 @@ export function getDateFormat(date: string) {
   // Output Ex - "Apr 03, 2025"
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
+    // year: "numeric",
     month: "short",
     day: "2-digit",
   });
 
   return formattedDate;
+}
+
+export function getDateDuration(date: string) {
+  const dateTime = new Date(date);
+
+  const stripTime = (date: Date) =>
+    new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  return stripTime(dateTime);
 }
 
 export function getProductAvailability(stock: string, inventory: string) {

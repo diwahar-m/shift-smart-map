@@ -42,6 +42,7 @@ export default function ProductInfo() {
           text="Bangor, ME 04401"
         />
       </AppVStack>
+
       <AppTabs tabs={tabs} />
     </AppVStack>
   );

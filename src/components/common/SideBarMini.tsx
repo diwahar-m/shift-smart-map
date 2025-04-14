@@ -12,7 +12,7 @@ export default function SideBarMini() {
     <AppVStack
       sx={{
         minHeight: "100vh",
-        maxWidth: "60px",
+        maxWidth: "5%",
         padding: "14px 8px",
         display: "flex",
         flexDirection: "column",
@@ -21,6 +21,7 @@ export default function SideBarMini() {
         borderTopWidth: 0,
         borderLeftWidth: 0,
         borderBottomWidth: 0,
+        flex: 1,
       }}
     >
       {/* Logo container */}

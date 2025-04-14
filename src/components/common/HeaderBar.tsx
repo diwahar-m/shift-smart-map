@@ -10,11 +10,13 @@ import { InventoryDetailProps } from "../../pages/dashboard";
 interface HeaderBarProps {
   headerCardDetails: Array<InventoryDetailProps>;
   onStateChange?: (value: string) => void;
+  onDateRangeChange?: (value: string[]) => void;
 }
 
 export default function HeaderBar({
   headerCardDetails,
   onStateChange,
+  onDateRangeChange,
 }: HeaderBarProps) {
   return (
     <AppVStack sx={{ width: "100%", padding: "30px", gap: "20px" }}>
@@ -29,14 +31,17 @@ export default function HeaderBar({
         }}
       />
       <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
-        <AppHStack sx={{ gap: "5px" }}>
+        <AppHStack sx={{ gap: "8px" }}>
           <AppSelectBox
             label={"Select State"}
             onChange={(value) => onStateChange?.(value)}
-            sx={{ width: "220px", borderRadius: "8px" }}
+            sx={{ width: "248px", borderRadius: "8px", borderColor: "#CBD5E1" }}
             options={usaStates}
           />
-          <AppDateRangePicker />
+          <AppDateRangePicker
+            style={{ width: "188px", height: "42px" }}
+            onChange={onDateRangeChange}
+          />
         </AppHStack>
         <PathCard />
       </AppHStack>

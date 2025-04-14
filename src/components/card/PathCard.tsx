@@ -25,7 +25,10 @@ export default function PathCard() {
           borderBottomRightRadius: 0,
         }}
       >
-        <Map width={"12px"} color={"#052757"} />
+        <Map
+          width={"12px"}
+          color={isStoreListingPage ? "#94A3B8" : "#020617"}
+        />
       </AppButton>
       <AppButton
         handleClick={() => navigate("/stores")}
@@ -41,7 +44,10 @@ export default function PathCard() {
           borderBottomLeftRadius: 0,
         }}
       >
-        <Text width={"12px"} />
+        <Text
+          width={"12px"}
+          color={isStoreListingPage ? "#020617" : "#94A3B8"}
+        />
       </AppButton>
     </AppHStack>
   );
