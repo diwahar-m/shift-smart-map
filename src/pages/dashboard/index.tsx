@@ -1,4 +1,3 @@
-import HeaderBar from "../../components/common/HeaderBar";
 import USAStateMap from "../../components/map/USAStateMap";
 import AppVStack from "../../components/mui/AppStack/AppVStack";
 import {
@@ -52,7 +51,6 @@ export const inventoryDetails = [
 export default function DashboardPage() {
   return (
     <AppVStack sx={{ flex: 1, width: "100%", maxWidth: "100%" }}>
-      <HeaderBar headerCardDetails={inventoryDetails} />
       <USAStateMap />
     </AppVStack>
   );

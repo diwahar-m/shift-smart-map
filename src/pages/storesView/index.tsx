@@ -5,9 +5,6 @@ import USAStateMap from "../../components/map/USAStateMap";
 import AppModal from "../../components/mui/AppModal";
 import AppVStack from "../../components/mui/AppStack/AppVStack";
 import useModal from "../../constants/hooks/useHooks";
-import { inventoryDetails } from "../dashboard";
-import HeaderBar from "../../components/common/HeaderBar";
-
 export default function StoresView() {
   const { open, handleClose, handleOpen } = useModal();
 
@@ -16,8 +13,6 @@ export default function StoresView() {
   }, []);
   return (
     <AppVStack sx={{ flex: 1, width: "100%", maxWidth: "100%" }}>
-      <HeaderBar headerCardDetails={inventoryDetails} />
-
       <USAStateMap />
       <AppModal
         sx={{ position: "absolute", bottom: "5px", right: "5px" }}
