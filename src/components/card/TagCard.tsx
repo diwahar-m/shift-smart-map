@@ -7,7 +7,7 @@ interface TagCardProps {
   theme?: string;
 }
 
-function tagContainer(theme: string) {
+function tagContainer(theme: string, title: string) {
   let color, backgroundColor;
 
   switch (theme) {
@@ -24,11 +24,25 @@ function tagContainer(theme: string) {
       backgroundColor = "#DDF6E9";
   }
 
+  switch (title) {
+    case "Out of stock":
+      color = "#B91C1C";
+      backgroundColor = "#FEE2E2";
+      break;
+    case "In inventory":
+      color = "#0B57C0";
+      backgroundColor = "#D4E5FC";
+      break;
+    default:
+      color = "#047857";
+      backgroundColor = "#DDF6E9";
+  }
+
   return { color, backgroundColor };
 }
 
 export default function TagCard({ title, theme = "green" }: TagCardProps) {
-  const { color, backgroundColor } = tagContainer(theme);
+  const { color, backgroundColor } = tagContainer(theme, title);
   return (
     <AppHStack
       sx={{

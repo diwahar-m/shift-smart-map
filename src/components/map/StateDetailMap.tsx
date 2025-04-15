@@ -14,6 +14,8 @@ import DetailCard from "../card/DetailCard";
 import { stateStyling } from "../../constants";
 import { StateCoordinates, USAStateProps } from "../../pages/state";
 import L from "leaflet";
+// import { MarkerIconImage } from "../../assets";
+import marker from "../../assets/AllRegions/marker.png";
 
 interface StateDetailProps {
   coordinates: StateCoordinates;
@@ -102,6 +104,13 @@ const StateDetailsMap = ({
     }
   };
 
+  const customIcon = new L.Icon({
+    iconUrl: marker,
+    iconSize: [32, 40],
+    iconAnchor: [16, 40],
+    popupAnchor: [0, -40],
+  });
+
   if (!selectedState) {
     return <div>State not found!</div>;
   }
@@ -127,6 +136,7 @@ const StateDetailsMap = ({
       <Marker
         position={[coordinates?.latitude, coordinates?.longitude]}
         ref={markerRef}
+        icon={customIcon}
       >
         <LocationMarker stateName={stateName} modal={modal} />
       </Marker>

@@ -22,7 +22,7 @@ export default function DetailCard({
         // border: "1px solid #CBD5E1",
         borderRadius: "16px",
         maxWidth: "362px",
-        minWidth: "100%",
+        minWidth: "350px",
         maxHeight: "514px",
         padding: "22px",
         gap: "18px",
