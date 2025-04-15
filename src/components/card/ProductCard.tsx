@@ -12,7 +12,7 @@ import AppButton from "../mui/AppButton";
 interface ProductCardProps {
   sx?: SxProps;
   detail?: stockPrice;
-  productDetail: productDetail;
+  productDetail?: productDetail;
   path?: string;
   productTab?: string;
   setProductTab?: (arg0: string) => void;
@@ -29,7 +29,8 @@ export default function ProductCard({
     <AppButton
       sx={{ padding: 0, width: "100%" }}
       handleClick={() => {
-        if (setProductTab) setProductTab(productDetail?.title);
+        if (setProductTab && productDetail?.title)
+          setProductTab(productDetail?.title);
       }}
     >
       <AppHStack

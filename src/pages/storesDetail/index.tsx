@@ -10,9 +10,7 @@ import { useState } from "react";
 
 export default function StoresDetail() {
   const { storeId } = useParams();
-  const [productTab, setProductTab] = useState("Fruit Punch");
-  console.log(storeId);
-  console.log(getStoreDetails(storeId));
+  const [productTab, setProductTab] = useState<string>("Fruit Punch");
   const storeDetails = getStoreDetails(storeId);
 
   return (

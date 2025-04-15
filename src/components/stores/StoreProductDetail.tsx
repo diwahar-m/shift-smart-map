@@ -4,25 +4,16 @@ import AppVStack from "../mui/AppStack/AppVStack";
 import AppTabs from "../mui/AppTabs";
 import AppText from "../mui/AppText";
 import Product from "../product/Product";
-import ProductSampleTwo from "../product/ProductSampleTwo";
-import ProductSampleOne from "../product/ProductSampleOne";
-import { useParams } from "react-router-dom";
 import { getDateFormat } from "../../constants";
 import { StoreDetail } from "../../constants/typeDeclarations";
 
 export interface tabProps {
-  tab: string;
-  component: ReactElement;
+  tab?: string;
+  component?: ReactElement;
 }
 
-const tabs = [
-  { tab: "Mar 18", component: <Product /> },
-  { tab: "Feb 24", component: <ProductSampleOne /> },
-  { tab: "Jan 6", component: <ProductSampleTwo /> },
-];
-
 interface StoreProductDetailProps {
-  storeDetails: Array<StoreDetail>;
+  storeDetails: StoreDetail[];
   productTab: string;
 }
 
@@ -30,37 +21,23 @@ export default function StoreProductDetail({
   storeDetails,
   productTab,
 }: StoreProductDetailProps) {
-  const { storeId } = useParams();
-
-  const [auditDetail, setAuditDetail] = useState([]);
+  const [auditDetail, setAuditDetail] = useState<tabProps[]>([]);
 
   useEffect(() => {
     const tabs: Array<tabProps> = [];
     storeDetails?.map((_) => {
-      const tabDetail = {};
+      const tabDetail: tabProps = {};
       tabDetail.tab = getDateFormat(_?.["Completion Date"]);
-      let selectedTabDetails = {
-        image: _?.[productTab + ", Stock"],
-        price: _?.[productTab + ", Price"],
+      const selectedTabDetails = {
+        image: _?.[(productTab + ", Stock") as keyof StoreDetail],
+        price: _?.[(productTab + ", Price") as keyof StoreDetail],
         date: getDateFormat(_?.["Completion Date"]),
       };
-      console.log(selectedTabDetails);
       tabDetail.component = <Product storeDetail={selectedTabDetails} />;
-      console.log(tabDetail);
       tabs?.push(tabDetail);
     });
     setAuditDetail(tabs);
   }, [storeDetails, productTab]);
-
-  let text = "Capri Sun Fruit Punch";
-
-  switch (storeId) {
-    case "2":
-      text = "Capri Sun Strawberry Kiwi";
-      break;
-    default:
-      text = "Capri Sun Pacific cooler";
-  }
 
   return (
     <AppVStack

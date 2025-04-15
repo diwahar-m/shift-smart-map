@@ -10,7 +10,7 @@ interface AppDateRangePickerProps {
 const AppDateRangePicker = ({ onChange, style }: AppDateRangePickerProps) => {
   return (
     <RangePicker
-      onChange={(dates, dateString) => onChange(dateString)}
+      onChange={(_, dateString) => onChange(dateString)}
       style={style}
     />
   );

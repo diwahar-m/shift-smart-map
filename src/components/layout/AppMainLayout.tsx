@@ -14,13 +14,24 @@ export default function AppMainLayout() {
     <AppHStack
       sx={{
         alignItems: "flex-start",
-        minHeight: "100vh",
+        maxHeight: "100vh",
         maxWidth: "100vw",
+        overflowY: "hidden",
       }}
     >
       <SideBar />
 
-      <AppVStack sx={{ flex: 1, width: "100%", maxWidth: "100%" }}>
+      <AppVStack
+        sx={{
+          flex: 1,
+          width: "100%",
+          maxWidth: "100%",
+          maxHeight: "100vh",
+          overflowY: "auto",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": { display: "none" },
+        }}
+      >
         <HeaderBar
           onStateChange={onStateChange}
           onDateRangeChange={onDateRangeChange}

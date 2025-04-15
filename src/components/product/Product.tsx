@@ -14,7 +14,11 @@ interface ProductProps {
   date: string;
 }
 
-export default function Product({ storeDetail }: ProductProps) {
+export default function Product({
+  storeDetail,
+}: {
+  storeDetail: ProductProps;
+}) {
   return (
     <AppVStack
       sx={{

@@ -40,7 +40,7 @@ export default function HeaderBar({
           />
           <AppDateRangePicker
             style={{ width: "188px", height: "42px" }}
-            onChange={onDateRangeChange}
+            onChange={(event) => onDateRangeChange && onDateRangeChange(event)}
           />
         </AppHStack>
         <PathCard />

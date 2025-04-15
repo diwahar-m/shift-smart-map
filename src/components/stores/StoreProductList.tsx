@@ -6,7 +6,7 @@ import AppText from "../mui/AppText";
 import AppCenterStack from "../mui/AppStack/AppCenterStack";
 import ProductCard from "../card/ProductCard";
 import { StoreDetail } from "../../constants/typeDeclarations";
-import { useLocation } from "react-router-dom";
+import { Dispatch, SetStateAction } from "react";
 
 export type productDetail = {
   title: string;
@@ -16,7 +16,7 @@ export type productDetail = {
 interface StoreProductListProps {
   storeDetails: Array<StoreDetail>;
   productTab: string;
-  setProductTab: () => void;
+  setProductTab: Dispatch<SetStateAction<string>>;
 }
 
 export default function StoreProductList({
@@ -24,8 +24,6 @@ export default function StoreProductList({
   productTab,
   setProductTab,
 }: StoreProductListProps) {
-  const { pathname } = useLocation();
-
   const product = [
     { title: "Fruit Punch", link: "/fruit-punch" },
     { title: "Strawberry Kiwi", link: "/strawberry-kiwi" },

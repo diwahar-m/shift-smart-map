@@ -2,14 +2,14 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function AppBreadcrumb() {
   const navigate = useNavigate();
+  const { storeId } = useParams();
 
   function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
-    console.log("You clicked a breadcrumb.");
     navigate("/store/1/view");
   }
   return (
@@ -35,7 +35,7 @@ export default function AppBreadcrumb() {
             fontWeight: 500,
           }}
         >
-          Store-1
+          {storeId}
         </Typography>
       </Breadcrumbs>
     </div>

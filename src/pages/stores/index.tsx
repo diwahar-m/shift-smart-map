@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { getDateDuration, storesTableHead } from "../../constants";
-import HeaderBar from "../../components/common/HeaderBar";
-import { inventoryDetails } from "../dashboard";
-import { getStoresList, StoreAudit } from "../../constants/storeData";
-import { useContext, useEffect, useState } from "react";
+import { storesTableHead } from "../../constants";
+import { getStoresList } from "../../constants/storeData";
+import { useContext, useEffect } from "react";
 import AppVStack from "../../components/mui/AppStack/AppVStack";
 import AppBox from "../../components/mui/AppBox";
 import AppText from "../../components/mui/AppText";
@@ -29,12 +27,8 @@ export default function StoresPage() {
         flex: 1,
         width: "100%",
         maxWidth: "100%",
-        minHeight: "100vh",
+        maxHeight: "100%",
         justifyContent: "flex-start",
-        maxHeight: "100px",
-        overflowY: "auto",
-        scrollbarWidth: "none",
-        "&::-webkit-scrollbar": { display: "none" },
       }}
     >
       <AppBox sx={{ height: "38px", paddingLeft: "40px" }}>

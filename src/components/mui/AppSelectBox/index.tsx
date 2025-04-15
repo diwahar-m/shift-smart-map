@@ -1,26 +1,20 @@
-import { SyntheticEvent, useState } from "react";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import { Autocomplete, Stack, SxProps, TextField } from "@mui/material";
 
 interface AppSelectBoxProps {
-  options?: Array<string>;
+  options: Array<string>;
   sx?: SxProps;
   onChange?: (event: string) => void;
   label?: string;
 }
 
 const AppSelectBox = (props: AppSelectBoxProps) => {
-  const { options, sx, onChange, label } = props;
+  const { options, sx, onChange } = props;
 
-  const [selectedOption, setSelectedOption] = useState<string>("");
-
-  const handleChange = (event: React.SyntheticEvent, value: string) => {
-    console.log(value);
-    setSelectedOption(value);
-    onChange?.(value);
+  const handleChange = (
+    _event: React.SyntheticEvent<Element, Event>,
+    date: string | null
+  ) => {
+    if (date) onChange?.(date);
   };
 
   return (
@@ -34,7 +28,7 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
           <TextField
             sx={{
               "& label": {
-                top: -7, // move label down to center it better
+                top: -7,
               },
             }}
             {...params}

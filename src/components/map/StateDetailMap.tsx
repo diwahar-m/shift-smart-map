@@ -66,7 +66,7 @@ const StateDetailsMap: React.FC = () => {
   };
 
   return (
-    <AppBox sx={{ height: "36rem" }}>
+    <AppBox sx={{ height: "28rem" }}>
       <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
         <AppText
           variant="subtitle2"
