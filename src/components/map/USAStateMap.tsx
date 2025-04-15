@@ -1,5 +1,5 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, GeoJSON } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -15,7 +15,7 @@ const USAStateMap: React.FC = () => {
   };
 
   return (
-    <AppBox sx={{ height: "28rem" }}>
+    <AppBox sx={{ height: "34rem" }}>
       <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
         <AppText
           variant="subtitle2"
@@ -61,7 +61,7 @@ const USAStateMap: React.FC = () => {
             iconSize: [25, 25],
           })}
         >
-          <Popup>Custom marker example</Popup>
+          {/* <Popup>Custom marker example</Popup> */}
         </Marker>
       </MapContainer>
     </AppBox>

@@ -5,29 +5,35 @@ import AppHStack from "../mui/AppStack/AppHStack";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import TagCard from "./TagCard";
-import { stockPrice } from "../mui/AppTable";
 import { productDetail } from "../stores/StoreProductList";
 import AppButton from "../mui/AppButton";
+import { StoreDetail } from "../../constants/typeDeclarations";
 
 interface ProductCardProps {
   sx?: SxProps;
-  detail?: stockPrice;
+  detail?: StoreDetail;
   productDetail?: productDetail;
   path?: string;
   productTab?: string;
   setProductTab?: (arg0: string) => void;
+  type?: string;
 }
 
 export default function ProductCard({
   sx,
   detail,
+  type,
   productDetail,
   productTab,
   setProductTab,
 }: ProductCardProps) {
   return (
     <AppButton
-      sx={{ padding: 0, width: "100%" }}
+      sx={{
+        padding: 0,
+        width: "100%",
+        height: type ? "90px" : "100%",
+      }}
       handleClick={() => {
         if (setProductTab && productDetail?.title)
           setProductTab(productDetail?.title);
@@ -45,40 +51,59 @@ export default function ProductCard({
               ? "#E9EFF7"
               : "#fff"
             : "#fff",
+          height: type ? "90px" : "100%",
           ...sx,
         }}
       >
         <AppImage src={ProductImage} />
-        {detail?.stock ? (
-          <AppVStack sx={{ gap: "10px", width: "100%" }}>
+        {type && detail ? (
+          <AppVStack sx={{ gap: "5px", width: "100%" }}>
             <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
-              <AppVStack sx={{ gap: "2px" }}>
-                <AppText
+              <AppVStack sx={{ gap: "2px", height: "100%" }}>
+                <AppHStack
                   sx={{
-                    fontSize: "16px",
-                    lineHeight: "20px",
-                    fontWeight: 600,
-                    color: "#000",
+                    gap: "2px",
+                    marginTop: "-5px",
                   }}
-                  text={"Capri Sun"}
-                />
-                <AppText
-                  sx={{
-                    fontSize: "14px",
-                    lineHeight: "20px",
-                    fontWeight: 400,
-                    color: "#000",
-                  }}
-                  text={"Fruit Punch"}
-                />
+                >
+                  <AppText
+                    sx={{
+                      fontSize: "14px",
+                      lineHeight: "12px",
+                      fontWeight: 600,
+                      color: "#000",
+                    }}
+                    text={"Capri Sun"}
+                  />
+                  <AppText
+                    sx={{
+                      fontSize: "12px",
+                      lineHeight: "12px",
+                      fontWeight: 400,
+                      color: "#000",
+                    }}
+                    text={type}
+                  />
+                </AppHStack>
               </AppVStack>
               <AppText
                 variant="subtitle2"
-                sx={{ fontSize: "14px", lineHeight: "20px" }}
-                text={detail?.price}
+                sx={{ fontSize: "14px", lineHeight: "20px", color: "#0F172A" }}
+                text={detail?.[`${type}, Price` as keyof StoreDetail]}
               />
             </AppHStack>
-            <TagCard title={detail?.stock} theme={"green"} />
+            <TagCard
+              title={
+                detail?.[`${type}, Stock` as keyof StoreDetail]
+                  ? "On shelf"
+                  : "Out of stock"
+              }
+              theme={
+                detail?.[`${type}, Stock` as keyof StoreDetail]
+                  ? "green"
+                  : "red"
+              }
+            />
           </AppVStack>
         ) : productDetail?.title ? (
           <AppVStack>

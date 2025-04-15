@@ -8,15 +8,24 @@ import AppToolTip from "../mui/AppToolTip";
 import { InventoryDetailProps } from "../../pages/dashboard";
 import AppVStack from "../mui/AppStack/AppVStack";
 import { Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
 
 export default function CardSection({
   detail,
 }: {
   detail: InventoryDetailProps;
 }) {
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(true);
+    }, 2000);
+  }, []);
+
   return (
     <>
-      {detail ? (
+      {loader && detail ? (
         <AppVStack
           sx={{
             border: "1px solid #CBD5E1",
@@ -42,7 +51,7 @@ export default function CardSection({
               text={detail?.title}
               sx={{ color: "#475569", fontSize: "16px" }}
             />
-            <AppToolTip title="Completed Audits">
+            <AppToolTip title={detail?.title}>
               <AppImage src={InfoIcon} />
             </AppToolTip>
           </AppHStack>
@@ -91,7 +100,7 @@ export default function CardSection({
           </AppHStack>
           <Skeleton variant="rectangular" width={80} height={70} />
           <Skeleton variant="rounded" width={210} height={20} />
-          <Skeleton variant="rectangular" width={210} height={10} />
+          {/* <Skeleton variant="rectangular" width={210} height={10} /> */}
         </AppVStack>
       )}
     </>

@@ -1,48 +1,90 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  MapContainer,
+  TileLayer,
+  GeoJSON,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
 import usaMapData from "../../constants/us-states.json";
-import AppBox from "../mui/AppBox";
-import AppText from "../mui/AppText";
-import useModal from "../../constants/hooks/useHooks";
-import AppModal from "../mui/AppModal";
 import StateInfo from "../card/StateInfo";
 import DetailCard from "../card/DetailCard";
 import { stateStyling } from "../../constants";
+import { StateCoordinates, USAStateProps } from "../../pages/state";
+import L from "leaflet";
 
-interface statePropertiesProps {
-  name: string;
-  density: number;
+interface StateDetailProps {
+  coordinates: StateCoordinates;
+  selectedState: USAStateProps | undefined;
+  modal?: React.ReactElement;
 }
 
-interface USAStateProps {
-  type: string;
-  id: string;
-  properties: statePropertiesProps;
-  geometry: {
-    type: string;
-    coordinates: Array<Array<Array<number>>>;
+interface LocationMarkerInterface {
+  stateName: string | undefined;
+  modal?: React.ReactElement;
+}
+
+function LocationMarker({ stateName, modal }: LocationMarkerInterface) {
+  const [zoom, setZoom] = useState<number>(5);
+
+  useMapEvents({
+    zoomend: (e) => {
+      console.log(e.target.getZoom());
+      setZoom(e.target.getZoom());
+    },
+  });
+
+  const getPopupSizeFromZoom = (zoom: number): number[] => {
+    if (zoom < 4) return [430, 292];
+    return [500, 362];
   };
+
+  return (
+    <Popup
+      offset={[220, 150]}
+      closeButton={false}
+      maxHeight={getPopupSizeFromZoom(zoom)?.[0]}
+      maxWidth={getPopupSizeFromZoom(zoom)?.[1]}
+    >
+      {modal ? (
+        modal
+      ) : stateName ? (
+        <DetailCard
+          stateName={stateName}
+          children={<StateInfo stateName={stateName} />}
+        />
+      ) : (
+        <></>
+      )}
+    </Popup>
+  );
 }
 
-const StateDetailsMap: React.FC = () => {
+const StateDetailsMap = ({
+  coordinates,
+  selectedState,
+  modal,
+}: StateDetailProps) => {
   const navigate = useNavigate();
-  const { stateId } = useParams<{ stateId: string }>();
-  const [selectedState, setSelectedState] = useState<USAStateProps>();
-  const { open, handleClose, handleOpen } = useModal();
+  const markerRef = useRef<L.Marker | null>(null);
+  const [stateName, setStateName] = useState<string>("");
 
   useEffect(() => {
-    const stateData = usaMapData.features.find(
-      (state) => state.properties.name === stateId
-    );
-    // @ts-expect-error "USA state error"
-    setSelectedState(stateData);
-    handleOpen();
-  }, [stateId]);
+    if (selectedState?.properties?.name)
+      setStateName(selectedState?.properties?.name);
+  }, [selectedState]);
 
-  if (!selectedState) {
-    return <div>State not found!</div>;
-  }
+  useEffect(() => {
+    if (markerRef.current) {
+      markerRef.current.openPopup();
+    }
+  }, []);
+
+  const handleStateClick = (stateId: string) => {
+    navigate(`/state/${stateId}`);
+  };
 
   const onEachState = (feature: any, layer: L.Layer) => {
     const stateName = feature.properties.name;
@@ -60,49 +102,35 @@ const StateDetailsMap: React.FC = () => {
     }
   };
 
-  const handleStateClick = (stateId: string) => {
-    // Navigate to the state detail page when a state is clicked
-    navigate(`/state/${stateId}`);
-  };
+  if (!selectedState) {
+    return <div>State not found!</div>;
+  }
 
   return (
-    <AppBox sx={{ height: "28rem" }}>
-      <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
-        <AppText
-          variant="subtitle2"
-          text={"1,294 stores within map area"}
-          sx={{ margin: "auto" }}
-        />
-      </AppBox>
-      <MapContainer
-        center={[37.8, -96]} // Default center if no state data available
-        zoom={4}
-        scrollWheelZoom={true}
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
+    <MapContainer
+      center={[coordinates?.latitude, coordinates?.longitude]}
+      zoom={modal ? 9 : 5}
+      scrollWheelZoom={true}
+      style={{ height: "100%", width: "100%" }}
+    >
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      />
 
-        <GeoJSON
-          key={selectedState?.properties?.name}
-          //@ts-expect-error "USA State type"
-          data={usaMapData}
-          onEachFeature={onEachState}
-        />
-      </MapContainer>
-      <AppModal
-        sx={{ position: "absolute", bottom: "5px", right: "5px" }}
-        open={open}
-        handleClose={handleClose}
+      <GeoJSON
+        key={stateName}
+        //@ts-expect-error "USA State type"
+        data={usaMapData}
+        onEachFeature={onEachState}
+      />
+      <Marker
+        position={[coordinates?.latitude, coordinates?.longitude]}
+        ref={markerRef}
       >
-        <DetailCard
-          stateName={selectedState?.properties?.name}
-          children={<StateInfo />}
-        />
-      </AppModal>
-    </AppBox>
+        <LocationMarker stateName={stateName} modal={modal} />
+      </Marker>
+    </MapContainer>
   );
 };
 

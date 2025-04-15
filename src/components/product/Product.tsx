@@ -8,7 +8,7 @@ import AppHStack from "../mui/AppStack/AppHStack";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 
-interface ProductProps {
+export interface ProductProps {
   image: string;
   price: string;
   date: string;

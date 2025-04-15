@@ -14,3 +14,17 @@
   box-shadow: none;
   text-align: center;
 }
+
+.leaflet-popup-content {
+  margin:0 !important;
+  overflow:hidden !important;
+  border-radius: 12px !important;
+}
+
+.leaflet-popup-content-wrapper {
+ padding: 0px !important;
+}
+
+.leaflet-popup-tip {
+  display: none !important;
+}

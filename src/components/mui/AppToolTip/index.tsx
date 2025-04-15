@@ -1,11 +1,10 @@
-import { styled } from '@mui/material/styles';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
-import { ReactElement } from 'react';
+import { styled } from "@mui/material/styles";
+import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
+import { ReactElement } from "react";
 
-interface  AppToolTipProps {
-children: ReactElement<unknown>
- title: string;
-
+interface AppToolTipProps {
+  children: ReactElement<unknown>;
+  title: string;
 }
 
 const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -13,18 +12,16 @@ const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.white,
-    color: 'rgba(0, 0, 0, 0.87)',
+    color: "rgba(0, 0, 0, 0.87)",
     boxShadow: theme.shadows[1],
     fontSize: 11,
   },
 }));
 
-
-
-export default function AppToolTip({children, title}: AppToolTipProps) {
+export default function AppToolTip({ children, title }: AppToolTipProps) {
   return (
-    <LightTooltip title={title || "Add"} arrow>
-        {children}
-      </LightTooltip>
-  )
+    <LightTooltip sx={{ fontFamily: "Figtree" }} title={title || "Add"} arrow>
+      {children}
+    </LightTooltip>
+  );
 }

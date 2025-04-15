@@ -4,7 +4,6 @@ import AppText from "../mui/AppText";
 import AppButton from "../mui/AppButton";
 import { useNavigate } from "react-router-dom";
 import { ReactElement } from "react";
-
 interface DetailCardProps {
   stateName?: string | null;
   children: ReactElement;
@@ -19,13 +18,14 @@ export default function DetailCard({
   return (
     <AppVStack
       sx={{
-        backgroundColor: "#fff",
-        border: "1px solid #CBD5E1",
+        bgcolor: "#fff",
+        // border: "1px solid #CBD5E1",
         borderRadius: "16px",
         maxWidth: "362px",
+        minWidth: "100%",
         maxHeight: "514px",
-        padding: "24px",
-        gap: "26px",
+        padding: "22px",
+        gap: "18px",
         boxSizing: "border-box",
       }}
     >
@@ -40,7 +40,7 @@ export default function DetailCard({
       )}
       {children}
       <AppButton
-        handleClick={() => navigate(`/${stateName}/stores`)}
+        handleClick={() => navigate(`/stores`)}
         sx={{
           marginTop: "18px",
           fontSize: "16px",
