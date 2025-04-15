@@ -3,7 +3,7 @@ import { Autocomplete, Stack, SxProps, TextField } from "@mui/material";
 interface AppSelectBoxProps {
   options: Array<string>;
   sx?: SxProps;
-  onChange?: (event: string) => void;
+  onChange?: (event?: string) => void | undefined;
   label?: string;
 }
 
@@ -11,10 +11,11 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
   const { options, sx, onChange } = props;
 
   const handleChange = (
-    _event: React.SyntheticEvent<Element, Event>,
-    date: string | null
+    _event?: React.SyntheticEvent<Element, Event>,
+    date?: string | null
   ) => {
     if (date) onChange?.(date);
+    else onChange?.();
   };
 
   return (
@@ -22,6 +23,9 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
       <Autocomplete
         id="free-solo-demo"
         onChange={handleChange}
+        onInputChange={(_event, value) => {
+          if (!value) handleChange();
+        }}
         freeSolo
         options={options?.map((option) => option)}
         renderInput={(params) => (

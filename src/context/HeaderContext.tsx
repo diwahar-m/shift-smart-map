@@ -20,7 +20,8 @@ export default function HeaderContextProvider({
 
   const onStateChange = (stateName: string) => {
     setStateName(stateName);
-    setStoresList(getStoresList(stateName));
+    if (stateName) setStoresList(getStoresList(stateName));
+    else setStoresList(getStoresList());
   };
 
   const onDateRangeChange = (dateRange: string) => {
