@@ -1,20 +1,14 @@
+import { useParams } from "react-router-dom";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppTabs from "../mui/AppTabs";
 import AppText from "../mui/AppText";
-import ProductDetailCard from "./ProductDetailCard";
+import { tabProps } from "../stores/StoreProductDetail";
 
-const tabs = [
-  {
-    tab: "Mar 18",
-    component: <ProductDetailCard />,
-  },
-  { tab: "Feb 24", component: <ProductDetailCard /> },
-  { tab: "Jan 6", component: <ProductDetailCard /> },
-];
+export default function ProductInfo({ tabs }: { tabs: tabProps[] }) {
+  const { storeId } = useParams();
 
-export default function ProductInfo() {
   return (
-    <AppVStack sx={{ width: "100%", gap: "6px" }}>
+    <AppVStack sx={{ width: "100%", gap: "6px", padding: "16px" }}>
       <AppText
         variant="subtitle2"
         sx={{
@@ -28,7 +22,7 @@ export default function ProductInfo() {
       <AppText
         variant="h4"
         sx={{ fontSize: "24px", fontWeight: 600, lineHeight: "28px" }}
-        text="Store 4707013"
+        text={`Store ${storeId}`}
       />
       <AppVStack sx={{ width: "100%" }}>
         <AppText

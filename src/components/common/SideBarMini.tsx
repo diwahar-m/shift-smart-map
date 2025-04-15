@@ -1,6 +1,5 @@
 import AppImage from "../mui/AppImage";
 import { AuditsIcon, ShiftIcon, TrendsIcon } from "../../assets";
-import AppBox from "../mui/AppBox";
 import AppButton from "../mui/AppButton";
 import AppVStack from "../mui/AppStack/AppVStack";
 import { useNavigate } from "react-router-dom";

@@ -10,7 +10,7 @@ export default function AppBreadcrumb() {
 
   function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
-    navigate("/store/1/view");
+    navigate(`/store/${storeId}/view`);
   }
   return (
     <div role="presentation" onClick={handleClick}>

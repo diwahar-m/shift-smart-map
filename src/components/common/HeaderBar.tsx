@@ -39,7 +39,7 @@ export default function HeaderBar({
             options={usaStates}
           />
           <AppDateRangePicker
-            style={{ width: "188px", height: "42px" }}
+            style={{ width: "188px", height: "42px", display: "none" }}
             onChange={(event) => onDateRangeChange && onDateRangeChange(event)}
           />
         </AppHStack>

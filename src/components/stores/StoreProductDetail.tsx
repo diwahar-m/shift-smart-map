@@ -6,6 +6,10 @@ import AppText from "../mui/AppText";
 import Product from "../product/Product";
 import { getDateFormat } from "../../constants";
 import { StoreDetail } from "../../constants/typeDeclarations";
+import AppHStack from "../mui/AppStack/AppHStack";
+import { X } from "lucide-react";
+import AppBox from "../mui/AppBox";
+import { useNavigate, useParams } from "react-router-dom";
 
 export interface tabProps {
   tab?: string;
@@ -22,6 +26,8 @@ export default function StoreProductDetail({
   productTab,
 }: StoreProductDetailProps) {
   const [auditDetail, setAuditDetail] = useState<tabProps[]>([]);
+  const navigate = useNavigate();
+  const { storeId } = useParams();
 
   useEffect(() => {
     const tabs: Array<tabProps> = [];
@@ -61,7 +67,15 @@ export default function StoreProductDetail({
           maxWidth: "100%",
         }}
       >
-        <AppBreadcrumb />
+        <AppHStack sx={{ justifyContent: "space-between" }}>
+          <AppBreadcrumb />
+          <AppBox
+            sx={{ cursor: "pointer" }}
+            onClick={() => navigate(`/store/${storeId}/view`)}
+          >
+            <X />
+          </AppBox>
+        </AppHStack>
         <AppText
           variant="h4"
           sx={{ fontSize: "24px", lineHeight: "28px", fontWeight: 600 }}

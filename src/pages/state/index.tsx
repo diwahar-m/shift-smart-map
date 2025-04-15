@@ -17,7 +17,7 @@ export interface USAStateProps {
   properties: statePropertiesProps;
   geometry: {
     type: string;
-    coordinates: Array<Array<Array<number>>>;
+    coordinates: Array<Array<Array<number>>> | undefined;
   };
 }
 export interface StateCoordinates {

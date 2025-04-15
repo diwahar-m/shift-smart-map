@@ -1,26 +1,79 @@
-import { useEffect } from "react";
-import DetailCard from "../../components/card/DetailCard";
-import ProductInfo from "../../components/card/ProductInfo";
-import USAStateMap from "../../components/map/USAStateMap";
-import AppModal from "../../components/mui/AppModal";
 import AppVStack from "../../components/mui/AppStack/AppVStack";
-import useModal from "../../constants/hooks/useHooks";
+import AppBox from "../../components/mui/AppBox";
+import AppText from "../../components/mui/AppText";
+import StateDetailsMap from "../../components/map/StateDetailMap";
+import { useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { getStoreDetails } from "../../constants/storeData";
+import { StoreDetail } from "../../constants/typeDeclarations";
+import { tabProps } from "../../components/stores/StoreProductDetail";
+import { getDateFormat } from "../../constants";
+import ProductInfo from "../../components/card/ProductInfo";
+import ProductDetailCard from "../../components/card/ProductDetailCard";
+import usaMapData from "../../constants/us-states.json";
+import { USAStateProps } from "../state";
+
 export default function StoresView() {
-  const { open, handleClose, handleOpen } = useModal();
+  // const { open, handleClose, handleOpen } = useModal();
+  // useEffect(() => {
+  //   handleOpen();
+  // }, []);
+
+  const { storeId } = useParams();
+  const [storeInfo, setStoreInfo] = useState<StoreDetail[]>(
+    getStoreDetails(storeId)
+  );
+  const [auditDetail, setAuditDetail] = useState<tabProps[]>([]);
 
   useEffect(() => {
-    handleOpen();
-  }, []);
+    setStoreInfo(getStoreDetails(storeId));
+  }, [storeId]);
+
+  const selectedState: { current: USAStateProps | undefined } = useRef();
+
+  useEffect(() => {
+    const tabs: Array<tabProps> = [];
+    //@ts-expect-error "check"
+    selectedState.current = usaMapData.features.find(
+      (state) => state.properties.name === storeInfo?.[0]?.BU
+    );
+    storeInfo?.map((_) => {
+      const tabDetail: tabProps = {};
+      tabDetail.tab = getDateFormat(_?.["Completion Date"]);
+      tabDetail.component = <ProductDetailCard storeDetail={_} />;
+      tabs?.push(tabDetail);
+    });
+    setAuditDetail(tabs);
+  }, [storeInfo]);
+
   return (
     <AppVStack sx={{ flex: 1, width: "100%", maxWidth: "100%" }}>
-      <USAStateMap />
-      <AppModal
+      <AppBox sx={{ height: "34rem" }}>
+        <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
+          <AppText
+            variant="subtitle2"
+            text={"1,294 stores within map area"}
+            sx={{ margin: "auto" }}
+          />
+        </AppBox>
+        <StateDetailsMap
+          coordinates={{
+            state: storeInfo?.[0]?.BU,
+            latitude: parseInt(storeInfo?.[0]?.["Store Latitude"]),
+            longitude: parseInt(storeInfo?.[0]?.["Store Longitude"]),
+          }}
+          // @ts-expect-error "check"
+          selectedState={selectedState}
+          modal={<ProductInfo tabs={auditDetail} />}
+        />
+        {/* <AppModal
         sx={{ position: "absolute", bottom: "5px", right: "5px" }}
         open={open}
         handleClose={handleClose}
       >
         <DetailCard children={<ProductInfo />} />
-      </AppModal>
+      </AppModal> */}
+      </AppBox>
     </AppVStack>
   );
 }

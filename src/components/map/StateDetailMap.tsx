@@ -13,13 +13,20 @@ import StateInfo from "../card/StateInfo";
 import DetailCard from "../card/DetailCard";
 import { stateStyling } from "../../constants";
 import { StateCoordinates, USAStateProps } from "../../pages/state";
+import L from "leaflet";
 
 interface StateDetailProps {
   coordinates: StateCoordinates;
   selectedState: USAStateProps | undefined;
+  modal?: React.ReactElement;
 }
 
-function LocationMarker({ stateName }: { stateName: string | undefined }) {
+interface LocationMarkerInterface {
+  stateName: string | undefined;
+  modal?: React.ReactElement;
+}
+
+function LocationMarker({ stateName, modal }: LocationMarkerInterface) {
   const [zoom, setZoom] = useState<number>(5);
 
   useMapEvents({
@@ -41,12 +48,25 @@ function LocationMarker({ stateName }: { stateName: string | undefined }) {
       maxHeight={getPopupSizeFromZoom(zoom)?.[0]}
       maxWidth={getPopupSizeFromZoom(zoom)?.[1]}
     >
-      <DetailCard stateName={stateName} children={<StateInfo />} />
+      {modal ? (
+        modal
+      ) : stateName ? (
+        <DetailCard
+          stateName={stateName}
+          children={<StateInfo stateName={stateName} />}
+        />
+      ) : (
+        <></>
+      )}
     </Popup>
   );
 }
 
-const StateDetailsMap = ({ coordinates, selectedState }: StateDetailProps) => {
+const StateDetailsMap = ({
+  coordinates,
+  selectedState,
+  modal,
+}: StateDetailProps) => {
   const navigate = useNavigate();
   const markerRef = useRef<L.Marker | null>(null);
   const [stateName, setStateName] = useState<string>("");
@@ -63,7 +83,7 @@ const StateDetailsMap = ({ coordinates, selectedState }: StateDetailProps) => {
   }, []);
 
   const handleStateClick = (stateId: string) => {
-    navigate(`/stores`);
+    navigate(`/state/${stateId}`);
   };
 
   const onEachState = (feature: any, layer: L.Layer) => {
@@ -89,7 +109,7 @@ const StateDetailsMap = ({ coordinates, selectedState }: StateDetailProps) => {
   return (
     <MapContainer
       center={[coordinates?.latitude, coordinates?.longitude]}
-      zoom={5}
+      zoom={modal ? 9 : 5}
       scrollWheelZoom={true}
       style={{ height: "100%", width: "100%" }}
     >
@@ -108,7 +128,7 @@ const StateDetailsMap = ({ coordinates, selectedState }: StateDetailProps) => {
         position={[coordinates?.latitude, coordinates?.longitude]}
         ref={markerRef}
       >
-        <LocationMarker stateName={stateName} />
+        <LocationMarker stateName={stateName} modal={modal} />
       </Marker>
     </MapContainer>
   );

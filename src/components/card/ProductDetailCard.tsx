@@ -1,15 +1,34 @@
+import { StoreDetail } from "../../constants/typeDeclarations";
+import AppBox from "../mui/AppBox";
+import AppVStack from "../mui/AppStack/AppVStack";
 import ProductCard from "./ProductCard";
 
-const productDetail = {
-  stock: "In inventory",
-  price: "$0.00",
-};
+const productTypes = ["Fruit Punch", "Pacific Cooler", "Strawberry Kiwi"];
 
-export default function ProductDetailCard() {
+export default function ProductDetailCard({
+  storeDetail,
+}: {
+  storeDetail: StoreDetail;
+}) {
   return (
-    <ProductCard
-      detail={productDetail}
-      sx={{ backgroundColor: "#fff", width: "100%" }}
-    />
+    <AppVStack
+      sx={{
+        gap: "4px",
+        maxHeight: "310px",
+        overflowY: "auto",
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": { display: "none" },
+      }}
+    >
+      {productTypes?.map((_) => (
+        <AppBox key={_} sx={{ height: "90px" }}>
+          <ProductCard
+            type={_}
+            detail={storeDetail}
+            sx={{ backgroundColor: "#fff", width: "100%" }}
+          />
+        </AppBox>
+      ))}
+    </AppVStack>
   );
 }
