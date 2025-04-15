@@ -1,43 +1,42 @@
-import  { useState } from 'react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import { SxProps } from '@mui/material';
+import { Autocomplete, Stack, SxProps, TextField } from "@mui/material";
 
 interface AppSelectBoxProps {
-    options?: Array<string>;
-    sx?: SxProps;
-    onChange: (event: SelectChangeEvent<string>) => void,
-    label?: string
+  options: Array<string>;
+  sx?: SxProps;
+  onChange?: (event: string) => void;
+  label?: string;
 }
 
 const AppSelectBox = (props: AppSelectBoxProps) => {
+  const { options, sx, onChange } = props;
 
-    const { options,sx, onChange, label } = props;
-
-  const [selectedOption, setSelectedOption] = useState('');
-
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    setSelectedOption(event.target.value);
-    onChange(event)
+  const handleChange = (
+    _event: React.SyntheticEvent<Element, Event>,
+    date: string | null
+  ) => {
+    if (date) onChange?.(date);
   };
 
   return (
-    <FormControl variant="outlined" sx={sx} size="small">
-      <InputLabel>{label}</InputLabel>
-      <Select
-        value={selectedOption}
+    <Stack spacing={2} sx={{ width: 300, ...sx }}>
+      <Autocomplete
+        id="free-solo-demo"
         onChange={handleChange}
-        label={label || "Select"}
-      >
-        {options?.map((option) => (
-          <MenuItem key={option} value={option} sx={{color: '#02378a'}}>
-            {option}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+        freeSolo
+        options={options?.map((option) => option)}
+        renderInput={(params) => (
+          <TextField
+            sx={{
+              "& label": {
+                top: -7,
+              },
+            }}
+            {...params}
+            label="Select State"
+          />
+        )}
+      />
+    </Stack>
   );
 };
 

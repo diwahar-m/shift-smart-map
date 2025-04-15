@@ -4,18 +4,20 @@ import AppSelectBox from "../mui/AppSelectBox";
 import CardSection from "../card/CardSection";
 import AppVStack from "../mui/AppStack/AppVStack";
 import { usaStates } from "../../constants";
-import { useNavigate } from "react-router-dom";
 import PathCard from "../card/PathCard";
 import AppDateRangePicker from "../mui/AppDateRangePicker";
 import { InventoryDetailProps } from "../../pages/dashboard";
+interface HeaderBarProps {
+  headerCardDetails: Array<InventoryDetailProps>;
+  onStateChange?: (value: string) => void;
+  onDateRangeChange?: (value: string[]) => void;
+}
 
 export default function HeaderBar({
   headerCardDetails,
-}: {
-  headerCardDetails: Array<InventoryDetailProps>;
-}) {
-  const navigate = useNavigate();
-
+  onStateChange,
+  onDateRangeChange,
+}: HeaderBarProps) {
   return (
     <AppVStack sx={{ width: "100%", padding: "30px", gap: "20px" }}>
       <AppText
@@ -29,14 +31,17 @@ export default function HeaderBar({
         }}
       />
       <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
-        <AppHStack sx={{ gap: "5px" }}>
+        <AppHStack sx={{ gap: "8px" }}>
           <AppSelectBox
             label={"Select State"}
-            onChange={(event) => navigate(`/state/${event.target.value}`)}
-            sx={{ width: "220px", borderRadius: "8px" }}
+            onChange={(value) => onStateChange?.(value)}
+            sx={{ width: "248px", borderRadius: "8px", borderColor: "#CBD5E1" }}
             options={usaStates}
           />
-          <AppDateRangePicker />
+          <AppDateRangePicker
+            style={{ width: "188px", height: "42px" }}
+            onChange={(event) => onDateRangeChange && onDateRangeChange(event)}
+          />
         </AppHStack>
         <PathCard />
       </AppHStack>

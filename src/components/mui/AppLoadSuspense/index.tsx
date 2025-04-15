@@ -1,9 +1,17 @@
 import { Suspense, ComponentType } from "react";
+import AppCenterStack from "../AppStack/AppCenterStack";
+import { CircularProgress } from "@mui/material";
 
 const AppLoadSuspense = <P extends object>(Component: ComponentType<P>) => {
   return (props: P) => {
     return (
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <AppCenterStack sx={{ width: "100%", height: "100%" }}>
+            <CircularProgress />
+          </AppCenterStack>
+        }
+      >
         <Component {...props} />
       </Suspense>
     );
@@ -11,4 +19,3 @@ const AppLoadSuspense = <P extends object>(Component: ComponentType<P>) => {
 };
 
 export default AppLoadSuspense;
-

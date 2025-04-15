@@ -1,4 +1,3 @@
-import HeaderBar from "../../components/common/HeaderBar";
 import USAStateMap from "../../components/map/USAStateMap";
 import AppVStack from "../../components/mui/AppStack/AppVStack";
 import {
@@ -6,11 +5,19 @@ import {
   getInstockAndOnshelfPercentage,
   getOutOfStockPercentage,
   getSKUAveragePrice,
-} from "../../constants/data";
+} from "../../constants/storeData";
 
 export type InventoryDetailProps =
-  | { title: string; percentage: string; price?: undefined }
-  | { title: string; price: string; percentage?: undefined };
+  | {
+      title: string;
+      percentage: string;
+      price?: undefined;
+    }
+  | {
+      title: string;
+      price: string;
+      percentage?: undefined;
+    };
 
 // export interface InventoryDetailProps {
 //   title: string;
@@ -44,7 +51,6 @@ export const inventoryDetails = [
 export default function DashboardPage() {
   return (
     <AppVStack sx={{ flex: 1, width: "100%", maxWidth: "100%" }}>
-      <HeaderBar headerCardDetails={inventoryDetails} />
       <USAStateMap />
     </AppVStack>
   );

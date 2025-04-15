@@ -1,21 +1,23 @@
 import { Map, Text } from "lucide-react";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppButton from "../mui/AppButton";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function PathCard() {
   const navigate = useNavigate();
-  const { stateId } = useParams();
+  const { pathname } = useLocation();
+
+  const isStoreListingPage = pathname?.includes("store");
 
   return (
     <AppHStack>
       <AppButton
         handleClick={() => navigate("/")}
         sx={{
-          maxWidth: "10px",
+          minWidth: "44px",
           padding: "9px",
-          backgroundColor: stateId ? "#fff" : "#E9EFF7",
-          borderRightWidth: "1px",
+          backgroundColor: isStoreListingPage ? "#fff" : "#E9EFF7",
+          borderRightWidth: 0,
           borderTopLeftRadius: "8px",
           borderBottomLeftRadius: "8px",
           border: "1px solid #CBD5E1",
@@ -23,14 +25,17 @@ export default function PathCard() {
           borderBottomRightRadius: 0,
         }}
       >
-        <Map width={"12px"} color={"#052757"} />
+        <Map
+          width={"12px"}
+          color={isStoreListingPage ? "#94A3B8" : "#020617"}
+        />
       </AppButton>
       <AppButton
-        handleClick={() => navigate("/Montana/stores")}
+        handleClick={() => navigate("/stores")}
         sx={{
-          width: "50%",
+          minWidth: "44px",
           padding: "9px",
-          backgroundColor: stateId ? "#E9EFF7" : "#fff",
+          backgroundColor: isStoreListingPage ? "#E9EFF7" : "#fff",
           borderRightWidth: "1px",
           borderTopRightRadius: "8px",
           borderBottomRightRadius: "8px",
@@ -39,7 +44,10 @@ export default function PathCard() {
           borderBottomLeftRadius: 0,
         }}
       >
-        <Text width={"12px"} />
+        <Text
+          width={"12px"}
+          color={isStoreListingPage ? "#020617" : "#94A3B8"}
+        />
       </AppButton>
     </AppHStack>
   );

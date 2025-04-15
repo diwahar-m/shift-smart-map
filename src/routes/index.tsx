@@ -6,12 +6,17 @@ import StoreRoutes from "./stores";
 import StoreDetailPageRoutes from "./storeDetail";
 import StoreLayout from "../components/layout/StoreLayout";
 import StoreViewPageRoutes from "./storeView";
+import HeaderContextProvider from "../context/HeaderContext";
 
 export default function Routes() {
   const routes = useRoutes([
     {
       path: "/",
-      element: <AppMainLayout />,
+      element: (
+        <HeaderContextProvider>
+          <AppMainLayout />
+        </HeaderContextProvider>
+      ),
       children: [
         DashboardRoutes,
         StateRoutes,

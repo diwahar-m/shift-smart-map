@@ -52,7 +52,6 @@ export const usaStates = [
 ];
 
 //  Table
-
 export const storesTableHead = [
   "Store",
   "Capri Sun Punch",
@@ -91,4 +90,39 @@ export function stateStyling(stateName, layer) {
 
   // Optional: Add a popup for each state
   layer.bindPopup(`<strong>${stateName}</strong>`).openPopup();
+}
+
+export function getDateFormat(date: string) {
+  // Output Ex - "Apr 03, 2025"
+
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    // year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
+
+  return formattedDate;
+}
+
+export function getDateDuration(date: string) {
+  const dateTime = new Date(date);
+
+  const stripTime = (date: Date) =>
+    new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  return stripTime(dateTime);
+}
+
+export function getProductAvailability(stock: string, inventory: string) {
+  const productAvailability = ["On shelf", "In inventory", "Out of stock"];
+
+  if (stock !== "") return productAvailability[0];
+  else if (inventory) return productAvailability[1];
+
+  return productAvailability[2];
+}
+
+export function getProductPrice(price: string) {
+  if (price === "") return "$0.00";
+  return price;
 }

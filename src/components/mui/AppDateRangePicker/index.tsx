@@ -2,8 +2,18 @@ import { DatePicker } from "antd";
 
 const { RangePicker } = DatePicker;
 
-const AppDateRangePicker: React.FC = () => {
-  return <RangePicker style={{ height: "40px" }} />;
+interface AppDateRangePickerProps {
+  onChange: (value: string[]) => void;
+  style?: React.CSSProperties;
+}
+
+const AppDateRangePicker = ({ onChange, style }: AppDateRangePickerProps) => {
+  return (
+    <RangePicker
+      onChange={(_, dateString) => onChange(dateString)}
+      style={style}
+    />
+  );
 };
 
 export default AppDateRangePicker;

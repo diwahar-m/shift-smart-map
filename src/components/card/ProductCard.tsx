@@ -7,29 +7,30 @@ import AppText from "../mui/AppText";
 import TagCard from "./TagCard";
 import { stockPrice } from "../mui/AppTable";
 import { productDetail } from "../stores/StoreProductList";
-import { useNavigate, useParams } from "react-router-dom";
 import AppButton from "../mui/AppButton";
 
 interface ProductCardProps {
   sx?: SxProps;
   detail?: stockPrice;
   productDetail?: productDetail;
+  path?: string;
+  productTab?: string;
+  setProductTab?: (arg0: string) => void;
 }
 
 export default function ProductCard({
   sx,
   detail,
   productDetail,
+  productTab,
+  setProductTab,
 }: ProductCardProps) {
-  const navigate = useNavigate();
-  const { storeId } = useParams();
   return (
     <AppButton
       sx={{ padding: 0, width: "100%" }}
       handleClick={() => {
-        if (productDetail?.link) {
-          navigate(productDetail?.link);
-        }
+        if (setProductTab && productDetail?.title)
+          setProductTab(productDetail?.title);
       }}
     >
       <AppHStack
@@ -40,8 +41,7 @@ export default function ProductCard({
           gap: "16px",
           minWidth: "260px",
           backgroundColor: productDetail?.link
-            ? // @ts-expect-error "storeID"
-              productDetail?.link?.includes(storeId)
+            ? productDetail?.title === productTab
               ? "#E9EFF7"
               : "#fff"
             : "#fff",

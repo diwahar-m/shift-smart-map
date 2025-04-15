@@ -3,21 +3,19 @@ import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import usaMapData from "../../constants/us-states.json"; // GeoJSON for USA states
+import usaMapData from "../../constants/us-states.json";
 import AppBox from "../mui/AppBox";
 import AppText from "../mui/AppText";
 import { stateStyling } from "../../constants";
 
 const USAStateMap: React.FC = () => {
-  const navigate = useNavigate(); // For routing to state details page
-
+  const navigate = useNavigate();
   const handleStateClick = (stateId: string) => {
-    // Navigate to the state detail page when a state is clicked
     navigate(`/state/${stateId}`);
   };
 
   return (
-    <AppBox sx={{ height: "36rem" }}>
+    <AppBox sx={{ height: "28rem" }}>
       <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
         <AppText
           variant="subtitle2"
