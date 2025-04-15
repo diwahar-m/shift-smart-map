@@ -33,7 +33,6 @@ function LocationMarker({ stateName, modal }: LocationMarkerInterface) {
 
   useMapEvents({
     zoomend: (e) => {
-      console.log(e.target.getZoom());
       setZoom(e.target.getZoom());
     },
   });

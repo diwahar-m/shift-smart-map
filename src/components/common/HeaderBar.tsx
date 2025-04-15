@@ -9,7 +9,7 @@ import AppDateRangePicker from "../mui/AppDateRangePicker";
 import { InventoryDetailProps } from "../../pages/dashboard";
 interface HeaderBarProps {
   headerCardDetails: Array<InventoryDetailProps>;
-  onStateChange: (value: string) => void;
+  onStateChange: (value?: string) => void;
   onDateRangeChange?: (value: string[]) => void;
 }
 
@@ -35,8 +35,8 @@ export default function HeaderBar({
           <AppSelectBox
             label={"Select State"}
             onChange={(value) => {
-              console.log("clicked");
-              onStateChange(value);
+              if (value) onStateChange(value);
+              else onStateChange();
             }}
             sx={{ width: "248px", borderRadius: "8px", borderColor: "#CBD5E1" }}
             options={usaStates}

@@ -19,7 +19,6 @@ export default function HeaderContextProvider({
   //   };
 
   const onStateChange = (stateName: string) => {
-    console.log(stateName);
     setStateName(stateName);
     if (stateName) setStoresList(getStoresList(stateName));
     else setStoresList(getStoresList());

@@ -4,9 +4,6 @@ import AppLinearProgress from "../mui/AppLinearProgress";
 import AppHStack from "../mui/AppStack/AppHStack";
 import TagCard from "./TagCard";
 import AuditTrendText from "./AuditTrendText";
-import { useEffect, useState } from "react";
-import auditData from "../../../inventoryDatabase.json";
-import { StoreDetail } from "../../constants/typeDeclarations";
 import {
   getCompletedAuditPercentage,
   getInstockPercentage,
@@ -14,17 +11,15 @@ import {
   getOutOfStockPercentage,
 } from "../../constants/storeData";
 import MultiSegmentProgressBar from "../mui/AppMultiSegmentProgressBa";
+import { useEffect, useState } from "react";
 
 export default function StateInfo({ stateName }: { stateName: string }) {
-  const [stateInfo, setStateInfo] = useState<StoreDetail>();
   const [tagList, setTagsList] = useState<
     Array<{ title: string; value: string }> | undefined
   >();
 
   useEffect(() => {
     if (stateName) {
-      const filteredData = auditData?.filter((_) => _?.BU === stateName);
-      setStateInfo(filteredData?.[0]);
       const tags = [];
       tags?.push({ title: "On shelf", value: getOnshelfPercentage(stateName) });
       tags?.push({
@@ -38,7 +33,6 @@ export default function StateInfo({ stateName }: { stateName: string }) {
       setTagsList(tags);
     }
   }, [stateName]);
-  console.log(stateInfo);
 
   return (
     <AppVStack sx={{ gap: "22px" }}>
