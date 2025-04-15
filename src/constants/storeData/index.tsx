@@ -2,30 +2,83 @@ import { getDateFormat, getProductAvailability, getProductPrice } from "..";
 import auditData from "../../../inventoryDatabase.json";
 
 let totalAudits = 0;
-export function getCompletedAuditPercentage() {
+export function getCompletedAuditPercentage(stateName?: string) {
   let completedAudits = 0;
-  auditData?.map((_) => {
-    totalAudits += 1;
-    if (_?.["Completion Date"] !== "") completedAudits += 1;
-  });
+  auditData
+    ?.filter((_) => {
+      if (stateName) {
+        return _?.BU === stateName;
+      }
+      return _;
+    })
+    ?.map((_) => {
+      totalAudits += 1;
+      if (_?.["Completion Date"] !== "") completedAudits += 1;
+    });
   const completedAuditPercentage = (completedAudits / totalAudits) * 100;
   return completedAuditPercentage.toFixed(2);
 }
 
-export function getOutOfStockPercentage() {
+export function getOnshelfPercentage(stateName?: string) {
+  let inStocks = 0;
+  auditData
+    ?.filter((_) => {
+      if (stateName) {
+        return _?.BU === stateName;
+      }
+      return _;
+    })
+    ?.map((_) => {
+      if (_?.["Instock"] !== "0") inStocks += 1;
+    });
+  const outOfStockPercentage = (inStocks / totalAudits) * 100;
+  return outOfStockPercentage.toFixed(2);
+}
+
+export function getInstockPercentage(stateName?: string) {
+  let inStocks = 0;
+  auditData
+    ?.filter((_) => {
+      if (stateName) {
+        return _?.BU === stateName;
+      }
+      return _;
+    })
+    ?.map((_) => {
+      if (_?.["Instock"] !== "0") inStocks += 1;
+    });
+  const outOfStockPercentage = (inStocks / totalAudits) * 100;
+  return outOfStockPercentage.toFixed(2);
+}
+
+export function getOutOfStockPercentage(stateName?: string) {
   let outOfStocks = 0;
-  auditData?.map((_) => {
-    if (_?.["Instock"] === "0") outOfStocks += 1;
-  });
+  auditData
+    ?.filter((_) => {
+      if (stateName) {
+        return _?.BU === stateName;
+      }
+      return _;
+    })
+    ?.map((_) => {
+      if (_?.["Instock"] === "0") outOfStocks += 1;
+    });
   const outOfStockPercentage = (outOfStocks / totalAudits) * 100;
   return outOfStockPercentage.toFixed(2);
 }
 
-export function getInstockAndOnshelfPercentage() {
+export function getInstockAndOnshelfPercentage(stateName?: string) {
   let inStocks = 0;
-  auditData?.map((_) => {
-    if (_?.["Instock"] !== "0") inStocks += 1;
-  });
+  auditData
+    ?.filter((_) => {
+      if (stateName) {
+        return _?.BU === stateName;
+      }
+      return _;
+    })
+    ?.map((_) => {
+      if (_?.["Instock"] !== "0" && _?.["In Inventory"] !== "0") inStocks += 1;
+    });
   const outOfStockPercentage = (inStocks / totalAudits) * 100;
   return outOfStockPercentage.toFixed(2);
 }

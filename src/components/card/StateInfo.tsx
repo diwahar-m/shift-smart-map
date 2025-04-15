@@ -7,34 +7,35 @@ import AuditTrendText from "./AuditTrendText";
 import { useEffect, useState } from "react";
 import auditData from "../../../inventoryDatabase.json";
 import { StoreDetail } from "../../constants/typeDeclarations";
+import {
+  getCompletedAuditPercentage,
+  getInstockPercentage,
+  getOnshelfPercentage,
+  getOutOfStockPercentage,
+} from "../../constants/storeData";
+import MultiSegmentProgressBar from "../mui/AppMultiSegmentProgressBa";
 
 export default function StateInfo({ stateName }: { stateName: string }) {
   const [stateInfo, setStateInfo] = useState<StoreDetail>();
-  console.log(stateName);
-  const [tagList, setTagList] =
-    useState<Array<{ title: string; value: number }>>();
+  const [tagList, setTagsList] = useState<
+    Array<{ title: string; value: string }> | undefined
+  >();
 
   useEffect(() => {
     if (stateName) {
       const filteredData = auditData?.filter((_) => _?.BU === stateName);
-      const tags: Array<{ title: string; value: number }> = [];
-      if (filteredData?.[0]?.Instock) {
-        tags.push({ title: "In Stock", value: 1 });
-      } else {
-        tags.push({ title: "In Stock", value: 0 });
-      }
-      if (filteredData?.[0]?.["In Inventory"]) {
-        tags.push({ title: "In Inventory", value: 1 });
-      } else {
-        tags.push({ title: "In Inventory", value: 1 });
-      }
-      if (filteredData?.[0]?.["No inventory"]) {
-        tags.push({ title: "No inventory", value: 1 });
-      } else {
-        tags.push({ title: "No inventory", value: 1 });
-      }
-      setTagList(tags);
       setStateInfo(filteredData?.[0]);
+      const tags = [];
+      tags?.push({ title: "On shelf", value: getOnshelfPercentage(stateName) });
+      tags?.push({
+        title: "In inventory",
+        value: getInstockPercentage(stateName),
+      });
+      tags?.push({
+        title: "Out of stock",
+        value: getOutOfStockPercentage(stateName),
+      });
+      setTagsList(tags);
     }
   }, [stateName]);
   console.log(stateInfo);
@@ -56,13 +57,22 @@ export default function StateInfo({ stateName }: { stateName: string }) {
             height: "40px",
           }}
           variant="h1"
-          text={stateInfo?.Instock ? `${100}%` : "0%"}
+          text={`${getCompletedAuditPercentage(stateName)}%`}
         />
-        <AppLinearProgress value={stateInfo?.Instock ? 100 : 0} />
+        <AppLinearProgress
+          value={parseInt(getCompletedAuditPercentage(stateName))}
+        />
       </AppVStack>
       <AppVStack>
         <AppText variant={"subtitle1"} text={"Inventory"} />
-        <AppLinearProgress value={stateInfo?.Instock ? 100 : "0%"} />
+        <MultiSegmentProgressBar
+          values={[
+            parseInt(getOnshelfPercentage(stateName)),
+            parseInt(getInstockPercentage(stateName)),
+            parseInt(getOutOfStockPercentage(stateName)),
+          ]}
+        />
+        {/* <AppLinearProgress value={stateInfo?.Instock ? 100 : "0%"} /> */}
       </AppVStack>
       <AppVStack sx={{ marginTop: "6px", gap: "10px" }}>
         {tagList?.map((_) => (
@@ -79,7 +89,7 @@ export default function StateInfo({ stateName }: { stateName: string }) {
                   lineHeight: "28px",
                   fontWeight: 600,
                 }}
-                text={_?.value ? "100%" : "2%"}
+                text={_?.value?.toLocaleString() + "%"}
               />
               <AuditTrendText />
             </AppHStack>
