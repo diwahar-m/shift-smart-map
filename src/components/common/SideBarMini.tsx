@@ -34,7 +34,7 @@ export default function SideBarMini() {
       />
 
       {/* Links container */}
-      <AppBox sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+      <AppVStack sx={{ gap: "4px", alignItems: "center" }}>
         <AppButton
           sx={{
             backgroundColor: "#0B57C0",
@@ -59,7 +59,7 @@ export default function SideBarMini() {
         >
           <AppImage src={TrendsIcon} alt={"logo"} />
         </AppButton>
-      </AppBox>
+      </AppVStack>
     </AppVStack>
   );
 }

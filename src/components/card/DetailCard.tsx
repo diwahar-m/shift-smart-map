@@ -19,13 +19,13 @@ export default function DetailCard({
   return (
     <AppVStack
       sx={{
-        backgroundColor: "#fff",
-        border: "1px solid #CBD5E1",
+        bgcolor: "#fff",
+        // border: "1px solid #CBD5E1",
         borderRadius: "16px",
         maxWidth: "362px",
         maxHeight: "514px",
-        padding: "24px",
-        gap: "26px",
+        padding: "22px",
+        gap: "18px",
         boxSizing: "border-box",
       }}
     >

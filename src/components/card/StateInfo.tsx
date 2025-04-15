@@ -9,7 +9,7 @@ const tags = ["On Shelf", "In inventory", "Out of stock"];
 
 export default function StateInfo() {
   return (
-    <AppVStack sx={{ gap: "26px" }}>
+    <AppVStack sx={{ gap: "22px" }}>
       <AppVStack sx={{ gap: "4px" }}>
         <AppText
           variant={"h4"}
@@ -33,7 +33,7 @@ export default function StateInfo() {
         <AppText variant={"subtitle1"} text={"Inventory"} />
         <AppLinearProgress value={35} />
       </AppVStack>
-      <AppVStack sx={{ marginTop: "6px", gap: "18px" }}>
+      <AppVStack sx={{ marginTop: "6px", gap: "10px" }}>
         {tags?.map((_) => (
           <AppHStack
             key={_}
