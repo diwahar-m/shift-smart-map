@@ -27,6 +27,9 @@ export default function DetailCard({
         padding: "22px",
         gap: "18px",
         boxSizing: "border-box",
+        position: "absolute",
+        bottom: "10px",
+        right: "10px",
       }}
     >
       {stateName && (
