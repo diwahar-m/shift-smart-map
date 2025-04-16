@@ -12,7 +12,7 @@ export default function HeaderContextProvider({
   children: ReactElement;
 }) {
   const [storesList, setStoresList] = useState<StoreAudit[]>([]);
-  const [stateName, setStateName] = useState("Hi");
+  const [stateName, setStateName] = useState("");
 
   //   const handleRowClick = (storeName: string) => {
   //     navigate(`/store/${storeName}`);
@@ -37,7 +37,6 @@ export default function HeaderContextProvider({
     } else {
       filteredStores = getStoresList(stateName);
     }
-
     setStoresList(filteredStores);
   };
 

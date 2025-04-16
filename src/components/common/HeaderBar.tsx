@@ -10,7 +10,7 @@ import { InventoryDetailProps } from "../../pages/dashboard";
 interface HeaderBarProps {
   headerCardDetails: Array<InventoryDetailProps>;
   onStateChange: (value?: string) => void;
-  onDateRangeChange?: (value: string[]) => void;
+  onDateRangeChange?: (value: string[] | undefined) => void;
 }
 
 export default function HeaderBar({
@@ -43,7 +43,7 @@ export default function HeaderBar({
           />
           <AppDateRangePicker
             style={{ width: "188px", height: "42px" }}
-            onChange={(event) => onDateRangeChange && onDateRangeChange(event)}
+            onChange={(event) => onDateRangeChange?.(event)}
           />
         </AppHStack>
         <PathCard />
