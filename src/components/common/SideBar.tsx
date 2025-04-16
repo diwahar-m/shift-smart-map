@@ -3,8 +3,10 @@ import { AuditsIcon, SidebarLogoIcon, TrendsIcon } from "../../assets";
 import AppBox from "../mui/AppBox";
 import AppButton from "../mui/AppButton";
 import AppText from "../mui/AppText";
+import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
+  const navigate = useNavigate();
   return (
     <AppBox
       sx={{
@@ -22,7 +24,10 @@ export default function SideBar() {
     >
       {/* Logo container */}
       <AppBox sx={{ borderColor: "#CBD5E1", borderWidth: "5px" }}>
-        <AppBox sx={{ height: "28px", width: "100%" }}>
+        <AppBox
+          onClick={() => navigate("/")}
+          sx={{ height: "28px", width: "100%", cursor: "pointer" }}
+        >
           <AppImage src={SidebarLogoIcon} alt={"logo"} />
         </AppBox>
       </AppBox>

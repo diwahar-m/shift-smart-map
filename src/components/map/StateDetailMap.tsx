@@ -7,6 +7,7 @@ import {
   Marker,
   Popup,
   useMapEvents,
+  useMap,
 } from "react-leaflet";
 import usaMapData from "../../constants/us-states.json";
 import StateInfo from "../card/StateInfo";
@@ -26,16 +27,44 @@ interface StateDetailProps {
 interface LocationMarkerInterface {
   stateName: string | undefined;
   modal?: React.ReactElement;
+  coordinates: StateCoordinates;
 }
 
-function LocationMarker({ stateName, modal }: LocationMarkerInterface) {
+function LocationMarker({
+  stateName,
+  modal,
+  coordinates,
+}: LocationMarkerInterface) {
   const [zoom, setZoom] = useState<number>(5);
+  const markerRef = useRef<L.Marker>(null);
+  const map = useMap();
+  //
+
+  //
+
+  // loads popup when component renders
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (markerRef.current) {
+        markerRef.current.openPopup();
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [map]);
+
+  const customIcon = new L.Icon({
+    iconUrl: marker,
+    iconSize: [32, 40],
+    iconAnchor: [16, 40],
+    popupAnchor: [0, -40],
+  });
 
   useMapEvents({
     zoomend: (e) => {
       setZoom(e.target.getZoom());
     },
   });
+  //
 
   const getPopupSizeFromZoom = (zoom: number): number[] => {
     if (zoom < 4) return [430, 292];
@@ -43,23 +72,30 @@ function LocationMarker({ stateName, modal }: LocationMarkerInterface) {
   };
 
   return (
-    <Popup
-      offset={[220, 150]}
-      closeButton={false}
-      maxHeight={getPopupSizeFromZoom(zoom)?.[0]}
-      maxWidth={getPopupSizeFromZoom(zoom)?.[1]}
+    <Marker
+      position={[coordinates?.latitude, coordinates?.longitude]}
+      ref={markerRef}
+      icon={customIcon}
     >
-      {modal ? (
-        modal
-      ) : stateName ? (
-        <DetailCard
-          stateName={stateName}
-          children={<StateInfo stateName={stateName} />}
-        />
-      ) : (
-        <></>
-      )}
-    </Popup>
+      <Popup
+        offset={[220, 450]}
+        autoPan={false}
+        closeButton={false}
+        maxHeight={getPopupSizeFromZoom(zoom)?.[0]}
+        maxWidth={getPopupSizeFromZoom(zoom)?.[1]}
+      >
+        {modal ? (
+          modal
+        ) : stateName ? (
+          <DetailCard
+            stateName={stateName}
+            children={<StateInfo stateName={stateName} />}
+          />
+        ) : (
+          <></>
+        )}
+      </Popup>
+    </Marker>
   );
 }
 
@@ -69,19 +105,13 @@ const StateDetailsMap = ({
   modal,
 }: StateDetailProps) => {
   const navigate = useNavigate();
-  const markerRef = useRef<L.Marker | null>(null);
+
   const [stateName, setStateName] = useState<string>("");
 
   useEffect(() => {
     if (selectedState?.properties?.name)
       setStateName(selectedState?.properties?.name);
   }, [selectedState]);
-
-  useEffect(() => {
-    if (markerRef.current) {
-      markerRef.current.openPopup();
-    }
-  }, []);
 
   const handleStateClick = (stateId: string) => {
     navigate(`/state/${stateId}`);
@@ -102,13 +132,6 @@ const StateDetailsMap = ({
       });
     }
   };
-
-  const customIcon = new L.Icon({
-    iconUrl: marker,
-    iconSize: [32, 40],
-    iconAnchor: [16, 40],
-    popupAnchor: [0, -40],
-  });
 
   if (!selectedState) {
     return <div>State not found!</div>;
@@ -132,13 +155,12 @@ const StateDetailsMap = ({
         data={usaMapData}
         onEachFeature={onEachState}
       />
-      <Marker
-        position={[coordinates?.latitude, coordinates?.longitude]}
-        ref={markerRef}
-        icon={customIcon}
-      >
-        <LocationMarker stateName={stateName} modal={modal} />
-      </Marker>
+
+      <LocationMarker
+        stateName={stateName}
+        modal={modal}
+        coordinates={coordinates}
+      />
     </MapContainer>
   );
 };
