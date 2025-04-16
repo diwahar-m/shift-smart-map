@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   MapContainer,
@@ -25,16 +25,10 @@ interface StateDetailProps {
 }
 
 interface LocationMarkerInterface {
-  stateName: string | undefined;
-  modal?: React.ReactElement;
   coordinates: StateCoordinates;
 }
 
-function LocationMarker({
-  stateName,
-  modal,
-  coordinates,
-}: LocationMarkerInterface) {
+function LocationMarker({ coordinates }: LocationMarkerInterface) {
   const [zoom, setZoom] = useState<number>(5);
   const markerRef = useRef<L.Marker>(null);
   const map = useMap();
@@ -84,7 +78,7 @@ function LocationMarker({
         maxHeight={getPopupSizeFromZoom(zoom)?.[0]}
         maxWidth={getPopupSizeFromZoom(zoom)?.[1]}
       >
-        {modal ? (
+        {/* {modal ? (
           modal
         ) : stateName ? (
           <DetailCard
@@ -93,7 +87,7 @@ function LocationMarker({
           />
         ) : (
           <></>
-        )}
+        )} */}
       </Popup>
     </Marker>
   );
@@ -105,10 +99,12 @@ const StateDetailsMap = ({
   modal,
 }: StateDetailProps) => {
   const navigate = useNavigate();
-
   const [stateName, setStateName] = useState<string>("");
 
   useEffect(() => {
+    // if (mapContainerRef.current && popupRef.current) {
+    //   mapContainerRef.current.appendChild(popupRef.current);
+    // }
     if (selectedState?.properties?.name)
       setStateName(selectedState?.properties?.name);
   }, [selectedState]);
@@ -144,6 +140,25 @@ const StateDetailsMap = ({
       scrollWheelZoom={true}
       style={{ height: "100%", width: "100%" }}
     >
+      <div
+        style={{
+          position: "absolute",
+          zIndex: 9000,
+          bottom: "15px",
+          right: "15px",
+        }}
+      >
+        {modal ? (
+          modal
+        ) : stateName ? (
+          <DetailCard
+            stateName={stateName}
+            children={<StateInfo stateName={stateName} />}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -156,11 +171,7 @@ const StateDetailsMap = ({
         onEachFeature={onEachState}
       />
 
-      <LocationMarker
-        stateName={stateName}
-        modal={modal}
-        coordinates={coordinates}
-      />
+      <LocationMarker coordinates={coordinates} />
     </MapContainer>
   );
 };

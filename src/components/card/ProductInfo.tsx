@@ -8,7 +8,20 @@ export default function ProductInfo({ tabs }: { tabs: tabProps[] }) {
   const { storeId } = useParams();
 
   return (
-    <AppVStack sx={{ width: "100%", gap: "6px", padding: "16px" }}>
+    <AppVStack
+      sx={{
+        // width: "80%",
+        gap: "6px",
+        padding: "16px",
+        bgcolor: "#fff",
+        borderRadius: "12px",
+        marginBottom: "10px",
+        maxWidth: "320px",
+        minWidth: "300px",
+        maxHeight: "460px",
+        boxSizing: "border-box",
+      }}
+    >
       <AppText
         variant="subtitle2"
         sx={{
