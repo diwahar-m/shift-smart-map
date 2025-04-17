@@ -1,8 +1,8 @@
 import { getDateFormat, getProductAvailability, getProductPrice } from "..";
 import auditData from "../../../inventoryDatabase.json";
 
-let totalAudits = 0;
 export function getCompletedAuditPercentage(stateName?: string) {
+  let stateTotalAudits = 0;
   let completedAudits = 0;
   auditData
     ?.filter((_) => {
@@ -12,14 +12,17 @@ export function getCompletedAuditPercentage(stateName?: string) {
       return _;
     })
     ?.map((_) => {
-      totalAudits += 1;
+      stateTotalAudits += 1;
       if (_?.["Completion Date"] !== "") completedAudits += 1;
     });
-  const completedAuditPercentage = (completedAudits / totalAudits) * 100;
-  return completedAuditPercentage.toFixed(2);
+  const completedAuditPercentage = (completedAudits / stateTotalAudits) * 100;
+  return isNaN(completedAuditPercentage)
+    ? "0"
+    : completedAuditPercentage.toFixed();
 }
 
 export function getOnshelfPercentage(stateName?: string) {
+  let totalStock = 0;
   let inStocks = 0;
   auditData
     ?.filter((_) => {
@@ -29,13 +32,15 @@ export function getOnshelfPercentage(stateName?: string) {
       return _;
     })
     ?.map((_) => {
+      totalStock++;
       if (_?.["Instock"] !== "0") inStocks += 1;
     });
-  const outOfStockPercentage = (inStocks / totalAudits) * 100;
-  return outOfStockPercentage.toFixed(2);
+  const outOfStockPercentage = (inStocks / totalStock) * 100;
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
 }
 
 export function getInstockPercentage(stateName?: string) {
+  let totalStock = 0;
   let inStocks = 0;
   auditData
     ?.filter((_) => {
@@ -45,13 +50,15 @@ export function getInstockPercentage(stateName?: string) {
       return _;
     })
     ?.map((_) => {
-      if (_?.["Instock"] !== "0") inStocks += 1;
+      totalStock++;
+      if (_?.["Instock"] !== "0" || _?.["In Inventory"] !== "0") inStocks += 1;
     });
-  const outOfStockPercentage = (inStocks / totalAudits) * 100;
-  return outOfStockPercentage.toFixed(2);
+  const outOfStockPercentage = (inStocks / totalStock) * 100;
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
 }
 
 export function getOutOfStockPercentage(stateName?: string) {
+  let totalStock = 0;
   let outOfStocks = 0;
   auditData
     ?.filter((_) => {
@@ -61,13 +68,15 @@ export function getOutOfStockPercentage(stateName?: string) {
       return _;
     })
     ?.map((_) => {
-      if (_?.["Instock"] === "0") outOfStocks += 1;
+      totalStock++;
+      if (_?.["No inventory"] === "0") outOfStocks += 1;
     });
-  const outOfStockPercentage = (outOfStocks / totalAudits) * 100;
-  return outOfStockPercentage.toFixed(2);
+  const outOfStockPercentage = (outOfStocks / totalStock) * 100;
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
 }
 
 export function getInstockAndOnshelfPercentage(stateName?: string) {
+  let totalStock = 0;
   let inStocks = 0;
   auditData
     ?.filter((_) => {
@@ -77,17 +86,17 @@ export function getInstockAndOnshelfPercentage(stateName?: string) {
       return _;
     })
     ?.map((_) => {
-      if (_?.["Instock"] !== "0" && _?.["In Inventory"] !== "0") inStocks += 1;
+      totalStock++;
+      if (_?.["Instock"] !== "0" || _?.["In Inventory"] !== "0") inStocks += 1;
     });
-  const outOfStockPercentage = (inStocks / totalAudits) * 100;
-  return outOfStockPercentage.toFixed(2);
+  const outOfStockPercentage = (inStocks / totalStock) * 100;
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
 }
 
 export function getSKUAveragePrice() {
   let totalSKUPrice = 0;
   let count = 0;
   auditData?.map((_) => {
-    totalAudits += 1;
     if (_?.["Strawberry Kiwi, Price"] !== "") {
       count++;
       totalSKUPrice += parseInt(_?.["Strawberry Kiwi, Price"]?.slice(1));
@@ -112,6 +121,7 @@ export type StoreAudit = {
   delivery: string;
   completion_date: string;
 };
+
 export function getStoresList(stateName: string | null = null) {
   const storesList: StoreAudit[] = [];
 
@@ -164,6 +174,22 @@ export function getStoreDetails(stateName: string | undefined) {
 }
 
 // -------------
+
+// --- state list ---
+
+export function getStatesList() {
+  const statesList: any = [];
+  auditData
+    ?.filter((_) => _?.["Completion Date"] !== "")
+    ?.map((_) => {
+      if (!statesList?.includes(_?.["BU"])) {
+        statesList?.push(_?.["BU"]);
+      }
+    });
+  return statesList;
+}
+
+// ------
 
 // export function getStateBasedStoresList(state) {
 //   let stateBasedStoresList = [];

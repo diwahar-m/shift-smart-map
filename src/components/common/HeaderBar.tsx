@@ -3,20 +3,19 @@ import AppHStack from "../mui/AppStack/AppHStack";
 import AppSelectBox from "../mui/AppSelectBox";
 import CardSection from "../card/CardSection";
 import AppVStack from "../mui/AppStack/AppVStack";
-import { usaStates } from "../../constants";
 import PathCard from "../card/PathCard";
-import AppDateRangePicker from "../mui/AppDateRangePicker";
+// import AppDateRangePicker from "../mui/AppDateRangePicker";
 import { InventoryDetailProps } from "../../pages/dashboard";
+import { getStatesList } from "../../constants/storeData";
 interface HeaderBarProps {
   headerCardDetails: Array<InventoryDetailProps>;
   onStateChange: (value?: string) => void;
-  onDateRangeChange?: (value: string[] | undefined) => void;
+  // onDateRangeChange?: (value: string[] | undefined) => void;
 }
 
 export default function HeaderBar({
   headerCardDetails,
   onStateChange,
-  onDateRangeChange,
 }: HeaderBarProps) {
   return (
     <AppVStack sx={{ width: "100%", padding: "30px", gap: "20px" }}>
@@ -39,12 +38,12 @@ export default function HeaderBar({
               else onStateChange();
             }}
             sx={{ width: "248px", borderRadius: "8px", borderColor: "#CBD5E1" }}
-            options={usaStates}
+            options={getStatesList()}
           />
-          <AppDateRangePicker
+          {/* <AppDateRangePicker
             style={{ width: "188px", height: "42px" }}
             onChange={(event) => onDateRangeChange?.(event)}
-          />
+          /> */}
         </AppHStack>
         <PathCard />
       </AppHStack>

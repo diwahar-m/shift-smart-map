@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 const MultiSegmentProgressBar = ({ values = [30, 20, 50] }) => {
   const [first, second, third] = values;
   const total = first + second + third;
-
   return (
     <Box
       sx={{
@@ -17,7 +16,7 @@ const MultiSegmentProgressBar = ({ values = [30, 20, 50] }) => {
     >
       <Box
         sx={{
-          width: `${(second / total) * 100}%`,
+          width: `${((second + first) / total) * 100}%`,
           height: 10,
           //   borderRadius: 5,
           backgroundColor: "#0B57C0", // 2nd box - orange
@@ -27,7 +26,7 @@ const MultiSegmentProgressBar = ({ values = [30, 20, 50] }) => {
       >
         <Box
           sx={{
-            width: `${(first / total) * 100}%`,
+            width: `${(first / total) * 200}%`,
             height: "100%",
             backgroundColor: "#047857", // 1st box - red
             position: "absolute",

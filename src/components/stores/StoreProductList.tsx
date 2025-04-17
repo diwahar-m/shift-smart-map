@@ -1,9 +1,7 @@
-import { SlidersHorizontal } from "lucide-react";
 import AppSearch from "../mui/AppSearch";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
-import AppCenterStack from "../mui/AppStack/AppCenterStack";
 import ProductCard from "../card/ProductCard";
 import { StoreDetail } from "../../constants/typeDeclarations";
 import { Dispatch, SetStateAction } from "react";
@@ -64,7 +62,7 @@ export default function StoreProductList({
       </AppVStack>
       <AppHStack gap={"5px"}>
         <AppSearch />
-        <AppCenterStack
+        {/* <AppCenterStack
           sx={{
             width: "38px",
             height: "38px",
@@ -74,7 +72,7 @@ export default function StoreProductList({
           }}
         >
           <SlidersHorizontal size={"15px"} />
-        </AppCenterStack>
+        </AppCenterStack> */}
       </AppHStack>
       <AppVStack sx={{ gap: "2px" }}>
         {product?.map((_) => (

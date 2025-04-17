@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { HeaderContext } from "../../context/HeaderContext";
 
 export default function AppMainLayout() {
-  const { onStateChange, onDateRangeChange } = useContext(HeaderContext);
+  const { onStateChange } = useContext(HeaderContext);
 
   return (
     <AppHStack
@@ -34,7 +34,7 @@ export default function AppMainLayout() {
       >
         <HeaderBar
           onStateChange={onStateChange}
-          onDateRangeChange={onDateRangeChange}
+          // onDateRangeChange={onDateRangeChange}
           headerCardDetails={inventoryDetails}
         />
         <Outlet />

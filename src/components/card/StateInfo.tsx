@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 export default function StateInfo({ stateName }: { stateName: string }) {
   const [tagList, setTagsList] = useState<
-    Array<{ title: string; value: string }> | undefined
+    Array<{ title: string; value: string | number }> | undefined
   >();
 
   useEffect(() => {
