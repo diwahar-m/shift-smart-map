@@ -1,5 +1,5 @@
 import AppImage from "../mui/AppImage";
-import { AuditsIcon, SidebarLogoIcon, TrendsIcon } from "../../assets";
+import { SidebarLogoIcon } from "../../assets";
 import AppBox from "../mui/AppBox";
 import { useLocation, useNavigate } from "react-router-dom";
 import AppButtonIcon from "../features/AppButtonIcon";
