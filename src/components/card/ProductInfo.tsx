@@ -31,7 +31,7 @@ export default function ProductInfo({ tabs }: { tabs: tabProps[] }) {
             marginBottom: "10px",
             maxWidth: "320px",
             minWidth: "300px",
-            maxHeight: "460px",
+            maxHeight: "480px",
             boxSizing: "border-box",
           }}
         >

@@ -7,6 +7,7 @@ import usaMapData from "../../constants/us-states.json";
 import AppBox from "../mui/AppBox";
 import AppText from "../mui/AppText";
 import { stateStyling } from "../../constants";
+import { getStoresList } from "../../constants/storeData";
 
 const USAStateMap: React.FC = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const USAStateMap: React.FC = () => {
       <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
         <AppText
           variant="subtitle2"
-          text={"1,294 stores within map area"}
+          text={`${getStoresList()?.length} stores within map area`}
           sx={{ margin: "auto" }}
         />
       </AppBox>

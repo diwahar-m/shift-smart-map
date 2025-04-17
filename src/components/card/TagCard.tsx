@@ -58,11 +58,15 @@ export default function TagCard({ title, theme = "green" }: TagCardProps) {
         color={color}
         size="8px"
         style={{
-          backgroundColor: color, // Change this color to fill the circle
+          backgroundColor: color,
           borderRadius: "100%",
         }}
       />
-      <AppText variant="subtitle2" sx={{ fontSize: "12px" }} text={title} />
+      <AppText
+        variant="subtitle2"
+        sx={{ fontSize: "12px", color: color }}
+        text={title}
+      />
     </AppHStack>
   );
 }

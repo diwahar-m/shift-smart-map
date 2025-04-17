@@ -4,7 +4,7 @@ import AppText from "../../components/mui/AppText";
 import StateDetailsMap from "../../components/map/StateDetailMap";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { getStoreDetails } from "../../constants/storeData";
+import { getStoreDetails, getStoresList } from "../../constants/storeData";
 import { StoreDetail } from "../../constants/typeDeclarations";
 import { tabProps } from "../../components/stores/StoreProductDetail";
 import { getDateFormat } from "../../constants";
@@ -18,7 +18,6 @@ export default function StoresView() {
   // useEffect(() => {
   //   handleOpen();
   // }, []);
-
   const { storeId } = useParams();
   const [storeInfo, setStoreInfo] = useState<StoreDetail[]>(
     getStoreDetails(storeId)
@@ -52,7 +51,7 @@ export default function StoresView() {
         <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
           <AppText
             variant="subtitle2"
-            text={"1,294 stores within map area"}
+            text={`${getStoresList()?.length} stores within map area`}
             sx={{ margin: "auto" }}
           />
         </AppBox>

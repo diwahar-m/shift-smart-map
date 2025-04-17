@@ -6,6 +6,7 @@ import AppText from "../../components/mui/AppText";
 import usaMapData from "../../constants/us-states.json";
 import usaCoordinates from "../../constants/us-coordinates.json";
 import { useParams } from "react-router-dom";
+import { getStoresList } from "../../constants/storeData";
 
 interface statePropertiesProps {
   name: string;
@@ -55,7 +56,7 @@ export default function StatePage() {
         <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
           <AppText
             variant="subtitle2"
-            text={"1,294 stores within map area"}
+            text={`${getStoresList()?.length} stores within map area`}
             sx={{ margin: "auto" }}
           />
         </AppBox>

@@ -33,14 +33,16 @@ export default function StoreProductDetail({
     const tabs: Array<tabProps> = [];
     storeDetails?.map((_) => {
       const tabDetail: tabProps = {};
-      tabDetail.tab = getDateFormat(_?.["Completion Date"]);
-      const selectedTabDetails = {
-        image: _?.[(productTab + ", Stock") as keyof StoreDetail],
-        price: _?.[(productTab + ", Price") as keyof StoreDetail],
-        date: getDateFormat(_?.["Completion Date"]),
-      };
-      tabDetail.component = <Product storeDetail={selectedTabDetails} />;
-      tabs?.push(tabDetail);
+      if (_?.["Completion Date"]) {
+        tabDetail.tab = getDateFormat(_?.["Completion Date"]);
+        const selectedTabDetails = {
+          image: _?.[(productTab + ", Stock") as keyof StoreDetail],
+          price: _?.[(productTab + ", Price") as keyof StoreDetail],
+          date: getDateFormat(_?.["Completion Date"]),
+        };
+        tabDetail.component = <Product storeDetail={selectedTabDetails} />;
+        tabs?.push(tabDetail);
+      }
     });
     setAuditDetail(tabs);
   }, [storeDetails, productTab]);
