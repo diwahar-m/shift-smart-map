@@ -10,6 +10,8 @@ import ShiftIcon from "./AllRegions/shift-icon.svg";
 import ProductImage from "./AllRegions/productImage.svg";
 import SampleProductImage from "./AllRegions/sampleProductImage.svg";
 import MarkerIconImage from "./AllRegions/markerIcon.svg";
+import exportIconImage from "./Trends/exportIcon.svg";
+import compressIconImage from "./Trends/compressIcon.svg";
 
 export {
   AuditsIcon,
@@ -22,4 +24,6 @@ export {
   ProductImage,
   SampleProductImage,
   MarkerIconImage,
+  exportIconImage,
+  compressIconImage,
 };

@@ -2,11 +2,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import { useParams } from "react-router-dom";
-import AppHStack from "../../components/mui/AppStack/AppHStack";
-import StoreProductDetail from "../../components/stores/StoreProductDetail";
-import StoreProductList from "../../components/stores/StoreProductList";
-import { getStoreDetails } from "../../constants/storeData";
 import { useState } from "react";
+import { getStoreDetails } from "../../../constants/storeData";
+import AppHStack from "../../../components/mui/AppStack/AppHStack";
+import StoreProductList from "../../../components/stores/StoreProductList";
+import StoreProductDetail from "../../../components/stores/StoreProductDetail";
 
 export default function StoresDetail() {
   const { storeId } = useParams();

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import AppHStack from "../mui/AppStack/AppHStack";
 import SideBar from "../common/SideBar";
 import AppVStack from "../mui/AppStack/AppVStack";
@@ -9,6 +9,7 @@ import { HeaderContext } from "../../context/HeaderContext";
 
 export default function AppMainLayout() {
   const { onStateChange } = useContext(HeaderContext);
+  const { pathname } = useLocation();
 
   return (
     <AppHStack
@@ -32,11 +33,15 @@ export default function AppMainLayout() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        <HeaderBar
-          onStateChange={onStateChange}
-          // onDateRangeChange={onDateRangeChange}
-          headerCardDetails={inventoryDetails}
-        />
+        {pathname?.includes("trends") ? (
+          <></>
+        ) : (
+          <HeaderBar
+            onStateChange={onStateChange}
+            // onDateRangeChange={onDateRangeChange}
+            headerCardDetails={inventoryDetails}
+          />
+        )}
         <Outlet />
       </AppVStack>
     </AppHStack>
