@@ -1,5 +1,5 @@
 export const custompalette = {
   primary: {
-    light: "#ffffff",
+    main: "#ffffff",
   },
 };

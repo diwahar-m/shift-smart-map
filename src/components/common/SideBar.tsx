@@ -1,12 +1,14 @@
 import AppImage from "../mui/AppImage";
 import { AuditsIcon, SidebarLogoIcon, TrendsIcon } from "../../assets";
 import AppBox from "../mui/AppBox";
-import AppButton from "../mui/AppButton";
-import AppText from "../mui/AppText";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import AppButtonIcon from "../features/AppButtonIcon";
+import { ClipboardList, TrendingUp } from "lucide-react";
 
 export default function SideBar() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   return (
     <AppBox
       sx={{
@@ -33,34 +35,22 @@ export default function SideBar() {
       </AppBox>
       {/* Links container */}
       <AppBox sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-        <AppButton
-          sx={{
-            backgroundColor: "#0B57C0",
-            borderRadius: "12px",
-            width: "208px",
-            height: "44px",
-            padding: "19px",
-          }}
-        >
-          <AppBox sx={{ display: "flex", gap: "5px", marginLeft: "-95px" }}>
-            <AppImage src={AuditsIcon} alt={"logo"} />
-            <AppText sx={{ color: "#fff" }} text={"Audits"} />
-          </AppBox>
-        </AppButton>
-        <AppButton
-          sx={{
-            backgroundColor: "##fff",
-            borderRadius: "12px",
-            width: "208px",
-            height: "44px",
-            padding: "19px",
-          }}
-        >
-          <AppBox sx={{ display: "flex", gap: "5px", marginLeft: "-95px" }}>
-            <AppImage src={TrendsIcon} alt={"logo"} />
-            <AppText sx={{ color: "#475569" }} text={"Trends"} />
-          </AppBox>
-        </AppButton>
+        <AppButtonIcon
+          text={"Audits"}
+          handleClick={() => navigate("/")}
+          isActive={pathname?.length === 1}
+          icon={<ClipboardList size={21} />}
+          sx={{ padding: "12px 16px" }}
+          textStyles={{ marginBottom: "6px" }}
+        />
+        <AppButtonIcon
+          text={"Trends"}
+          handleClick={() => navigate("/trends")}
+          isActive={pathname?.includes("trends")}
+          textStyles={{ marginBottom: "6px" }}
+          sx={{ padding: "12px 16px" }}
+          icon={<TrendingUp />}
+        />
       </AppBox>
     </AppBox>
   );

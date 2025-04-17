@@ -1,12 +1,15 @@
 import { useRoutes } from "react-router-dom";
-import DashboardRoutes from "./dashboard";
 import AppMainLayout from "../components/layout/AppMainLayout";
-import StateRoutes from "./state";
-import StoreRoutes from "./stores";
-import StoreDetailPageRoutes from "./storeDetail";
 import StoreLayout from "../components/layout/StoreLayout";
-import StoreViewPageRoutes from "./storeView";
 import HeaderContextProvider from "../context/HeaderContext";
+import {
+  DashboardRoutes,
+  StateRoutes,
+  StoreDetailPageRoutes,
+  StoreRoutes,
+  StoreViewPageRoutes,
+} from "./stateRoutes";
+import { TrendRoutes } from "./trendRoutes";
 
 export default function Routes() {
   const routes = useRoutes([
@@ -22,6 +25,7 @@ export default function Routes() {
         StateRoutes,
         StoreRoutes,
         StoreViewPageRoutes,
+        TrendRoutes,
       ],
     },
     {

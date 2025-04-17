@@ -33,6 +33,7 @@ export default function StateInfo({ stateName }: { stateName: string }) {
       setTagsList(tags);
     }
   }, [stateName]);
+  console.log(stateName);
 
   return (
     <AppVStack sx={{ gap: "22px" }}>
