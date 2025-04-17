@@ -102,9 +102,6 @@ const StateDetailsMap = ({
   const [stateName, setStateName] = useState<string>("");
 
   useEffect(() => {
-    // if (mapContainerRef.current && popupRef.current) {
-    //   mapContainerRef.current.appendChild(popupRef.current);
-    // }
     if (selectedState?.properties?.name)
       setStateName(selectedState?.properties?.name);
   }, [selectedState]);

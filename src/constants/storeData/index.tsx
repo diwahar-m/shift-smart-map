@@ -69,7 +69,8 @@ export function getOutOfStockPercentage(stateName?: string) {
     })
     ?.map((_) => {
       totalStock++;
-      if (_?.["No inventory"] === "0") outOfStocks += 1;
+      if (_?.["Instock"] === "0" && _?.["In Inventory"] === "0")
+        outOfStocks += 1;
     });
   const outOfStockPercentage = (outOfStocks / totalStock) * 100;
   return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
