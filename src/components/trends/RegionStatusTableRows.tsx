@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { TableCell, TableRow } from "@mui/material";
-import { tagPrice } from "../../constants/utils";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppText from "../mui/AppText";
 import AppLinearProgress from "../mui/AppLinearProgress";

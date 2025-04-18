@@ -4,6 +4,9 @@ import AppText from "../mui/AppText";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppSelectBox from "../mui/AppSelectBox";
 import OutOfStockGraph from "./OutOfStockGraph";
+import { tableRows } from "./InventoryLevels";
+import AppTable from "../mui/AppTable";
+import AppBox from "../mui/AppBox";
 
 const outOfStockRates = [
   {
@@ -52,13 +55,15 @@ const outOfStockRates = [
   },
 ];
 
+export const outOfStockTableHeader = ["BH", "Audit 1", "Audit 2", "Audit 3"];
+
 export default function OutOfStockRates() {
   const [product, setProduct] = useState("All SKUs");
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
     const selected = outOfStockRates?.filter((_) => _?.sku === product);
-
+    //@ts-expect-error "a"
     setInventory(selected?.[0]?.values);
   }, [product]);
 
@@ -100,7 +105,16 @@ export default function OutOfStockRates() {
           }}
         />
       </AppHStack>
-      <OutOfStockGraph inventory={inventory} />
+      <AppHStack>
+        <AppTable
+          tableHead={outOfStockTableHeader}
+          tableRow={tableRows(inventory)}
+          tableRowLength={inventory?.length}
+        />
+        <AppBox sx={{ width: "78%" }}>
+          <OutOfStockGraph inventory={inventory} />
+        </AppBox>
+      </AppHStack>
     </AppVStack>
   );
 }

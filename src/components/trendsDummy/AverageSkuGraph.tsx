@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { BarChart } from "@mui/x-charts/BarChart";
 import { useEffect, useState } from "react";
 
@@ -10,7 +13,7 @@ const states = [
   "South Atlantic",
 ];
 
-export default function AverageSkuGraph({ inventory }) {
+export default function AverageSkuGraph({ inventory }: any) {
   const [values, setValues] = useState([0, 0, 0, 0, 0, 0]);
 
   useEffect(() => {
@@ -36,6 +39,7 @@ export default function AverageSkuGraph({ inventory }) {
         {
           min: 0,
           max: 4.5, // Slightly above your max value (4)
+          //@ts-expect-error ""
           tickInterval: 0.5, // Shows ticks at 0, 0.5, 1, 1.5, etc.
         },
       ]}

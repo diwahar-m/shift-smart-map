@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { useEffect, useState } from "react";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppSelectBox from "../mui/AppSelectBox";
 import OnShelfGraph from "./OnShelfGraph";
+import { outOfStockTableHeader } from "./OutOfStockRates";
+import { tableRows } from "./InventoryLevels";
+import AppTable from "../mui/AppTable";
+import AppBox from "../mui/AppBox";
 
 const onShelfRates = [
   {
@@ -58,7 +65,7 @@ export default function OnShelfRates() {
 
   useEffect(() => {
     const selected = onShelfRates?.filter((_) => _?.sku === product);
-
+    //@ts-expect-error ""
     setInventory(selected?.[0]?.values);
   }, [product]);
 
@@ -100,7 +107,16 @@ export default function OnShelfRates() {
           }}
         />
       </AppHStack>
-      <OnShelfGraph inventory={inventory} />
+      <AppHStack>
+        <AppTable
+          tableHead={outOfStockTableHeader}
+          tableRow={tableRows(inventory)}
+          tableRowLength={inventory?.length}
+        />
+        <AppBox sx={{ width: "78%" }}>
+          <OnShelfGraph inventory={inventory} />
+        </AppBox>
+      </AppHStack>
     </AppVStack>
   );
 }

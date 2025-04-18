@@ -1,14 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { LineChart } from "@mui/x-charts/LineChart";
 import { useEffect, useState } from "react";
-
-const rawData = [
-  [93, 100, 100],
-  [6, 13, 10],
-  [63, 36, 35],
-  [100, 71, 72],
-  [83, 13, 3],
-  [55, 49, 30],
-];
 
 const xLabels = ["Audit 1", "Audit 2", "Audit 3"];
 
@@ -21,12 +15,11 @@ const states = [
   "South Atlantic",
 ];
 
-export default function OutOfStockGraph({ inventory }) {
+export default function OutOfStockGraph({ inventory }: any) {
   const [values, setValues] = useState([]);
   useEffect(() => {
     setValues(inventory);
   }, [inventory]);
-  console.log(values);
   return (
     <LineChart
       width={500}
@@ -41,7 +34,9 @@ export default function OutOfStockGraph({ inventory }) {
         {
           min: 0,
           max: 100,
+          //@ts-expect-error
           valueFormatter: (v) => `${v}%`,
+          //@ts-expect-error
           tickCount: 6,
         },
       ]}

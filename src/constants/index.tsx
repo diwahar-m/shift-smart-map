@@ -114,9 +114,9 @@ export function getDateDuration(date: string) {
 }
 
 export function getProductAvailability(
-  stock: string,
+  stock: string | undefined,
   inventory: number,
-  price: number
+  price: number | undefined
 ) {
   const productAvailability = ["On shelf", "In inventory", "Out of stock"];
 
@@ -126,7 +126,7 @@ export function getProductAvailability(
   return productAvailability[2];
 }
 
-export function getProductPrice(price: string) {
+export function getProductPrice(price: string | number | undefined) {
   if (!price) return "$0.00";
   return `$${price}`;
 }

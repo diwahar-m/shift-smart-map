@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { getDateFormat, getProductAvailability, getProductPrice } from "..";
 import auditReport from "../../../inventoryDatabaseTwo.json";
-
-// @ts-expect-error "json"
 const auditData = auditReport?.["Data Feed"];
 
 export function getCompletedAuditPercentage(stateName?: string) {
@@ -175,7 +176,7 @@ export function getStoresList(stateName: string | null = null) {
 
 // ----- store data ----
 
-export function getStoreDetails(stateName: string | undefined) {
+export function getStoreDetails(stateName: string | undefined | number) {
   return auditData?.filter((_) => _?.["Store Number"] === stateName);
 }
 

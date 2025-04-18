@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react";
 import AppSelectBox from "../mui/AppSelectBox";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import InventoryLevelGraph from "./InventoryLevelGraph";
+import { TableCell, TableRow } from "@mui/material";
+import { auditedStates } from "./OnShelfGraph";
+import AppTable from "../mui/AppTable";
+import AppBox from "../mui/AppBox";
 
 const inventories = [
   {
@@ -154,10 +160,81 @@ const inventories = [
   },
 ];
 
+const tableHeader = ["BU", "On-shelf", "In inventory", "Out of stock"];
+
+export function tableRows(tableRow: any) {
+  console.log(tableRow);
+  return (
+    <>
+      {tableRow?.length ? (
+        tableRow?.map((row: any, index: number) => (
+          <TableRow
+            key={index}
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              cursor: "pointer",
+            }}
+          >
+            <TableCell
+              sx={{
+                paddingY: "5px",
+                maxWidth: "90px",
+              }}
+              align="left"
+              component="th"
+              scope="row"
+            >
+              {auditedStates[index]}
+            </TableCell>
+            <TableCell
+              sx={{
+                paddingY: "5px",
+                // paddingLeft: "16px",
+                maxWidth: "10px",
+              }}
+              align="left"
+              component="th"
+              scope="row"
+            >
+              {`${row[0]}%`}
+            </TableCell>
+            <TableCell
+              sx={{
+                paddingY: "5px",
+                // paddingLeft: "16px",
+                maxWidth: "10px",
+              }}
+              align="left"
+              component="th"
+              scope="row"
+            >
+              {`${row[1]}%`}
+            </TableCell>
+            <TableCell
+              sx={{
+                paddingY: "5px",
+                // paddingLeft: "16px",
+                maxWidth: "200px",
+              }}
+              align="left"
+              component="th"
+              scope="row"
+            >
+              {`${row[2]}%`}
+            </TableCell>
+          </TableRow>
+        ))
+      ) : (
+        <></>
+      )}
+    </>
+  );
+}
+
 export default function InventoryLevels() {
   const [audit, setAudit] = useState("Audit 1");
   const [product, setProduct] = useState("All SKUs");
-  const [inventory, setInventory] = useState([]);
+  const [inventory, setInventory] = useState<any>(inventories?.[0]?.values);
 
   useEffect(() => {
     const selected = inventories
@@ -212,7 +289,16 @@ export default function InventoryLevels() {
           }}
         />
       </AppHStack>
-      <InventoryLevelGraph inventory={inventory} />
+      <AppHStack>
+        <AppTable
+          tableHead={tableHeader}
+          tableRow={tableRows(inventory)}
+          tableRowLength={inventory?.length}
+        />
+        <AppBox sx={{ width: "78%" }}>
+          <InventoryLevelGraph inventory={inventory} />
+        </AppBox>
+      </AppHStack>
     </AppVStack>
   );
 }

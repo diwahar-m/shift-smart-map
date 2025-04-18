@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import AppVStack from "../../components/mui/AppStack/AppVStack";
 import AppBox from "../../components/mui/AppBox";
 import AppText from "../../components/mui/AppText";
@@ -5,7 +8,7 @@ import StateDetailsMap from "../../components/map/StateDetailMap";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { getStoreDetails, getStoresList } from "../../constants/storeData";
-import { StoreDetail } from "../../constants/typeDeclarations";
+// import { StoreDetail } from "../../constants/typeDeclarations";
 import { tabProps } from "../../components/stores/StoreProductDetail";
 import { getDateFormat } from "../../constants";
 import ProductInfo from "../../components/card/ProductInfo";
@@ -19,9 +22,7 @@ export default function StoresView() {
   //   handleOpen();
   // }, []);
   const { storeId } = useParams();
-  const [storeInfo, setStoreInfo] = useState<StoreDetail[]>(
-    getStoreDetails(storeId)
-  );
+  const [storeInfo, setStoreInfo] = useState<any>(getStoreDetails(storeId));
   const [auditDetail, setAuditDetail] = useState<tabProps[]>([]);
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function StoresView() {
     selectedState.current = usaMapData.features.find(
       (state) => state.properties.name === storeInfo?.[0]?.BU
     );
+    //@ts-expect-error "."
     storeInfo?.map((_) => {
       const tabDetail: tabProps = {};
       tabDetail.tab = getDateFormat(_?.["Completion Date"]);

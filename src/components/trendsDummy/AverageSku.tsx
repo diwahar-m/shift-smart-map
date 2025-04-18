@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppSelectBox from "../mui/AppSelectBox";
 import AverageSkuGraph from "./AverageSkuGraph";
+import { TableCell, TableRow } from "@mui/material";
+import { auditedStates } from "./OnShelfGraph";
+import AppBox from "../mui/AppBox";
+import AppTable from "../mui/AppTable";
 
 const inventories = [
   {
@@ -70,10 +76,55 @@ const inventories = [
   },
 ];
 
+function tableRows(tableRow: any) {
+  console.log(tableRow);
+  return (
+    <>
+      {tableRow?.length ? (
+        tableRow?.map((row: any, index: number) => (
+          <TableRow
+            key={index}
+            sx={{
+              "&:last-child td, &:last-child th": { border: 0 },
+              cursor: "pointer",
+            }}
+          >
+            <TableCell
+              sx={{
+                paddingY: "5px",
+                maxWidth: "90px",
+              }}
+              align="left"
+              component="th"
+              scope="row"
+            >
+              {auditedStates[index]}
+            </TableCell>
+            <TableCell
+              sx={{
+                paddingY: "5px",
+                // paddingLeft: "16px",
+                maxWidth: "10px",
+              }}
+              align="left"
+              component="th"
+              scope="row"
+            >
+              {`$${row}`}
+            </TableCell>
+          </TableRow>
+        ))
+      ) : (
+        <></>
+      )}
+    </>
+  );
+}
+
 export default function AverageSku() {
   const [audit, setAudit] = useState("Audit 1");
   const [product, setProduct] = useState("All SKUs");
-  const [inventory, setInventory] = useState([]);
+  const [inventory, setInventory] = useState(inventories?.[0]?.values);
 
   useEffect(() => {
     const selected = inventories
@@ -128,7 +179,16 @@ export default function AverageSku() {
           }}
         />
       </AppHStack>
-      <AverageSkuGraph inventory={inventory} />
+      <AppHStack>
+        <AppTable
+          tableHead={["BU", "Price"]}
+          tableRow={tableRows(inventory)}
+          tableRowLength={inventory?.length}
+        />
+        <AppBox sx={{ width: "78%" }}>
+          <AverageSkuGraph inventory={inventory} />
+        </AppBox>
+      </AppHStack>
     </AppVStack>
   );
 }
