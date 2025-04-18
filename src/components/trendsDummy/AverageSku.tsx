@@ -148,15 +148,13 @@ export default function AverageSku() {
       <AppText
         variant="h3"
         fontStyles={["24px", "28px", "600"]}
-        text={"Inventory Levels"}
+        text={"Average SKU Sales Price"}
       />
       <AppText
         variant="h3"
         sx={{ color: "#475569" }}
         fontStyles={["16px", "24px", "400"]}
-        text={
-          "Distribution of products that are of stock, in inventory, and on-shelf across divisions"
-        }
+        text={"Comparison of average sales prices across divisions"}
       />
       <AppHStack sx={{ gap: "6px", margin: "20px 0" }}>
         <AppSelectBox
