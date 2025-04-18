@@ -113,16 +113,20 @@ export function getDateDuration(date: string) {
   return stripTime(dateTime);
 }
 
-export function getProductAvailability(stock: string, inventory: string) {
+export function getProductAvailability(
+  stock: string,
+  inventory: number,
+  price: number
+) {
   const productAvailability = ["On shelf", "In inventory", "Out of stock"];
 
-  if (stock !== "") return productAvailability[0];
-  else if (inventory) return productAvailability[1];
+  if (price && stock) return productAvailability[0];
+  else if (price && inventory) return productAvailability[1];
 
   return productAvailability[2];
 }
 
 export function getProductPrice(price: string) {
-  if (price === "") return "$0.00";
-  return price;
+  if (!price) return "$0.00";
+  return `$${price}`;
 }

@@ -38,7 +38,11 @@ export default function SideBar() {
         <AppButtonIcon
           text={"Audits"}
           handleClick={() => navigate("/")}
-          isActive={pathname?.length === 1}
+          isActive={
+            pathname?.length === 1 ||
+            pathname?.includes("store") ||
+            pathname?.includes("state")
+          }
           icon={<ClipboardList size={21} />}
           sx={{ padding: "12px 16px" }}
           textStyles={{ marginBottom: "6px" }}

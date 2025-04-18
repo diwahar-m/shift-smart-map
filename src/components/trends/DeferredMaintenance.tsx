@@ -1,3 +1,4 @@
+import BarChart from "../chart/Linechart";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 
@@ -23,6 +24,7 @@ export default function DeferredMaintenance() {
         fontStyles={["16px", "24px", "400"]}
         text={"Total deferred maintenance cost over time"}
       />
+      <BarChart />
     </AppVStack>
   );
 }
