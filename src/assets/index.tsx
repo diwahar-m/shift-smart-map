@@ -13,6 +13,11 @@ import MarkerIconImage from "./AllRegions/markerIcon.svg";
 import exportIconImage from "./Trends/exportIcon.svg";
 import compressIconImage from "./Trends/compressIcon.svg";
 
+import redRaiseIconImage from "./Trends/redRaiseIcon.svg";
+import redLowIconImage from "./Trends/redLowIcon.svg";
+import greenLowIconImage from "./Trends/greenLowIcon.svg";
+import greenRaiseIconImage from "./Trends/greenRaiseIcon.svg";
+
 export {
   AuditsIcon,
   CraftheinzIcon,
@@ -26,4 +31,8 @@ export {
   MarkerIconImage,
   exportIconImage,
   compressIconImage,
+  redRaiseIconImage,
+  redLowIconImage,
+  greenLowIconImage,
+  greenRaiseIconImage,
 };

@@ -7,6 +7,7 @@ import AppBox from "../../components/mui/AppBox";
 import AppText from "../../components/mui/AppText";
 import AppTable from "../../components/mui/AppTable";
 import { HeaderContext } from "../../context/HeaderContext";
+import StoreTableRows from "../../components/stores/StoreTableRows";
 
 export default function StoresPage() {
   const navigate = useNavigate();
@@ -39,8 +40,13 @@ export default function StoresPage() {
         />
       </AppBox>
       <AppTable
-        handleRowClick={handleRowClick}
-        tableRow={storesList}
+        tableRow={
+          <StoreTableRows
+            handleRowClick={handleRowClick}
+            tableRow={storesList}
+          />
+        }
+        tableRowLength={storesList?.length}
         tableHead={storesTableHead}
       />
     </AppVStack>
