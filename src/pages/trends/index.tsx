@@ -1,16 +1,26 @@
 import AppVStack from "../../components/mui/AppStack/AppVStack";
-import ActionItems from "../../components/trends/ActionItems";
-import DeferredMaintenance from "../../components/trends/DeferredMaintenance";
-import RegionStatus from "../../components/trends/RegionStatus";
+// import ActionItems from "../../components/trends/ActionItems";
+// import DeferredMaintenance from "../../components/trends/DeferredMaintenance";
+// import RegionStatus from "../../components/trends/RegionStatus";
 import TrendsHeader from "../../components/trends/trendsHeader";
+import AverageSku from "../../components/trendsDummy/AverageSku";
+import InventoryLevels from "../../components/trendsDummy/InventoryLevels";
+import OnShelfRates from "../../components/trendsDummy/OnShelfRates";
+import OutOfStockRates from "../../components/trendsDummy/OutOfStockRates";
 
 const Trends = () => {
   return (
     <AppVStack sx={{ gap: "48px" }}>
       <TrendsHeader />
-      <ActionItems />
+      {/* <ActionItems />
       <RegionStatus />
-      <DeferredMaintenance />
+      <DeferredMaintenance /> */}
+
+      {/* -------------DUMMY VALUES */}
+      <InventoryLevels />
+      <OutOfStockRates />
+      <OnShelfRates />
+      <AverageSku />
     </AppVStack>
   );
 };
