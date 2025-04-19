@@ -24,7 +24,14 @@ const AppText = ({
 
   return (
     <Typography
-      sx={{ textTransform: "none", fontSize, lineHeight, fontWeight, ...sx }}
+      sx={{
+        textTransform: "none",
+        fontSize,
+        lineHeight,
+        color: "#000",
+        fontWeight,
+        ...sx,
+      }}
       variant={variant}
       {...rest}
     >
