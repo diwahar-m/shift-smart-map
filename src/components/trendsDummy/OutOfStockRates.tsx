@@ -4,9 +4,9 @@ import AppText from "../mui/AppText";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppSelectBox from "../mui/AppSelectBox";
 import OutOfStockGraph from "./OutOfStockGraph";
-import { tableRows } from "./InventoryLevels";
-import AppTable from "../mui/AppTable";
-import AppBox from "../mui/AppBox";
+// import { tableRows } from "./InventoryLevels";
+// import AppTable from "../mui/AppTable";
+// import AppBox from "../mui/AppBox";
 
 const outOfStockRates = [
   {
@@ -73,9 +73,9 @@ export default function OutOfStockRates() {
         borderTopWidth: "1px",
         borderBottomWidth: "0px !important",
         borderLeftWidth: 0,
-        borderRightWidth: 0,
+        borderRightWidth: "0px !important",
         border: "1px solid #E9EFF7",
-        padding: "20px 40px",
+        padding: "20px ",
       }}
     >
       <AppText
@@ -105,7 +105,7 @@ export default function OutOfStockRates() {
           }}
         />
       </AppHStack>
-      <AppHStack>
+      {/* <AppHStack>
         <AppTable
           tableHead={outOfStockTableHeader}
           tableRow={tableRows(inventory)}
@@ -114,7 +114,8 @@ export default function OutOfStockRates() {
         <AppBox sx={{ width: "78%" }}>
           <OutOfStockGraph inventory={inventory} />
         </AppBox>
-      </AppHStack>
+      </AppHStack> */}
+      <OutOfStockGraph inventory={inventory} />
     </AppVStack>
   );
 }

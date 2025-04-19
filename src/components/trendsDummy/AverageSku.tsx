@@ -6,10 +6,10 @@ import AppText from "../mui/AppText";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppSelectBox from "../mui/AppSelectBox";
 import AverageSkuGraph from "./AverageSkuGraph";
-import { TableCell, TableRow } from "@mui/material";
-import { auditedStates } from "./OnShelfGraph";
-import AppBox from "../mui/AppBox";
-import AppTable from "../mui/AppTable";
+// import { TableCell, TableRow } from "@mui/material";
+// import { auditedStates } from "./OnShelfGraph";
+// import AppBox from "../mui/AppBox";
+// import AppTable from "../mui/AppTable";
 
 const inventories = [
   {
@@ -76,50 +76,50 @@ const inventories = [
   },
 ];
 
-function tableRows(tableRow: any) {
-  console.log(tableRow);
-  return (
-    <>
-      {tableRow?.length ? (
-        tableRow?.map((row: any, index: number) => (
-          <TableRow
-            key={index}
-            sx={{
-              "&:last-child td, &:last-child th": { border: 0 },
-              cursor: "pointer",
-            }}
-          >
-            <TableCell
-              sx={{
-                paddingY: "5px",
-                maxWidth: "90px",
-              }}
-              align="left"
-              component="th"
-              scope="row"
-            >
-              {auditedStates[index]}
-            </TableCell>
-            <TableCell
-              sx={{
-                paddingY: "5px",
-                // paddingLeft: "16px",
-                maxWidth: "10px",
-              }}
-              align="left"
-              component="th"
-              scope="row"
-            >
-              {`$${row}`}
-            </TableCell>
-          </TableRow>
-        ))
-      ) : (
-        <></>
-      )}
-    </>
-  );
-}
+// function tableRows(tableRow: any) {
+//   console.log(tableRow);
+//   return (
+//     <>
+//       {tableRow?.length ? (
+//         tableRow?.map((row: any, index: number) => (
+//           <TableRow
+//             key={index}
+//             sx={{
+//               "&:last-child td, &:last-child th": { border: 0 },
+//               cursor: "pointer",
+//             }}
+//           >
+//             <TableCell
+//               sx={{
+//                 paddingY: "5px",
+//                 maxWidth: "90px",
+//               }}
+//               align="left"
+//               component="th"
+//               scope="row"
+//             >
+//               {auditedStates[index]}
+//             </TableCell>
+//             <TableCell
+//               sx={{
+//                 paddingY: "5px",
+//                 // paddingLeft: "16px",
+//                 maxWidth: "10px",
+//               }}
+//               align="left"
+//               component="th"
+//               scope="row"
+//             >
+//               {`$${row}`}
+//             </TableCell>
+//           </TableRow>
+//         ))
+//       ) : (
+//         <></>
+//       )}
+//     </>
+//   );
+// }
 
 export default function AverageSku() {
   const [audit, setAudit] = useState("Audit 1");
@@ -177,7 +177,7 @@ export default function AverageSku() {
           }}
         />
       </AppHStack>
-      <AppHStack>
+      {/* <AppHStack>
         <AppTable
           tableHead={["BU", "Price"]}
           tableRow={tableRows(inventory)}
@@ -186,7 +186,8 @@ export default function AverageSku() {
         <AppBox sx={{ width: "78%" }}>
           <AverageSkuGraph inventory={inventory} />
         </AppBox>
-      </AppHStack>
+      </AppHStack> */}
+      <AverageSkuGraph inventory={inventory} />
     </AppVStack>
   );
 }

@@ -8,8 +8,8 @@ import AppText from "../mui/AppText";
 import InventoryLevelGraph from "./InventoryLevelGraph";
 import { TableCell, TableRow } from "@mui/material";
 import { auditedStates } from "./OnShelfGraph";
-import AppTable from "../mui/AppTable";
-import AppBox from "../mui/AppBox";
+// import AppTable from "../mui/AppTable";
+// import AppBox from "../mui/AppBox";
 
 const inventories = [
   {
@@ -160,7 +160,7 @@ const inventories = [
   },
 ];
 
-const tableHeader = ["BU", "On-shelf", "In inventory", "Out of stock"];
+// const tableHeader = ["BU", "On-shelf", "In inventory", "Out of stock"];
 
 export function tableRows(tableRow: any) {
   console.log(tableRow);
@@ -289,7 +289,7 @@ export default function InventoryLevels() {
           }}
         />
       </AppHStack>
-      <AppHStack>
+      {/* <AppHStack>
         <AppTable
           tableHead={tableHeader}
           tableRow={tableRows(inventory)}
@@ -298,7 +298,8 @@ export default function InventoryLevels() {
         <AppBox sx={{ width: "78%" }}>
           <InventoryLevelGraph inventory={inventory} />
         </AppBox>
-      </AppHStack>
+      </AppHStack> */}
+      <InventoryLevelGraph inventory={inventory} />
     </AppVStack>
   );
 }

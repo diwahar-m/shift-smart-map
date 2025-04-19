@@ -7,10 +7,10 @@ import AppText from "../mui/AppText";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppSelectBox from "../mui/AppSelectBox";
 import OnShelfGraph from "./OnShelfGraph";
-import { outOfStockTableHeader } from "./OutOfStockRates";
-import { tableRows } from "./InventoryLevels";
-import AppTable from "../mui/AppTable";
-import AppBox from "../mui/AppBox";
+// import { outOfStockTableHeader } from "./OutOfStockRates";
+// import { tableRows } from "./InventoryLevels";
+// import AppTable from "../mui/AppTable";
+// import AppBox from "../mui/AppBox";
 
 const onShelfRates = [
   {
@@ -74,10 +74,10 @@ export default function OnShelfRates() {
       sx={{
         borderTopWidth: "1px",
         borderBottomWidth: "0px !important",
-        borderLeftWidth: 0,
-        borderRightWidth: 0,
+        borderLeftWidth: "0px !important",
+        borderRightWidth: "0px !important",
         border: "1px solid #E9EFF7",
-        padding: "20px 40px",
+        padding: "20px",
       }}
     >
       <AppText
@@ -107,7 +107,7 @@ export default function OnShelfRates() {
           }}
         />
       </AppHStack>
-      <AppHStack>
+      {/* <AppHStack>
         <AppTable
           tableHead={outOfStockTableHeader}
           tableRow={tableRows(inventory)}
@@ -116,7 +116,8 @@ export default function OnShelfRates() {
         <AppBox sx={{ width: "78%" }}>
           <OnShelfGraph inventory={inventory} />
         </AppBox>
-      </AppHStack>
+      </AppHStack> */}
+      <OnShelfGraph inventory={inventory} />
     </AppVStack>
   );
 }

@@ -21,7 +21,7 @@ export default function OnShelfGraph({ inventory }: any) {
   }, [inventory]);
   return (
     <LineChart
-      width={500}
+      width={450}
       height={400}
       xAxis={[
         {

@@ -1,3 +1,4 @@
+import AppHStack from "../../components/mui/AppStack/AppHStack";
 import AppVStack from "../../components/mui/AppStack/AppVStack";
 // import ActionItems from "../../components/trends/ActionItems";
 // import DeferredMaintenance from "../../components/trends/DeferredMaintenance";
@@ -18,9 +19,11 @@ const Trends = () => {
 
       {/* -------------DUMMY VALUES */}
       <InventoryLevels />
-      <OutOfStockRates />
-      <OnShelfRates />
       <AverageSku />
+      <AppHStack sx={{ gap: "6px" }}>
+        <OutOfStockRates />
+        <OnShelfRates />
+      </AppHStack>
     </AppVStack>
   );
 };
