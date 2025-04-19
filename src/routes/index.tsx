@@ -15,14 +15,34 @@ import AppCenterStack from "../components/mui/AppStack/AppCenterStack";
 import AppVStack from "../components/mui/AppStack/AppVStack";
 // import AppBox from "../components/mui/AppBox";
 import AppImage from "../components/mui/AppImage";
-import { SidebarLogoIcon } from "../assets";
+import { CraftheinzIcon, ShiftsmartIcon } from "../assets";
 import AppText from "../components/mui/AppText";
+import AppHStack from "../components/mui/AppStack/AppHStack";
+import { Divider } from "@mui/material";
+import AppBox from "../components/mui/AppBox";
 
 function MobileView() {
   return (
     <AppCenterStack sx={{ height: "100vh", width: "100vw" }}>
       <AppVStack sx={{ gap: "25px", alignItems: "center" }}>
-        <AppImage src={SidebarLogoIcon} alt="logo" />
+        <AppHStack sx={{ height: "28px", gap: "13px", width: "260px" }}>
+          <AppImage
+            src={ShiftsmartIcon}
+            sx={{ padding: "5px 0 5px ", width: "240px" }}
+          />
+          <Divider orientation="vertical" />
+          <AppBox
+            sx={{
+              border: "1px solid #CBD5E1",
+              borderRadius: "50px",
+              width: "42px",
+              height: "42px",
+            }}
+          >
+            <AppImage sx={{ width: "40px" }} src={CraftheinzIcon} alt="logo" />
+          </AppBox>
+        </AppHStack>
+        {/* <AppImage src={SidebarLogoIcon} sx={{ width: "300px" }} alt="logo" /> */}
         <AppText
           fontStyles={["16px", "18px", "600"]}
           sx={{ color: "#000" }}
