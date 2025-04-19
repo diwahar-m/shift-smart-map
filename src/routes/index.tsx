@@ -25,6 +25,7 @@ function MobileView() {
         <AppImage src={SidebarLogoIcon} alt="logo" />
         <AppText
           fontStyles={["16px", "18px", "600"]}
+          sx={{ color: "#000" }}
           text="Kindly load this page on desktop for better view"
         />
       </AppVStack>
