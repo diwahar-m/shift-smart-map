@@ -8,7 +8,7 @@ interface AppSelectBoxProps {
 }
 
 const AppSelectBox = (props: AppSelectBoxProps) => {
-  const { options, sx, onChange } = props;
+  const { options, sx, onChange, label } = props;
 
   const handleChange = (
     _event?: React.SyntheticEvent<Element, Event>,
@@ -36,7 +36,7 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
               },
             }}
             {...params}
-            label="Select State"
+            label={label || "Select State"}
           />
         )}
       />

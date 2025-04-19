@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import AppSearch from "../mui/AppSearch";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import ProductCard from "../card/ProductCard";
-import { StoreDetail } from "../../constants/typeDeclarations";
+// import { StoreDetail } from "../../constants/typeDeclarations";
 import { Dispatch, SetStateAction } from "react";
 
 export type productDetail = {
@@ -12,7 +15,7 @@ export type productDetail = {
 };
 
 interface StoreProductListProps {
-  storeDetails: Array<StoreDetail>;
+  storeDetails: any; // Array<StoreDetail>;
   productTab: string;
   setProductTab: Dispatch<SetStateAction<string>>;
 }

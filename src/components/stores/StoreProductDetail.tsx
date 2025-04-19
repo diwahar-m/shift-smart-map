@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { ReactElement, useEffect, useState } from "react";
 import AppBreadcrumb from "../mui/AppBreadcrumb";
 import AppVStack from "../mui/AppStack/AppVStack";
@@ -17,7 +20,7 @@ export interface tabProps {
 }
 
 interface StoreProductDetailProps {
-  storeDetails: StoreDetail[];
+  storeDetails: any; // StoreDetail[];
   productTab: string;
 }
 
@@ -31,6 +34,7 @@ export default function StoreProductDetail({
 
   useEffect(() => {
     const tabs: Array<tabProps> = [];
+    //@ts-expect-error "."
     storeDetails?.map((_) => {
       const tabDetail: tabProps = {};
       if (_?.["Completion Date"]) {

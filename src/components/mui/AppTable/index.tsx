@@ -7,11 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { tagPrice } from "../../../constants/utils";
-import { StoreAudit } from "../../../constants/storeData";
 // import { Skeleton } from "@mui/material";
 import { Skeleton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import AppCenterStack from "../AppStack/AppCenterStack";
 import AppText from "../AppText";
 
@@ -22,14 +20,14 @@ export interface stockPrice {
 
 interface AppTableProps {
   tableHead: Array<string>;
-  handleRowClick: (storeName: string) => void;
-  tableRow: Array<StoreAudit>;
+  tableRow: ReactElement;
+  tableRowLength: number;
 }
 
 export default function AppTable({
   tableHead,
-  handleRowClick,
-  tableRow = [],
+  tableRow,
+  tableRowLength,
 }: AppTableProps) {
   const [loader, setLoader] = useState(true);
 
@@ -44,7 +42,9 @@ export default function AppTable({
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{ maxWidth: "40px" }} align="left"></TableCell>
+            {tableHead?.includes("Store") && (
+              <TableCell sx={{ maxWidth: "40px" }} align="left"></TableCell>
+            )}
             {tableHead?.map((_) => (
               <TableCell
                 sx={{
@@ -64,169 +64,88 @@ export default function AppTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {loader ? (
-            new Array(10)?.fill("_")?.map((_row: any, index: number) => (
-              <TableRow
-                key={index}
-                sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-                  cursor: "pointer",
-                }}
-              >
-                <TableCell sx={{ maxWidth: "40px" }} align="left"></TableCell>
+          {loader
+            ? new Array(10)?.fill("_")?.map((_row: any, index: number) => (
+                <TableRow
+                  key={index}
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                    cursor: "pointer",
+                  }}
+                >
+                  <TableCell sx={{ maxWidth: "40px" }} align="left"></TableCell>
 
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingLeft: "16px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                  component="th"
-                  scope="row"
-                >
-                  <Skeleton variant="rounded" width={150} height={16} />
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingX: "16px",
-                    paddingRight: "50px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  <Skeleton variant="rounded" width={150} height={16} />
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingX: "16px",
-                    paddingRight: "50px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  <Skeleton variant="rounded" width={150} height={16} />
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingX: "16px",
-                    paddingRight: "50px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  <Skeleton variant="rounded" width={150} height={16} />
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingLeft: "16px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  <Skeleton variant="rounded" width={150} height={16} />
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingLeft: "16px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  <Skeleton variant="rounded" width={150} height={16} />
-                </TableCell>
-              </TableRow>
-            ))
-          ) : tableRow?.length ? (
-            tableRow?.map((row: any, index: number) => (
-              <TableRow
-                onClick={() => handleRowClick(row?.name)}
-                key={index}
-                sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-                  cursor: "pointer",
-                }}
-              >
-                <TableCell sx={{ maxWidth: "40px" }} align="left"></TableCell>
-
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingLeft: "16px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                  component="th"
-                  scope="row"
-                >
-                  {"Circle K | Store " + row.name}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingX: "16px",
-                    paddingRight: "50px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  {tagPrice(row.punch)}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingX: "16px",
-                    paddingRight: "50px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  {tagPrice(row.kiwi)}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingX: "16px",
-                    paddingRight: "50px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  {tagPrice(row.cooler)}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingLeft: "16px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  {row.audited}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    paddingY: "14px",
-                    paddingLeft: "16px",
-                    maxWidth: "200px",
-                  }}
-                  align="left"
-                >
-                  {row.delivery}
-                </TableCell>
-              </TableRow>
-            ))
-          ) : (
-            <></>
-          )}
+                  <TableCell
+                    sx={{
+                      paddingY: "14px",
+                      paddingLeft: "16px",
+                      maxWidth: "200px",
+                    }}
+                    align="left"
+                    component="th"
+                    scope="row"
+                  >
+                    <Skeleton variant="rounded" width={150} height={16} />
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      paddingY: "14px",
+                      paddingX: "16px",
+                      paddingRight: "50px",
+                      maxWidth: "200px",
+                    }}
+                    align="left"
+                  >
+                    <Skeleton variant="rounded" width={150} height={16} />
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      paddingY: "14px",
+                      paddingX: "16px",
+                      paddingRight: "50px",
+                      maxWidth: "200px",
+                    }}
+                    align="left"
+                  >
+                    <Skeleton variant="rounded" width={150} height={16} />
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      paddingY: "14px",
+                      paddingX: "16px",
+                      paddingRight: "50px",
+                      maxWidth: "200px",
+                    }}
+                    align="left"
+                  >
+                    <Skeleton variant="rounded" width={150} height={16} />
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      paddingY: "14px",
+                      paddingLeft: "16px",
+                      maxWidth: "200px",
+                    }}
+                    align="left"
+                  >
+                    <Skeleton variant="rounded" width={150} height={16} />
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      paddingY: "14px",
+                      paddingLeft: "16px",
+                      maxWidth: "200px",
+                    }}
+                    align="left"
+                  >
+                    <Skeleton variant="rounded" width={150} height={16} />
+                  </TableCell>
+                </TableRow>
+              ))
+            : tableRow}
         </TableBody>
       </Table>
-      {!tableRow?.length ? (
+      {!tableRowLength ? (
         <AppCenterStack sx={{ width: "100%", height: "300px" }}>
           <AppText text="No Data" />
         </AppCenterStack>

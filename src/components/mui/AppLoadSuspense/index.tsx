@@ -7,7 +7,9 @@ const AppLoadSuspense = <P extends object>(Component: ComponentType<P>) => {
     return (
       <Suspense
         fallback={
-          <AppCenterStack sx={{ width: "100%", height: "100%" }}>
+          <AppCenterStack
+            sx={{ width: "100%", height: "100%", minHeight: "500px" }}
+          >
             <CircularProgress />
           </AppCenterStack>
         }

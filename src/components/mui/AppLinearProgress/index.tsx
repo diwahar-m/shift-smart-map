@@ -1,11 +1,17 @@
 import { LinearProgress, linearProgressClasses } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled, SxProps } from "@mui/material/styles";
+
+interface AppLinearProgressProps {
+  value: number | string | undefined;
+  backgroundColor?: string | null;
+  sx?: SxProps;
+}
 
 export default function AppLinearProgress({
   value,
-}: {
-  value: number | string | undefined;
-}) {
+  backgroundColor = null,
+  sx,
+}: AppLinearProgressProps) {
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 10,
     borderRadius: 5,
@@ -17,12 +23,12 @@ export default function AppLinearProgress({
     },
     [`& .${linearProgressClasses.bar}`]: {
       borderRadius: 5,
-      backgroundColor: "#1a90ff",
+      backgroundColor: backgroundColor ?? "#1a90ff",
       ...theme.applyStyles("dark", {
         backgroundColor: "#308fe8",
       }),
     },
   }));
   // @ts-expect-error "h"
-  return <BorderLinearProgress variant="determinate" value={value} />;
+  return <BorderLinearProgress sx={sx} variant="determinate" value={value} />;
 }

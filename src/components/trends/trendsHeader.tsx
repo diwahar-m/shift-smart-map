@@ -15,11 +15,6 @@ export default function TrendsHeader() {
       sx={{
         padding: "40px 40px 20px 40px ",
         gap: "24px",
-        borderTopWidth: 0,
-        borderBottomWidth: 0,
-        borderLeftWidth: 0,
-        borderRightWidth: 0,
-        border: "1px solid #E9EFF7",
       }}
     >
       <AppHStack sx={{ justifyContent: "space-between", alignItems: "center" }}>
