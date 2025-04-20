@@ -26,7 +26,7 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
         onInputChange={(_event, value) => {
           if (!value) handleChange();
         }}
-        freeSolo
+        // freeSolo
         options={options?.map((option) => option)}
         renderInput={(params) => (
           <TextField
