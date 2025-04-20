@@ -163,7 +163,6 @@ const inventories = [
 // const tableHeader = ["BU", "On-shelf", "In inventory", "Out of stock"];
 
 export function tableRows(tableRow: any) {
-  console.log(tableRow);
   return (
     <>
       {tableRow?.length ? (
@@ -251,7 +250,7 @@ export default function InventoryLevels() {
         borderBottomWidth: "0px !important",
         borderLeftWidth: 0,
         borderRightWidth: 0,
-        border: "1px solid #E9EFF7",
+        border: "0px solid #E9EFF7",
         padding: "20px 40px",
       }}
     >
