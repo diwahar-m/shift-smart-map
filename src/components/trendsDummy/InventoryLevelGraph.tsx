@@ -15,18 +15,18 @@ const xLabels = [
 
 export default function InventoryLevelGraph({ inventory }: any) {
   const [values, setValues] = React.useState({
-    OutOfStock: [0, 0, 0, 0, 0, 0],
-    Ininventory: [0, 0, 0, 0, 0, 0],
     onShelf: [0, 0, 0, 0, 0, 0],
+    Ininventory: [0, 0, 0, 0, 0, 0],
+    OutOfStock: [0, 0, 0, 0, 0, 0],
   });
 
   React.useEffect(() => {
     //@ts-expect-error
-    const OutOfStock = inventory.map((row) => row[0]); // All first elements of each row
+    const onShelf = inventory.map((row) => row[0]); // All first elements of each row
     //@ts-expect-error
     const Ininventory = inventory.map((row) => row[1]); // All second elements of each row
     //@ts-expect-error
-    const onShelf = inventory.map((row) => row[2]);
+    const OutOfStock = inventory.map((row) => row[2]);
 
     setValues({ OutOfStock, Ininventory, onShelf });
   }, [inventory]);

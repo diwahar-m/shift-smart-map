@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, GeoJSON } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import L from "leaflet";
@@ -10,13 +10,18 @@ import { stateStyling } from "../../constants";
 // import { getStoresList } from "../../constants/storeData";
 import marker from "../../assets/AllRegions/marker.png";
 import { HeaderContext } from "../../context/HeaderContext";
+import { getStoresList } from "../../constants/storeData";
 
 const USAStateMap: React.FC = () => {
   const navigate = useNavigate();
-  const { storesList } = useContext(HeaderContext);
+  const { storesList, setStoresList } = useContext(HeaderContext);
   const handleStateClick = (stateId: string) => {
     navigate(`/state/${stateId}`);
   };
+
+  useEffect(() => {
+    setStoresList(getStoresList());
+  }, []);
 
   // const customIcon = new L.Icon({
   //   iconUrl: marker,
