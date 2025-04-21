@@ -3,6 +3,7 @@ import AppBox from "../mui/AppBox";
 import AppButton from "../mui/AppButton";
 import AppText from "../mui/AppText";
 import { SxProps } from "@mui/material";
+import AppHStack from "../mui/AppStack/AppHStack";
 
 interface AppButtonIconprops {
   icon: ReactElement;
@@ -31,35 +32,36 @@ export default function AppButtonIcon({
       sx={{
         backgroundColor: isSelected ? "#D4E5FC" : isActive ? "#0B57C0" : "#fff",
         borderRadius: "8px",
-        width: "208px",
-        height: "44px",
-        padding: "12px",
+        maxWidth: "208px",
+        maxHeight: "44px",
+        // paddingTop: "15px",
         display: "flex",
         justifyContent: "flex-start",
-        gap: "5px",
         alignItems: "center",
         ...sx,
       }}
     >
       {/* <AppImage src={icon} alt={"logo"} /> */}
-      <AppBox
-        sx={{
-          color: isButtonTools ? "#0B57C0" : isActive ? "#fff" : "#475569",
-        }}
-      >
-        {icon}
-      </AppBox>
-      <AppText
-        sx={{
-          color: isButtonTools ? "#0B57C0" : isActive ? "#fff" : "#475569",
-          lineHeight: "14px",
-          fontSize: "14px",
-          fontWeight: 500,
+      <AppHStack sx={{ alignItems: "center", gap: "5px" }}>
+        <AppBox
+          sx={{
+            color: isButtonTools ? "#0B57C0" : isActive ? "#fff" : "#475569",
+          }}
+        >
+          {icon}
+        </AppBox>
+        <AppText
+          sx={{
+            color: isButtonTools ? "#0B57C0" : isActive ? "#fff" : "#475569",
+            lineHeight: "14px",
+            fontSize: "14px",
+            fontWeight: 500,
 
-          ...textStyles,
-        }}
-        text={text}
-      />
+            ...textStyles,
+          }}
+          text={text}
+        />
+      </AppHStack>
     </AppButton>
   );
 }

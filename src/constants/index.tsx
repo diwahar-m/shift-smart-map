@@ -80,10 +80,10 @@ export function stateStyling(stateName, layer) {
   });
   // Path styling
   (layer as L.Path).setStyle({
-    fillColor: "#CBD5E1",
-    fillOpacity: 0.3,
+    fillColor: "#609FF680", // "#CBD5E1",
+    fillOpacity: 1,
     weight: 2,
-    opacity: 1,
+    opacity: 0.2,
     color: "#9b9898",
     dashArray: "3",
   });

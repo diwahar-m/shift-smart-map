@@ -25,28 +25,30 @@ export type InventoryDetailProps =
 //   price?: number | undefined;
 // }
 
-export const inventoryDetails = [
-  {
-    title: "Completed audits",
-    percentage: getCompletedAuditPercentage(),
-    price: undefined,
-  },
-  {
-    title: "Out of stock",
-    percentage: getOutOfStockPercentage(),
-    price: undefined,
-  },
-  {
-    title: "In stock and on shelf",
-    percentage: getInstockAndOnshelfPercentage(),
-    price: undefined,
-  },
-  {
-    title: "Avg.sales price per SKU",
-    percentage: undefined,
-    price: getSKUAveragePrice(),
-  },
-];
+export const inventoryDetails = (stateName?: string | undefined) => {
+  return [
+    {
+      title: "Completed audits",
+      percentage: getCompletedAuditPercentage(stateName),
+      price: undefined,
+    },
+    {
+      title: "Out of stock",
+      percentage: getOutOfStockPercentage(stateName),
+      price: undefined,
+    },
+    {
+      title: "In stock and on shelf",
+      percentage: getInstockAndOnshelfPercentage(stateName),
+      price: undefined,
+    },
+    {
+      title: "Avg.sales price per SKU",
+      percentage: undefined,
+      price: getSKUAveragePrice(stateName),
+    },
+  ];
+};
 
 export default function DashboardPage() {
   return (

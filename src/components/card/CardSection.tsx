@@ -2,7 +2,7 @@ import { InfoIcon } from "../../assets";
 import AppImage from "../mui/AppImage";
 import AppHStack from "../mui/AppStack/AppHStack";
 import AppText from "../mui/AppText";
-import AuditTrendText from "./AuditTrendText";
+// import AuditTrendText from "./AuditTrendText";
 import AppLinearProgress from "../mui/AppLinearProgress";
 import AppToolTip from "../mui/AppToolTip";
 import { InventoryDetailProps } from "../../pages/dashboard";
@@ -30,7 +30,7 @@ export default function CardSection({
           sx={{
             border: "1px solid #CBD5E1",
             maxWidth: "270px",
-            minHeight: "154px",
+            minHeight: "135px",
             borderRadius: "12px",
             padding: "16px",
             display: "flex",
@@ -65,14 +65,18 @@ export default function CardSection({
             }}
             variant="h1"
             text={
-              detail?.price ? `$${detail?.price}` : `${detail?.percentage}%`
+              detail?.price === "NaN"
+                ? "NA"
+                : detail?.price
+                  ? `$${detail?.price}`
+                  : `${detail?.percentage}%`
             }
           />
           {detail?.percentage && (
             <AppLinearProgress value={detail?.percentage} />
           )}
 
-          <AuditTrendText />
+          {/* <AuditTrendText /> */}
         </AppVStack>
       ) : (
         <AppVStack

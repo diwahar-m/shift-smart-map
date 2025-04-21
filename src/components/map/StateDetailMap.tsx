@@ -118,10 +118,11 @@ const StateDetailsMap = ({
 
     if (selectedState && stateName === selectedState?.properties?.name) {
       (layer as L.Path).setStyle({
-        fillColor: "#8cebf9",
+        fillColor: "#609FF6",
         weight: 2,
-        color: "#666",
-        fillOpacity: 0.7,
+        opacity: 0.3,
+        color: "#fff",
+        fillOpacity: 1,
       });
     }
   };
@@ -165,6 +166,7 @@ const StateDetailsMap = ({
         key={stateName}
         //@ts-expect-error "USA State type"
         data={usaMapData}
+        // style={{ fillColor: "609FF6", opacity: 1, color: "#666" }}
         onEachFeature={onEachState}
       />
 

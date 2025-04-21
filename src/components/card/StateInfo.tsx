@@ -3,7 +3,7 @@ import AppText from "../mui/AppText";
 import AppLinearProgress from "../mui/AppLinearProgress";
 import AppHStack from "../mui/AppStack/AppHStack";
 import TagCard from "./TagCard";
-import AuditTrendText from "./AuditTrendText";
+// import AuditTrendText from "./AuditTrendText";
 import {
   getCompletedAuditPercentage,
   getInstockPercentage,
@@ -86,7 +86,7 @@ export default function StateInfo({ stateName }: { stateName: string }) {
                 }}
                 text={_?.value?.toLocaleString() + "%"}
               />
-              <AuditTrendText />
+              {/* <AuditTrendText /> */}
             </AppHStack>
           </AppHStack>
         ))}

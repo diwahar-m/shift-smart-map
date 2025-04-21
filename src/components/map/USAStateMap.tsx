@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MapContainer, TileLayer, Marker, GeoJSON } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import L from "leaflet";
@@ -7,24 +7,37 @@ import usaMapData from "../../constants/us-states.json";
 import AppBox from "../mui/AppBox";
 import AppText from "../mui/AppText";
 import { stateStyling } from "../../constants";
-import { getStoresList } from "../../constants/storeData";
+// import { getStoresList } from "../../constants/storeData";
+import marker from "../../assets/AllRegions/marker.png";
+import { HeaderContext } from "../../context/HeaderContext";
 
 const USAStateMap: React.FC = () => {
   const navigate = useNavigate();
+  const { storesList } = useContext(HeaderContext);
   const handleStateClick = (stateId: string) => {
     navigate(`/state/${stateId}`);
   };
+
+  // const customIcon = new L.Icon({
+  //   iconUrl: marker,
+  //   iconSize: [25, 25],
+  // });
 
   return (
     <AppBox sx={{ height: "34rem" }}>
       <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
         <AppText
           variant="subtitle2"
-          text={`${getStoresList()?.length} stores within map area`}
+          text={`${storesList?.length} stores within map area`}
           sx={{ margin: "auto" }}
         />
       </AppBox>
       <MapContainer
+        maxBounds={[
+          [24.396308, -125.0],
+          [49.384358, -66.93457],
+        ]}
+        maxBoundsViscosity={1.0}
         center={[37.8, -96]}
         zoom={4.3}
         scrollWheelZoom={true}
@@ -34,18 +47,29 @@ const USAStateMap: React.FC = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
+        {/* <GeoJSON
+          data={oceanBackground}
+          style={{
+            fillColor: "#0B57C0",
+            color: "#000000",
+            fillOpacity: 2,
+            weight: 2,
+          }}
+        /> */}
 
         {/* GeoJSON for USA states */}
         <GeoJSON
           //@ts-expect-error "USA State type"
           data={usaMapData}
+          style={{ fillColor: "#609FF6", color: "#fff" }}
           onEachFeature={(feature, layer) => {
             const stateName = feature.properties.name;
-            layer.on("click", () => handleStateClick(stateName)); // Add click event to navigate to details page
+
+            layer.on("click", () => handleStateClick(stateName));
             // common styling for state
             stateStyling(stateName, layer);
-            // hover effect
             const vectorLayer = layer as L.Path;
+
             layer.on("mouseover", () => {
               vectorLayer.getElement()?.classList.add("state-hover");
             });
@@ -57,10 +81,12 @@ const USAStateMap: React.FC = () => {
         />
         <Marker
           position={[37.8, -96]}
-          icon={L.icon({
-            iconUrl: "/path/to/custom-icon.png",
-            iconSize: [25, 25],
-          })}
+          icon={
+            new L.Icon({
+              iconUrl: marker,
+              iconSize: [1, 1],
+            })
+          }
         >
           {/* <Popup>Custom marker example</Popup> */}
         </Marker>

@@ -3,12 +3,13 @@
 }
 
 .state-hover {
-    color: '#c5f1f7';
+    color: '#609FF680 ' !important;
+    background-color: '#609FF680 ' !important;
 }
 .leaflet-tooltip.state-label {
   font-size: 12px;
-  font-weight: bold;
-  color: #9b9898;
+  /* font-weight: bold; */
+  color: #000;
   background: transparent;
   border: none;
   box-shadow: none;

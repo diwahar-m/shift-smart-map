@@ -57,7 +57,7 @@ export default function DetailCard({
           )}
           {children}
           <AppButton
-            handleClick={() => navigate(`/stores`)}
+            handleClick={() => navigate(`/stores`, { state: { stateName } })}
             sx={{
               marginTop: "18px",
               fontSize: "16px",

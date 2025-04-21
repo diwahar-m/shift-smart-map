@@ -251,7 +251,7 @@ export default function InventoryLevels() {
         borderLeftWidth: 0,
         borderRightWidth: 0,
         border: "0px solid #E9EFF7",
-        padding: "20px 40px",
+        padding: "0px 40px",
       }}
     >
       <AppText
@@ -271,11 +271,13 @@ export default function InventoryLevels() {
         <AppSelectBox
           label={"Week"}
           options={["Audit 1", "Audit 2", "Audit 3"]}
+          value={audit}
           onChange={(val) => {
             if (val) setAudit(val);
           }}
         />
         <AppSelectBox
+          value={product}
           label={"SKU"}
           options={[
             "All SKUs",

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { storesTableHead } from "../../constants";
 import { getStoresList } from "../../constants/storeData";
 import { useContext, useEffect } from "react";
@@ -11,12 +11,14 @@ import StoreTableRows from "../../components/stores/StoreTableRows";
 
 export default function StoresPage() {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const { storesList, setStoresList } = useContext(HeaderContext);
 
   useEffect(() => {
-    setStoresList(getStoresList());
-  }, []);
+    if (state?.stateName) setStoresList(getStoresList(state?.stateName));
+    else setStoresList(getStoresList());
+  }, [state]);
 
   const handleRowClick = (storeName: string) => {
     navigate(`/store/${storeName}`);
