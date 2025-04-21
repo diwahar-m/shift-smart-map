@@ -43,17 +43,17 @@ export default function SideBar() {
             pathname?.includes("store") ||
             pathname?.includes("state")
           }
-          icon={<ClipboardList size={21} />}
-          sx={{ padding: "12px 16px" }}
-          textStyles={{ marginBottom: "6px" }}
+          icon={<ClipboardList size={20} style={{ marginTop: "7px" }} />}
+          // sx={{ padding: "10px 0 6px 0" }}
+          textStyles={{ marginBottom: "0px" }}
         />
         <AppButtonIcon
           text={"Trends"}
           handleClick={() => navigate("/trends")}
           isActive={pathname?.includes("trends")}
-          textStyles={{ marginBottom: "6px" }}
-          sx={{ padding: "12px 16px" }}
-          icon={<TrendingUp />}
+          textStyles={{ marginBottom: "0px" }}
+          // sx={{ padding: "12px 16px" }}
+          icon={<TrendingUp size={20} style={{ marginTop: "7px" }} />}
         />
       </AppBox>
     </AppBox>

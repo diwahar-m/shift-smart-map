@@ -159,6 +159,7 @@ export default function AverageSku() {
       <AppHStack sx={{ gap: "6px", margin: "20px 0" }}>
         <AppSelectBox
           label={"Week"}
+          value={audit}
           options={["Audit 1", "Audit 2", "Audit 3"]}
           onChange={(val) => {
             if (val) setAudit(val);
@@ -166,6 +167,7 @@ export default function AverageSku() {
         />
         <AppSelectBox
           label={"SKU"}
+          value={product}
           options={[
             "All SKUs",
             "Fruit Punch",

@@ -10,12 +10,14 @@ import { getStatesList } from "../../constants/storeData";
 interface HeaderBarProps {
   headerCardDetails: Array<InventoryDetailProps>;
   onStateChange: (value?: string) => void;
+  stateName: string | null;
   // onDateRangeChange?: (value: string[] | undefined) => void;
 }
 
 export default function HeaderBar({
   headerCardDetails,
   onStateChange,
+  stateName,
 }: HeaderBarProps) {
   return (
     <AppVStack sx={{ width: "100%", padding: "30px", gap: "20px" }}>
@@ -33,6 +35,7 @@ export default function HeaderBar({
         <AppHStack sx={{ gap: "8px" }}>
           <AppSelectBox
             label={"Select State"}
+            value={stateName}
             onChange={(value) => {
               if (value) onStateChange(value);
               else onStateChange();

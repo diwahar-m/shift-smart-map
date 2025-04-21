@@ -5,10 +5,11 @@ interface AppSelectBoxProps {
   sx?: SxProps;
   onChange?: (event?: string) => void | undefined;
   label?: string;
+  value?: string | null;
 }
 
 const AppSelectBox = (props: AppSelectBoxProps) => {
-  const { options, sx, onChange, label } = props;
+  const { options, sx, onChange, label, value } = props;
 
   const handleChange = (
     _event?: React.SyntheticEvent<Element, Event>,
@@ -22,6 +23,7 @@ const AppSelectBox = (props: AppSelectBoxProps) => {
     <Stack spacing={2} sx={{ width: 300, ...sx }}>
       <Autocomplete
         id="free-solo-demo"
+        value={value}
         onChange={handleChange}
         onInputChange={(_event, value) => {
           if (!value) handleChange();

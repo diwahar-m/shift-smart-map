@@ -97,15 +97,23 @@ export function getInstockAndOnshelfPercentage(stateName?: string) {
   return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
 }
 
-export function getSKUAveragePrice() {
+export function getSKUAveragePrice(stateName?: string) {
   let totalSKUPrice = 0;
   let count = 0;
-  auditData?.map((_) => {
-    if (_?.["Strawberry Kiwi, Price"]) {
-      count++;
-      totalSKUPrice += _?.["Strawberry Kiwi, Price"];
-    }
-  });
+  auditData
+    ?.filter((_) => {
+      if (stateName) {
+        return _?.BU === stateName;
+      }
+      return _;
+    })
+    ?.map((_) => {
+      if (_?.["Strawberry Kiwi, Price"]) {
+        count++;
+        totalSKUPrice += _?.["Strawberry Kiwi, Price"];
+      }
+    });
+  console.log(totalSKUPrice, count);
   const completedAuditPercentage = totalSKUPrice / count;
   return completedAuditPercentage.toFixed(2);
 }

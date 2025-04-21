@@ -96,6 +96,7 @@ export default function OnShelfRates() {
       <AppHStack sx={{ gap: "6px", margin: "20px 0" }}>
         <AppSelectBox
           label={"SKU"}
+          value={product}
           options={[
             "All SKUs",
             "Fruit Punch",

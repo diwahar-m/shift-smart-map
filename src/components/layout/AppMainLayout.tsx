@@ -4,12 +4,16 @@ import SideBar from "../common/SideBar";
 import AppVStack from "../mui/AppStack/AppVStack";
 import HeaderBar from "../common/HeaderBar";
 import { inventoryDetails } from "../../pages/dashboard";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { HeaderContext } from "../../context/HeaderContext";
 
 export default function AppMainLayout() {
-  const { onStateChange } = useContext(HeaderContext);
-  const { pathname } = useLocation();
+  const { onStateChange, stateName } = useContext(HeaderContext);
+  const { pathname, state } = useLocation();
+
+  useEffect(() => {
+    if (state?.stateName) onStateChange(state?.stateName);
+  }, [state]);
 
   return (
     <AppHStack
@@ -39,7 +43,10 @@ export default function AppMainLayout() {
           <HeaderBar
             onStateChange={onStateChange}
             // onDateRangeChange={onDateRangeChange}
-            headerCardDetails={inventoryDetails}
+            headerCardDetails={
+              stateName ? inventoryDetails(stateName) : inventoryDetails()
+            }
+            stateName={stateName}
           />
         )}
         <Outlet />

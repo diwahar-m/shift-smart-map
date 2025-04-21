@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import AuditTrendText from "../card/AuditTrendText";
+// import AuditTrendText from "../card/AuditTrendText";
 import ProductImageCard from "../card/ProductImageCard";
 import ProductStatusCard from "../card/ProductStatusCard";
 import TagCard from "../card/TagCard";
@@ -57,10 +57,10 @@ export default function Product({
                     height: "40px",
                   }}
                   variant="h1"
-                  text={storeDetail?.price ? storeDetail?.price : "NA"}
+                  text={storeDetail?.price ? `$${storeDetail?.price}` : "NA"}
                 />
 
-                <AuditTrendText />
+                {/* <AuditTrendText /> */}
               </AppVStack>
             }
           />

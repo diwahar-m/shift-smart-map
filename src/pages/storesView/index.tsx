@@ -6,8 +6,8 @@ import AppBox from "../../components/mui/AppBox";
 import AppText from "../../components/mui/AppText";
 import StateDetailsMap from "../../components/map/StateDetailMap";
 import { useParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import { getStoreDetails, getStoresList } from "../../constants/storeData";
+import { useContext, useEffect, useRef, useState } from "react";
+import { getStoreDetails } from "../../constants/storeData";
 // import { StoreDetail } from "../../constants/typeDeclarations";
 import { tabProps } from "../../components/stores/StoreProductDetail";
 import { getDateFormat } from "../../constants";
@@ -15,6 +15,7 @@ import ProductInfo from "../../components/card/ProductInfo";
 import ProductDetailCard from "../../components/card/ProductDetailCard";
 import usaMapData from "../../constants/us-states.json";
 import { USAStateProps } from "../state";
+import { HeaderContext } from "../../context/HeaderContext";
 
 export default function StoresView() {
   // const { open, handleClose, handleOpen } = useModal();
@@ -22,6 +23,7 @@ export default function StoresView() {
   //   handleOpen();
   // }, []);
   const { storeId } = useParams();
+  const { storesList } = useContext(HeaderContext);
   const [storeInfo, setStoreInfo] = useState<any>(getStoreDetails(storeId));
   const [auditDetail, setAuditDetail] = useState<tabProps[]>([]);
 
@@ -53,7 +55,7 @@ export default function StoresView() {
         <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
           <AppText
             variant="subtitle2"
-            text={`${getStoresList()?.length} stores within map area`}
+            text={`${storesList?.length} stores within map area`}
             sx={{ margin: "auto" }}
           />
         </AppBox>

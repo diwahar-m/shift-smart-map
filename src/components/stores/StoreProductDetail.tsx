@@ -10,9 +10,9 @@ import Product from "../product/Product";
 import { getDateFormat } from "../../constants";
 import { StoreDetail } from "../../constants/typeDeclarations";
 import AppHStack from "../mui/AppStack/AppHStack";
-import { X } from "lucide-react";
-import AppBox from "../mui/AppBox";
+import { ArrowLeft } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+import AppButton from "../mui/AppButton";
 
 export interface tabProps {
   tab?: string;
@@ -74,13 +74,22 @@ export default function StoreProductDetail({
         }}
       >
         <AppHStack sx={{ justifyContent: "space-between" }}>
-          <AppBreadcrumb />
-          <AppBox
+          <AppHStack sx={{ gap: "5px" }}>
+            <AppButton
+              sx={{ borderRadius: "100px" }}
+              handleClick={() => navigate(-1)}
+            >
+              <ArrowLeft size={22} />
+            </AppButton>
+            <AppBreadcrumb />
+          </AppHStack>
+          <AppButton
             sx={{ cursor: "pointer" }}
-            onClick={() => navigate(`/store/${storeId}/view`)}
+            handleClick={() => navigate(`/store/${storeId}/view`)}
           >
-            <X />
-          </AppBox>
+            View Store
+            {/* <X /> */}
+          </AppButton>
         </AppHStack>
         <AppText
           variant="h4"

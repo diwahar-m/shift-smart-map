@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import StateDetailsMap from "../../components/map/StateDetailMap";
 import AppBox from "../../components/mui/AppBox";
 import AppVStack from "../../components/mui/AppStack/AppVStack";
@@ -6,7 +6,7 @@ import AppText from "../../components/mui/AppText";
 import usaMapData from "../../constants/us-states.json";
 import usaCoordinates from "../../constants/us-coordinates.json";
 import { useParams } from "react-router-dom";
-import { getStoresList } from "../../constants/storeData";
+import { HeaderContext } from "../../context/HeaderContext";
 
 interface statePropertiesProps {
   name: string;
@@ -35,6 +35,7 @@ export default function StatePage() {
     longitude: -96,
   });
   const { stateId } = useParams<{ stateId: string }>();
+  const { storesList } = useContext(HeaderContext);
   // const { open, handleClose, handleOpen } = useModal();
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function StatePage() {
         <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
           <AppText
             variant="subtitle2"
-            text={`${getStoresList()?.length} stores within map area`}
+            text={`${storesList?.length} stores within map area`}
             sx={{ margin: "auto" }}
           />
         </AppBox>
