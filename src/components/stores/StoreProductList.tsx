@@ -55,7 +55,7 @@ export default function StoreProductList({
             fontWeight: 700,
             lineHeight: "16px",
           }}
-          text="CIRCLE k"
+          text="CIRCLE K"
         />
         <AppText
           variant="h4"

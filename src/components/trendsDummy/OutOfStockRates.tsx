@@ -72,7 +72,7 @@ export default function OutOfStockRates() {
       sx={{
         borderTopWidth: "1px",
         borderBottomWidth: "0px !important",
-        borderLeftWidth: 0,
+        borderLeftWidth: "0px !important",
         borderRightWidth: "0px !important",
         border: "1px solid #E9EFF7",
         padding: "20px ",

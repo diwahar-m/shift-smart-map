@@ -55,7 +55,7 @@ export default function StoresView() {
         <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
           <AppText
             variant="subtitle2"
-            text={`${storesList?.length} stores within map area`}
+            text={`${[...new Set(storesList?.map((_: any) => _?.name))]?.length} stores and ${storesList?.length} audits  within map area`}
             sx={{ margin: "auto" }}
           />
         </AppBox>

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useContext, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, GeoJSON } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +35,7 @@ const USAStateMap: React.FC = () => {
       <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
         <AppText
           variant="subtitle2"
-          text={`${storesList?.length} stores within map area`}
+          text={`${[...new Set(storesList?.map((_: any) => _?.name))]?.length} stores and ${storesList?.length} audits  within map area`}
           sx={{ margin: "auto" }}
         />
       </AppBox>

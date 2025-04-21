@@ -44,7 +44,7 @@ export default function ProductInfo({ tabs }: { tabs: tabProps[] }) {
                 fontWeight: 700,
                 lineHeight: "12px",
               }}
-              text="CIRCLE k"
+              text="CIRCLE K"
             />
             <AppBox sx={{ cursor: "pointer" }} onClick={() => setClose(true)}>
               <X size={14} />
