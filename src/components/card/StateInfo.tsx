@@ -12,6 +12,7 @@ import {
 } from "../../constants/storeData";
 import MultiSegmentProgressBar from "../mui/AppMultiSegmentProgressBa";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 interface StateInfoProps {
   stateName: string;
@@ -21,22 +22,26 @@ export default function StateInfo({ stateName }: StateInfoProps) {
   const [tagList, setTagsList] = useState<
     Array<{ title: string; value: string | number }> | undefined
   >();
+  const { stateId } = useParams();
 
   useEffect(() => {
     if (stateName) {
       const tags = [];
-      tags?.push({ title: "On shelf", value: getOnshelfPercentage(stateName) });
+      tags?.push({
+        title: "On shelf",
+        value: getOnshelfPercentage(null, stateId, true),
+      });
       tags?.push({
         title: "In inventory",
-        value: getInstockPercentage(stateName),
+        value: getInstockPercentage(null, stateId, true),
       });
       tags?.push({
         title: "Out of stock",
-        value: getOutOfStockPercentage(stateName),
+        value: getOutOfStockPercentage(null, stateId, true),
       });
       setTagsList(tags);
     }
-  }, [stateName]);
+  }, [stateName, stateId]);
 
   return (
     <AppVStack sx={{ gap: "22px" }}>
@@ -55,19 +60,20 @@ export default function StateInfo({ stateName }: StateInfoProps) {
             height: "40px",
           }}
           variant="h1"
-          text={`${getCompletedAuditPercentage(stateName)}%`}
+          text={`${getCompletedAuditPercentage(null, stateId, true)}%`}
         />
         <AppLinearProgress
-          value={parseInt(getCompletedAuditPercentage(stateName))}
+          // value={parseInt(getCompletedAuditPercentage(stateName))}
+          value={parseInt(getCompletedAuditPercentage(null, stateId, true))}
         />
       </AppVStack>
       <AppVStack>
         <AppText variant={"subtitle1"} text={"Inventory"} />
         <MultiSegmentProgressBar
           values={[
-            parseInt(getOnshelfPercentage(stateName)),
-            parseInt(getInstockPercentage(stateName)),
-            parseInt(getOutOfStockPercentage(stateName)),
+            parseInt(getOnshelfPercentage(null, stateId, true)),
+            parseInt(getInstockPercentage(null, stateId, true)),
+            parseInt(getOutOfStockPercentage(null, stateId, true)),
           ]}
         />
         {/* <AppLinearProgress value={stateInfo?.Instock ? 100 : "0%"} /> */}

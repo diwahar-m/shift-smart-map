@@ -3,6 +3,10 @@
 
 import { getDateFormat, getProductAvailability, getProductPrice } from "..";
 import auditReport from "../../../inventoryDatabaseTwo.json";
+import stateRegion from "../../../usa-state-region-lat-lng.json";
+import usaMapData from "../../constants/us-states.json";
+import { point, polygon, booleanPointInPolygon } from "@turf/turf";
+
 const auditData = auditReport?.["Data Feed"];
 
 export const stateRegions = {
@@ -24,22 +28,55 @@ export const stateRegions = {
 };
 
 export function getStateRegions(state: any) {
-  // @ts-expect-error "state region error"
-  return stateRegions[state];
+  // return stateRegions[state];
+  return stateRegion?.filter((_) => _?.State === state)?.map((_) => _?.Region);
 }
 
 export function getBUbyStateName(stateName: string | undefined) {
   const isStateExists = auditData?.filter((_) => _?.BU === stateName);
   return isStateExists?.length;
 }
+//@ts-expect-error ""
+function getDepth(arr: any) {
+  return Array.isArray(arr) ? 1 + Math.max(0, ...arr.map(getDepth)) : 0;
+}
 
-export function getCompletedAuditPercentage(stateName?: string) {
+export function checkCoordinatesByBoundary(
+  state: string,
+  latLng: [number, number]
+) {
+  const boundaryCoOrdinates = usaMapData?.features
+    ?.filter((_) => _?.properties?.name === state)
+    ?.map((_) => _?.geometry?.coordinates);
+
+  const depthOfArr = getDepth(boundaryCoOrdinates?.[0]);
+
+  const pt = point(latLng);
+
+  const poly = polygon(
+    //@ts-expect-error ""
+    depthOfArr > 3 ? boundaryCoOrdinates?.[0]?.[0] : boundaryCoOrdinates?.[0]
+  );
+
+  return booleanPointInPolygon(pt, poly);
+}
+
+export function getCompletedAuditPercentage(
+  businessUnit?: string | null,
+  stateName?: string | null,
+  latLng: boolean = false
+) {
   let stateTotalAudits = 0;
   let completedAudits = 0;
   auditData
     ?.filter((_) => {
-      if (stateName) {
-        return _?.BU === stateName;
+      if (businessUnit) {
+        return _?.BU === businessUnit;
+      }
+      if (latLng && stateName) {
+        const latitude = _?.["Store Latitude"];
+        const longitude = _?.["Store Longitude"];
+        return checkCoordinatesByBoundary(stateName, [longitude, latitude]);
       }
       return _;
     })
@@ -53,13 +90,22 @@ export function getCompletedAuditPercentage(stateName?: string) {
     : completedAuditPercentage.toFixed();
 }
 
-export function getOnshelfPercentage(stateName?: string) {
+export function getOnshelfPercentage(
+  businessUnit?: string | null,
+  stateName?: string | null,
+  latLng: boolean = false
+) {
   let totalStock = 0;
   let inStocks = 0;
   auditData
     ?.filter((_) => {
-      if (stateName) {
-        return _?.BU === stateName;
+      if (businessUnit) {
+        return _?.BU === businessUnit;
+      }
+      if (latLng && stateName) {
+        const latitude = _?.["Store Latitude"];
+        const longitude = _?.["Store Longitude"];
+        return checkCoordinatesByBoundary(stateName, [longitude, latitude]);
       }
       return _;
     })
@@ -71,13 +117,22 @@ export function getOnshelfPercentage(stateName?: string) {
   return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed();
 }
 
-export function getInstockPercentage(stateName?: string) {
+export function getInstockPercentage(
+  businessUnit?: string | null,
+  stateName?: string | null,
+  latLng: boolean = false
+) {
   let totalStock = 0;
   let inStocks = 0;
   auditData
     ?.filter((_) => {
-      if (stateName) {
-        return _?.BU === stateName;
+      if (businessUnit) {
+        return _?.BU === businessUnit;
+      }
+      if (latLng && stateName) {
+        const latitude = _?.["Store Latitude"];
+        const longitude = _?.["Store Longitude"];
+        return checkCoordinatesByBoundary(stateName, [longitude, latitude]);
       }
       return _;
     })
@@ -89,13 +144,22 @@ export function getInstockPercentage(stateName?: string) {
   return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed();
 }
 
-export function getOutOfStockPercentage(stateName?: string) {
+export function getOutOfStockPercentage(
+  businessUnit?: string | null,
+  stateName?: string | null,
+  latLng: boolean = false
+) {
   let totalStock = 0;
   let outOfStocks = 0;
   auditData
     ?.filter((_) => {
-      if (stateName) {
-        return _?.BU === stateName;
+      if (businessUnit) {
+        return _?.BU === businessUnit;
+      }
+      if (latLng && stateName) {
+        const latitude = _?.["Store Latitude"];
+        const longitude = _?.["Store Longitude"];
+        return checkCoordinatesByBoundary(stateName, [longitude, latitude]);
       }
       return _;
     })
