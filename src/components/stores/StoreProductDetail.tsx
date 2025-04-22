@@ -87,7 +87,7 @@ export default function StoreProductDetail({
             sx={{ cursor: "pointer" }}
             handleClick={() => navigate(`/store/${storeId}/view`)}
           >
-            View Store
+            View Store on Map
             {/* <X /> */}
           </AppButton>
         </AppHStack>

@@ -41,6 +41,7 @@ export default function AverageSkuGraph({ inventory }: any) {
           max: 4.5, // Slightly above your max value (4)
           //@ts-expect-error ""
           tickInterval: 0.5, // Shows ticks at 0, 0.5, 1, 1.5, etc.
+          label: "Price ($)",
         },
       ]}
       margin={{ top: 20, right: 30, left: 40, bottom: 50 }}

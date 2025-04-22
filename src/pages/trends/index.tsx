@@ -21,8 +21,8 @@ const Trends = () => {
       <InventoryLevels />
       <AverageSku />
       <AppHStack sx={{ gap: "6px" }}>
-        <OutOfStockRates />
         <OnShelfRates />
+        <OutOfStockRates />
       </AppHStack>
     </AppVStack>
   );

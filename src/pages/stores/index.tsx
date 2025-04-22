@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useLocation, useNavigate } from "react-router-dom";
 import { storesTableHead } from "../../constants";
 import { getStoresList } from "../../constants/storeData";
@@ -37,7 +39,7 @@ export default function StoresPage() {
       <AppBox sx={{ height: "38px", paddingLeft: "40px" }}>
         <AppText
           variant="subtitle2"
-          text={`${storesList?.length} stores within map area`}
+          text={`${[...new Set(storesList?.map((_: any) => _?.name))]?.length} stores and  within map area`}
           sx={{ margin: "auto" }}
         />
       </AppBox>

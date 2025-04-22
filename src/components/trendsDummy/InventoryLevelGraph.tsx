@@ -72,6 +72,7 @@ export default function InventoryLevelGraph({ inventory }: any) {
       yAxis={[
         {
           min: 0,
+          label: "Percentage (100%)",
           max: 1,
           width: 60,
           // @ts-expect-error ""

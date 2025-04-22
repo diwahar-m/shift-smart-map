@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useContext, useEffect, useState } from "react";
 import StateDetailsMap from "../../components/map/StateDetailMap";
 import AppBox from "../../components/mui/AppBox";
@@ -57,7 +59,7 @@ export default function StatePage() {
         <AppBox sx={{ height: "38px", paddingLeft: "30px" }}>
           <AppText
             variant="subtitle2"
-            text={`${storesList?.length} stores within map area`}
+            text={`${[...new Set(storesList?.map((_: any) => _?.name))]?.length} stores and ${storesList?.length} auditswithin map area`}
             sx={{ margin: "auto" }}
           />
         </AppBox>

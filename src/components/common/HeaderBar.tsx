@@ -34,7 +34,7 @@ export default function HeaderBar({
       <AppHStack sx={{ justifyContent: "space-between", width: "100%" }}>
         <AppHStack sx={{ gap: "8px" }}>
           <AppSelectBox
-            label={"Select State"}
+            label={"Select BU"}
             value={stateName}
             onChange={(value) => {
               if (value) onStateChange(value);

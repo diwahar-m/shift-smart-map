@@ -38,6 +38,7 @@ export default function OutOfStockGraph({ inventory }: any) {
           valueFormatter: (v) => `${v}%`,
           //@ts-expect-error
           tickCount: 6,
+          label: "Percentage (100%)",
         },
       ]}
       series={values.map((row, index) => ({
