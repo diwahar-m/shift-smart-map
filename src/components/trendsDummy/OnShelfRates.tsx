@@ -78,6 +78,7 @@ export default function OnShelfRates() {
         borderRightWidth: "0px !important",
         border: "1px solid #E9EFF7",
         padding: "20px",
+        maxWidth: "50%",
       }}
     >
       <AppText
