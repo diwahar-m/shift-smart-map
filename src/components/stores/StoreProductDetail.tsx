@@ -85,7 +85,11 @@ export default function StoreProductDetail({
           </AppHStack>
           <AppButton
             sx={{ cursor: "pointer" }}
-            handleClick={() => navigate(`/store/${storeId}/view`)}
+            handleClick={() =>
+              navigate(`/store/${storeId}/view`, {
+                state: { region: storeDetails?.[0]?.BU },
+              })
+            }
           >
             View Store on Map
             {/* <X /> */}

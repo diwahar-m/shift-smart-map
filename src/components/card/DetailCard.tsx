@@ -9,11 +9,13 @@ import AppBox from "../mui/AppBox";
 interface DetailCardProps {
   stateName?: string | null;
   children: ReactElement;
+  region?: string | null;
 }
 
 export default function DetailCard({
   stateName = null,
   children,
+  region,
 }: DetailCardProps) {
   const navigate = useNavigate();
   const [close, setClose] = useState(false);
@@ -57,7 +59,9 @@ export default function DetailCard({
           )}
           {children}
           <AppButton
-            handleClick={() => navigate(`/stores`, { state: { stateName } })}
+            handleClick={() =>
+              navigate(`/stores`, { state: { stateName, region } })
+            }
             sx={{
               marginTop: "18px",
               fontSize: "16px",

@@ -17,6 +17,7 @@ import { StateCoordinates, USAStateProps } from "../../pages/state";
 import L from "leaflet";
 // import { MarkerIconImage } from "../../assets";
 import marker from "../../assets/AllRegions/marker.png";
+import { getBUbyStateName, getStateRegions } from "../../constants/storeData";
 
 interface StateDetailProps {
   coordinates: StateCoordinates;
@@ -100,10 +101,15 @@ const StateDetailsMap = ({
 }: StateDetailProps) => {
   const navigate = useNavigate();
   const [stateName, setStateName] = useState<string>("");
+  const [region, setRegion] = useState(null);
 
   useEffect(() => {
-    if (selectedState?.properties?.name)
-      setStateName(selectedState?.properties?.name);
+    const selectedStateName = selectedState?.properties?.name;
+    if (selectedStateName) setStateName(selectedStateName);
+    // if state not exists then checking regions within it
+    if (!getBUbyStateName(selectedStateName)) {
+      setRegion(getStateRegions(selectedStateName)?.[0]);
+    }
   }, [selectedState]);
 
   const handleStateClick = (stateId: string) => {
@@ -151,7 +157,8 @@ const StateDetailsMap = ({
         ) : stateName ? (
           <DetailCard
             stateName={stateName}
-            children={<StateInfo stateName={stateName} />}
+            region={region}
+            children={<StateInfo stateName={region ? region : stateName} />}
           />
         ) : (
           <></>

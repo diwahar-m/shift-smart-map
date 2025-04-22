@@ -35,6 +35,7 @@ export default function SideBarMini() {
       {/* Links container */}
       <AppVStack sx={{ gap: "4px", alignItems: "center" }}>
         <AppButton
+          handleClick={() => navigate("/")}
           sx={{
             backgroundColor: "#0B57C0",
             borderRadius: "11px",
@@ -47,6 +48,7 @@ export default function SideBarMini() {
           <AppImage src={AuditsIcon} alt={"logo"} />
         </AppButton>
         <AppButton
+          handleClick={() => navigate("/trends")}
           sx={{
             backgroundColor: "#fff",
             borderRadius: "12px",

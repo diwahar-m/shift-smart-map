@@ -5,6 +5,34 @@ import { getDateFormat, getProductAvailability, getProductPrice } from "..";
 import auditReport from "../../../inventoryDatabaseTwo.json";
 const auditData = auditReport?.["Data Feed"];
 
+export const stateRegions = {
+  "South Carolina": ["Coastal Carolina"],
+  Arizona: ["Grand Canyon"],
+  Illinois: ["Great Lakes"],
+  Michigan: ["Great Lakes"],
+  Minnesota: ["Great Lakes"],
+  "New York": ["Great Lakes"],
+  Ohio: ["Great Lakes"],
+  Pennysylvania: ["Great Lakes"],
+  Wisconsin: ["Great Lakes"],
+  Indiana: ["Great Lakes"],
+  Texas: ["Gulf Coast"],
+  Louisiana: ["Gulf Coast"],
+  Mississippi: ["Gulf Coast"],
+  Alabama: ["Gulf Coast"],
+  Florida: ["Gulf Coast"],
+};
+
+export function getStateRegions(state: any) {
+  // @ts-expect-error "state region error"
+  return stateRegions[state];
+}
+
+export function getBUbyStateName(stateName: string | undefined) {
+  const isStateExists = auditData?.filter((_) => _?.BU === stateName);
+  return isStateExists?.length;
+}
+
 export function getCompletedAuditPercentage(stateName?: string) {
   let stateTotalAudits = 0;
   let completedAudits = 0;
@@ -40,7 +68,7 @@ export function getOnshelfPercentage(stateName?: string) {
       if (_?.["Instock"] !== 0) inStocks += 1;
     });
   const outOfStockPercentage = (inStocks / totalStock) * 100;
-  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed();
 }
 
 export function getInstockPercentage(stateName?: string) {
@@ -58,7 +86,7 @@ export function getInstockPercentage(stateName?: string) {
       if (_?.["Instock"] !== 0 || _?.["In Inventory"] !== 0) inStocks += 1;
     });
   const outOfStockPercentage = (inStocks / totalStock) * 100;
-  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed();
 }
 
 export function getOutOfStockPercentage(stateName?: string) {
@@ -76,7 +104,7 @@ export function getOutOfStockPercentage(stateName?: string) {
       if (_?.["Instock"] === 0 && _?.["In Inventory"] === 0) outOfStocks += 1;
     });
   const outOfStockPercentage = (outOfStocks / totalStock) * 100;
-  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed();
 }
 
 export function getInstockAndOnshelfPercentage(stateName?: string) {
@@ -94,7 +122,7 @@ export function getInstockAndOnshelfPercentage(stateName?: string) {
       if (_?.["Instock"] !== 0 || _?.["In Inventory"] !== 0) inStocks += 1;
     });
   const outOfStockPercentage = (inStocks / totalStock) * 100;
-  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed(2);
+  return isNaN(outOfStockPercentage) ? "0" : outOfStockPercentage.toFixed();
 }
 
 export function getSKUAveragePrice(stateName?: string) {
@@ -113,7 +141,6 @@ export function getSKUAveragePrice(stateName?: string) {
         totalSKUPrice += _?.["Strawberry Kiwi, Price"];
       }
     });
-  console.log(totalSKUPrice, count);
   const completedAuditPercentage = totalSKUPrice / count;
   return completedAuditPercentage.toFixed(2);
 }

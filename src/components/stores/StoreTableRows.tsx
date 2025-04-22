@@ -35,7 +35,7 @@ export default function StoreTableRows({
               component="th"
               scope="row"
             >
-              {"Circle K | Store " + row.name}
+              {"CIRCLE K | Store " + row.name}
             </TableCell>
             <TableCell
               sx={{
