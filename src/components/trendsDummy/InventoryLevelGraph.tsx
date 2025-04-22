@@ -21,7 +21,6 @@ export default function InventoryLevelGraph({ inventory }: any) {
   });
 
   React.useEffect(() => {
-    console.log(inventory);
     //@ts-expect-error
     const onShelf = inventory.map((row) => row[0]); // All first elements of each row
     //@ts-expect-error
