@@ -26,7 +26,6 @@ export default function StoresView() {
   const { storesList } = useContext(HeaderContext);
   const [storeInfo, setStoreInfo] = useState<any>(getStoreDetails(storeId));
   const [auditDetail, setAuditDetail] = useState<tabProps[]>([]);
-
   useEffect(() => {
     setStoreInfo(getStoreDetails(storeId));
   }, [storeId]);

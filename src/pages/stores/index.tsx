@@ -14,11 +14,11 @@ import StoreTableRows from "../../components/stores/StoreTableRows";
 export default function StoresPage() {
   const navigate = useNavigate();
   const { state } = useLocation();
-
   const { storesList, setStoresList } = useContext(HeaderContext);
 
   useEffect(() => {
-    if (state?.stateName) setStoresList(getStoresList(state?.stateName));
+    if (state?.region) setStoresList(getStoresList(state?.region));
+    else if (state?.stateName) setStoresList(getStoresList(state?.stateName));
     else setStoresList(getStoresList());
   }, [state]);
 
@@ -39,7 +39,7 @@ export default function StoresPage() {
       <AppBox sx={{ height: "38px", paddingLeft: "40px" }}>
         <AppText
           variant="subtitle2"
-          text={`${[...new Set(storesList?.map((_: any) => _?.name))]?.length} stores and  within map area`}
+          text={`${[...new Set(storesList?.map((_: any) => _?.name))]?.length} stores and ${storesList?.length} audits  within map area`}
           sx={{ margin: "auto" }}
         />
       </AppBox>

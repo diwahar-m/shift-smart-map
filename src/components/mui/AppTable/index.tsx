@@ -53,7 +53,7 @@ export default function AppTable({
                   lineHeight: "20px",
                   paddingY: "14px",
                   paddingLeft: "16px",
-                  maxWidth: "200px",
+                  maxWidth: "250px",
                 }}
                 key={_}
                 align="left"

@@ -12,7 +12,8 @@ export default function AppMainLayout() {
   const { pathname, state } = useLocation();
 
   useEffect(() => {
-    if (state?.stateName) onStateChange(state?.stateName);
+    if (state?.region) onStateChange(state?.region);
+    else if (state?.stateName) onStateChange(state?.stateName);
   }, [state]);
 
   return (

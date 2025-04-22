@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import AppSearch from "../mui/AppSearch";
-import AppHStack from "../mui/AppStack/AppHStack";
 import AppVStack from "../mui/AppStack/AppVStack";
 import AppText from "../mui/AppText";
 import ProductCard from "../card/ProductCard";
@@ -63,9 +61,9 @@ export default function StoreProductList({
           text={`Store ${storeDetails?.[0]?.["Store Number"]}`}
         />
       </AppVStack>
-      <AppHStack gap={"5px"}>
+      {/* <AppHStack gap={"5px"}>
         <AppSearch />
-        {/* <AppCenterStack
+        <AppCenterStack
           sx={{
             width: "38px",
             height: "38px",
@@ -75,8 +73,8 @@ export default function StoreProductList({
           }}
         >
           <SlidersHorizontal size={"15px"} />
-        </AppCenterStack> */}
-      </AppHStack>
+        </AppCenterStack>
+      </AppHStack> */}
       <AppVStack sx={{ gap: "2px" }}>
         {product?.map((_) => (
           <ProductCard

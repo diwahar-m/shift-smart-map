@@ -51,18 +51,20 @@ export const usaStates = [
   "Wyoming",
 ];
 
+//
+
 //  Table
 export const storesTableHead = [
   "Store",
-  "Capri Sun Punch",
-  "Capri Sun StrawberryKiwi",
+  "Capri Sun Fruit Punch",
+  "Capri Sun Strawberry Kiwi",
   "Capri Sun Pacific Cooler",
   "Last audited",
   "Last delivery",
 ];
 
 export const storesTableRow = [
-  "Circle K | Store 2709744",
+  "CIRCLE K | Store 2709744",
   { stock: "Out of stack", price: "$2.50" },
   { stock: "In inventory", price: "$0.00" },
   { stock: "On shelf", price: "$2.44" },

@@ -13,7 +13,6 @@ export default function HeaderContextProvider({
 }) {
   const [storesList, setStoresList] = useState<StoreAudit[]>([]);
   const [stateName, setStateName] = useState("");
-
   //   const handleRowClick = (storeName: string) => {
   //     navigate(`/store/${storeName}`);
   //   };

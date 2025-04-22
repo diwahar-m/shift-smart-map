@@ -21,6 +21,7 @@ export default function InventoryLevelGraph({ inventory }: any) {
   });
 
   React.useEffect(() => {
+    console.log(inventory);
     //@ts-expect-error
     const onShelf = inventory.map((row) => row[0]); // All first elements of each row
     //@ts-expect-error
@@ -33,21 +34,23 @@ export default function InventoryLevelGraph({ inventory }: any) {
 
   const toDecimal = (arr: number[]) => arr.map((v) => v / 100);
 
-  const outData = toDecimal(values?.OutOfStock);
-  const invData = toDecimal(values?.Ininventory);
   const shelfData = toDecimal(values?.onShelf);
+  const invData = toDecimal(values?.Ininventory);
+  const outData = toDecimal(values?.OutOfStock);
   return (
     <BarChart
       height={300}
       series={[
         {
-          data: outData,
-          label: "Out of Stock",
-          id: "out",
+          data: shelfData,
+          label: "On Shelf",
+          id: "shelf",
           stack: "percent",
           // @ts-expect-error ""
           barLabel: ({ value }) => `${Math.round(value * 100)}%`,
-          color: "#ef4444",
+          // @ts-expect-error ""
+          valueFormatter: (value) => `${Math.round(value * 100)}%`,
+          color: "#10b981",
         },
         {
           data: invData,
@@ -56,16 +59,20 @@ export default function InventoryLevelGraph({ inventory }: any) {
           stack: "percent",
           // @ts-expect-error ""
           barLabel: ({ value }) => `${Math.round(value * 100)}%`,
+          // @ts-expect-error ""
+          valueFormatter: (value) => `${Math.round(value * 100)}%`,
           color: "#3b82f6",
         },
         {
-          data: shelfData,
-          label: "On Shelf",
-          id: "shelf",
+          data: outData,
+          label: "Out of Stock",
+          id: "out",
           stack: "percent",
           // @ts-expect-error ""
           barLabel: ({ value }) => `${Math.round(value * 100)}%`,
-          color: "#10b981",
+          // @ts-expect-error ""
+          valueFormatter: (value) => `${Math.round(value * 100)}%`,
+          color: "#ef4444",
         },
       ]}
       xAxis={[{ data: xLabels, scaleType: "band" }]}
