@@ -123,11 +123,11 @@ const StateDetailsMap = ({
 
     if (selectedState && stateName === selectedState?.properties?.name) {
       (layer as L.Path).setStyle({
-        fillColor: "#609FF6",
+        fillColor: "#0B57C0",
         weight: 2,
         opacity: 0.3,
         color: "#fff",
-        fillOpacity: 1,
+        fillOpacity: 0.6,
       });
     }
   };

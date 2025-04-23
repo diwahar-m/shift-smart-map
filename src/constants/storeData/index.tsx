@@ -61,6 +61,17 @@ export function checkCoordinatesByBoundary(
   return booleanPointInPolygon(pt, poly);
 }
 
+export function checkCoOrdinatesWithinState(stateName: string) {
+  const filteredSatesByCoOrdinates = auditData
+    ?.filter((_) => {
+      const latitude = _?.["Store Latitude"];
+      const longitude = _?.["Store Longitude"];
+      return checkCoordinatesByBoundary(stateName, [longitude, latitude]);
+    })
+    ?.map((_) => _?.BU);
+  return filteredSatesByCoOrdinates[0];
+}
+
 export function getCompletedAuditPercentage(
   businessUnit?: string | null,
   stateName?: string | null,
