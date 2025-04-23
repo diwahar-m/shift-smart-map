@@ -68,7 +68,7 @@ const USAStateMap: React.FC = () => {
         <GeoJSON
           //@ts-expect-error "USA State type"
           data={usaMapData}
-          style={{ fillColor: "#609FF6", color: "#fff" }}
+          // style={{ fillColor: "#609FF6", color: "#fff" }}
           onEachFeature={(feature, layer) => {
             const stateName = feature.properties.name;
 

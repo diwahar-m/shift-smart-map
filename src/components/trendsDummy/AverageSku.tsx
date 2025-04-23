@@ -15,64 +15,64 @@ const inventories = [
   {
     week: "Audit 1",
     sku: "All SKUs",
-    values: [0.0, 2.73, 1.03, 0.85, 1.06, 0.74],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.29],
   },
   {
     week: "Audit 1",
     sku: "Fruit Punch",
-    values: [0.0, 2.99, 1.26, 0.88, 1.06, 1.15],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.29],
   },
   {
     week: "Audit 1",
     sku: "Pacific Cooler",
-    values: [0.0, 2.99, 1.26, 0.88, 1.06, 0.62],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.29],
   },
   {
     week: "Audit 1",
     sku: "Strawberry Kiwi",
-    values: [0.0, 2.33, 0.6, 0.77, 1.06, 0.46],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.29],
   },
   //
   {
     week: "Audit 2",
     sku: "All SKUs",
-    values: [0.0, 2.64, 1.23, 0.93, 2.08, 0.91],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.3],
   },
   {
     week: "Audit 2",
     sku: "Fruit Punch",
-    values: [0.0, 2.99, 1.63, 1.0, 2.39, 1.38],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.31],
   },
   {
     week: "Audit 2",
     sku: "Pacific Cooler",
-    values: [0.0, 2.99, 1.63, 1.06, 2.09, 1.15],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.31],
   },
   {
     week: "Audit 2",
     sku: "Strawberry Kiwi",
-    values: [0.0, 2.14, 0.5, 0.75, 1.79, 0.21],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.29],
   },
   //
   {
     week: "Audit 3",
     sku: "All SKUs",
-    values: [0.0, 2.52, 1.82, 0.98, 2.3, 1.69],
+    values: [0.0, 2.86, 2.99, 2.07, 2.39, 2.32],
   },
   {
     week: "Audit 3",
     sku: "Fruit Punch",
-    values: [0.0, 2.99, 2.39, 1.17, 2.39, 1.99],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.32],
   },
   {
     week: "Audit 3",
     sku: "Pacific Cooler",
-    values: [0.0, 2.59, 2.39, 1.05, 2.39, 1.74],
+    values: [0.0, 2.59, 2.99, 2.21, 2.39, 2.32],
   },
   {
     week: "Audit 3",
     sku: "Strawberry Kiwi",
-    values: [0.0, 2.14, 0.75, 0.73, 2.12, 1.32],
+    values: [0.0, 2.99, 2.99, 1.99, 2.39, 2.31],
   },
 ];
 

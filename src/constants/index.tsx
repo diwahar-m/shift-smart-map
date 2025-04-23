@@ -1,3 +1,5 @@
+import { checkCoOrdinatesWithinState } from "./storeData";
+
 export const usaStates = [
   "Alabama",
   "Alaska",
@@ -81,14 +83,25 @@ export function stateStyling(stateName, layer) {
     className: "state-label",
   });
   // Path styling
-  (layer as L.Path).setStyle({
-    fillColor: "#609FF680", // "#CBD5E1",
-    fillOpacity: 1,
-    weight: 2,
-    opacity: 0.2,
-    color: "#9b9898",
-    dashArray: "3",
-  });
+  if (checkCoOrdinatesWithinState(stateName)) {
+    (layer as L.Path).setStyle({
+      fillColor: "#609FF6", // "#CBD5E1",
+      fillOpacity: 0.6,
+      weight: 2,
+      opacity: 0.2,
+      color: "#9b9898",
+      dashArray: "3",
+    });
+  } else {
+    (layer as L.Path).setStyle({
+      fillColor: "#ADCDFA", // "#a2dcec",
+      fillOpacity: 0.5,
+      weight: 2,
+      opacity: 0.2,
+      color: "#9b9898",
+      dashArray: "3",
+    });
+  }
 
   // Optional: Add a popup for each state
   layer.bindPopup(`<strong>${stateName}</strong>`).openPopup();
