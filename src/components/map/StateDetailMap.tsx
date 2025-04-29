@@ -163,9 +163,13 @@ const StateDetailsMap = ({
           <></>
         )}
       </div>
-      <TileLayer
+      {/* <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      /> */}
+      <TileLayer
+        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
+        attribution='&copy; OpenStreetMap contributors &copy; <a href="https://www.basemaps.cartocdn.com/" target="_blank">Stadia Maps</a>'
       />
 
       <GeoJSON

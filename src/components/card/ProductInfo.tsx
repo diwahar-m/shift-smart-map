@@ -55,7 +55,7 @@ export default function ProductInfo({ tabs }: { tabs: tabProps[] }) {
             sx={{ fontSize: "24px", fontWeight: 600, lineHeight: "28px" }}
             text={`Store ${storeId}`}
           />
-          <AppVStack sx={{ width: "100%" }}>
+          {/* <AppVStack sx={{ width: "100%" }}>
             <AppText
               variant="h4"
               sx={{ fontSize: "14px", fontWeight: 600, lineHeight: "20px" }}
@@ -66,7 +66,7 @@ export default function ProductInfo({ tabs }: { tabs: tabProps[] }) {
               sx={{ fontSize: "14px", fontWeight: 600, lineHeight: "20px" }}
               text="Bangor, ME 04401"
             />
-          </AppVStack>
+          </AppVStack> */}
 
           <AppTabs tabs={tabs} />
         </AppVStack>
