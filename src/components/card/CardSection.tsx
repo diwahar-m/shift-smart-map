@@ -37,6 +37,7 @@ export default function CardSection({
             flexDirection: "column",
             gap: "8px",
             flex: 1,
+            zIndex: "10",
           }}
         >
           <AppHStack

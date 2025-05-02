@@ -7,10 +7,11 @@ import PathCard from "../card/PathCard";
 // import AppDateRangePicker from "../mui/AppDateRangePicker";
 import { InventoryDetailProps } from "../../pages/dashboard";
 import { getStatesList } from "../../constants/storeData";
+
 interface HeaderBarProps {
   headerCardDetails: Array<InventoryDetailProps>;
   onStateChange: (value?: string) => void;
-  stateName: string | null;
+  stateName: string | undefined;
   // onDateRangeChange?: (value: string[] | undefined) => void;
 }
 
@@ -19,6 +20,7 @@ export default function HeaderBar({
   onStateChange,
   stateName,
 }: HeaderBarProps) {
+  console.log(getStatesList());
   return (
     <AppVStack sx={{ width: "100%", padding: "30px", gap: "20px" }}>
       <AppText
@@ -37,12 +39,14 @@ export default function HeaderBar({
             label={"Select BU"}
             value={stateName}
             onChange={(value) => {
+              console.log(value);
               if (value) onStateChange(value);
               else onStateChange();
             }}
             sx={{ width: "248px", borderRadius: "8px", borderColor: "#CBD5E1" }}
             options={getStatesList()}
           />
+
           {/* <AppDateRangePicker
             style={{ width: "188px", height: "42px" }}
             onChange={(event) => onDateRangeChange?.(event)}

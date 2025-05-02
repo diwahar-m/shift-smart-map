@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
-import SideBarMini from "../common/SideBarMini";
+// import SideBarMini from "../common/SideBarMini";
 import AppHStack from "../mui/AppStack/AppHStack";
+import { SessionNavBar } from "../ui/sidebar";
 
 export default function StoreLayout() {
   return (
@@ -11,7 +12,8 @@ export default function StoreLayout() {
         maxWidth: "100vw",
       }}
     >
-      <SideBarMini />
+      {/* <SideBarMini /> */}
+      <SessionNavBar />
       {/* <AppHStack sx={{ flex: 1, maxWidth: "100%" }}> */}
       <Outlet />
       {/* </AppHStack> */}

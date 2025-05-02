@@ -25,7 +25,7 @@ export default function SideBar() {
       }}
     >
       {/* Logo container */}
-      <AppBox sx={{ borderColor: "#CBD5E1", borderWidth: "5px" }}>
+      <AppBox sx={{ borderColor: "#fff", borderWidth: "5px" }}>
         <AppBox
           onClick={() => navigate("/")}
           sx={{ height: "28px", width: "100%", cursor: "pointer" }}

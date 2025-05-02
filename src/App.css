@@ -2,6 +2,10 @@
     font-family: "Figtree";
 }
 
+button :focus :active{
+  outline: none !important;
+}
+
 .state-hover {
     color: '#609FF680 ' !important;
     background-color: '#609FF680 ' !important;

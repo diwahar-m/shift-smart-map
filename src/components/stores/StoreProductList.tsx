@@ -42,6 +42,7 @@ export default function StoreProductList({
         minHeight: "100vh",
         height: "100%",
         paddingTop: "40px",
+        marginLeft: "3.05rem", // new
       }}
     >
       <AppVStack sx={{ gap: "6px" }}>

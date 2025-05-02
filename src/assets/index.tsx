@@ -17,6 +17,7 @@ import redRaiseIconImage from "./Trends/redRaiseIcon.svg";
 import redLowIconImage from "./Trends/redLowIcon.svg";
 import greenLowIconImage from "./Trends/greenLowIcon.svg";
 import greenRaiseIconImage from "./Trends/greenRaiseIcon.svg";
+import shiftSmartTextIconImage from "./AllRegions/shiftsmartTextIcon.svg";
 
 export {
   AuditsIcon,
@@ -35,4 +36,5 @@ export {
   redLowIconImage,
   greenLowIconImage,
   greenRaiseIconImage,
+  shiftSmartTextIconImage,
 };
